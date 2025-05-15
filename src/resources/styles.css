@@ -1,0 +1,184 @@
+/* General application styling */
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.button:pressed {
+    -fx-background-color: #357a38;
+}
+
+/* Primary button */
+.button-primary {
+    -fx-background-color: #2196F3;
+}
+
+.button-primary:hover {
+    -fx-background-color: #1976D2;
+}
+
+/* Secondary button */
+.button-secondary {
+    -fx-background-color: #757575;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #616161;
+}
+
+/* Text fields and text areas */
+.text-field, .text-area {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #2196F3;
+}
+
+/* Labels */
+.label-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.label-subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+/* Radio buttons */
+.radio-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.radio-button:selected {
+    -fx-text-fill: #2196F3;
+}
+
+/* Combo box */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #2196F3;
+}
+
+/* Separator */
+.separator {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 5 0 5 0;
+}
+
+/* Board visualization */
+.board-container {
+    -fx-background-color: white;
+    -fx-border-color: #333;
+    -fx-border-width: 3px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.board-grid {
+    -fx-background-color: #333;
+    -fx-padding: 5px;
+}
+
+/* Piece styling */
+.piece {
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+    -fx-stroke: black;
+    -fx-stroke-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2);
+}
+
+.piece-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 1, 1);
+}
+
+/* Status labels */
+.status-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.stats-label {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 14px;
+    -fx-text-fill: #666;
+}
+
+/* Spinners */
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+}
+
+.spinner:focused {
+    -fx-border-color: #2196F3;
+}
+
+/* Matrix input cells */
+.matrix-cell {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.matrix-cell:focused {
+    -fx-border-color: #2196F3;
+    -fx-border-width: 2px;
+}
+
+/* Scroll pane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+}
+
+/* Alert dialogs */
+.alert {
+    -fx-background-color: white;
+}
+
+.alert .button {
+    -fx-background-color: #2196F3;
+}
+
+.alert .button:hover {
+    -fx-background-color: #1976D2;
+}
