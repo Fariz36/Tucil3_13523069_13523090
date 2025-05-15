@@ -1,0 +1,82 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
+}
+
+group = 'com.rushhour'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "17"
+    modules = ["javafx.controls", "javafx.fxml"]
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+        resources {
+            srcDirs = ['src']
+            exclude '**/*.java'
+        }
+    }
+}
+
+application {
+    mainClass = 'cli.Main'
+}
+
+// Task untuk menjalankan CLI
+task runCli(type: JavaExec) {
+    group = 'application'
+    description = 'Run the CLI version of Rush Hour'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'cli.Main'
+    standardInput = System.in
+}
+
+// Task untuk menjalankan GUI dengan JavaFX
+task runGui(type: JavaExec) {
+    group = 'application'
+    description = 'Run the GUI version of Rush Hour with JavaFX'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'gui.GuiMain'
+    standardInput = System.in
+    
+    jvmArgs = [
+        '--module-path', classpath.asPath,
+        '--add-modules', 'javafx.controls,javafx.fxml'
+    ]
+}
+
+// Set duplicates strategy for all Copy tasks
+tasks.withType(Copy) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Configure JAR with duplicates strategy
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    
+    manifest {
+        attributes(
+            'Main-Class': 'cli.Main'
+        )
+    }
+}
+
+// Process resources with duplicates strategy
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
