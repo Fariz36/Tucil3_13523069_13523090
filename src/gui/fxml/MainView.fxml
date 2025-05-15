@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" minHeight="700.0" minWidth="900.0" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.InputController">
+   <children>
+      <Label styleClass="label-title" text="Rush Hour Puzzle Solver" />
+      
+      <TabPane fx:id="inputTabPane" prefHeight="400.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <!-- File Input Tab -->
+            <Tab fx:id="fileTab" text="Load from File">
+               <content>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <TextField fx:id="filePathField" prefWidth="400.0" promptText="Select a file..." />
+                              <Button fx:id="browseButton" onAction="#handleBrowse" text="Browse" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="loadFileButton" onAction="#handleLoadFile" styleClass="button-primary" text="Load File" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            
+            <!-- Text Input Tab -->
+            <Tab fx:id="textTab" text="Text Input">
+               <content>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <TextArea fx:id="configTextArea" prefHeight="300.0" prefWidth="600.0" promptText="Enter configuration here..." />
+                        <Button fx:id="parseTextButton" onAction="#handleParseText" styleClass="button-primary" text="Parse Configuration" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            
+            <!-- Matrix Input Tab -->
+            <Tab fx:id="matrixTab" text="Matrix Input">
+               <content>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <VBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Rows:" />
+                                    <Spinner fx:id="rowSpinner" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Columns:" />
+                                    <Spinner fx:id="colSpinner" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Pieces:" />
+                                    <Spinner fx:id="piecesSpinner" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Button fx:id="createMatrixButton" onAction="#handleCreateMatrix" text="Create Matrix" />
+                        <ScrollPane fx:id="matrixScrollPane" prefHeight="300.0" prefWidth="600.0">
+                           <content>
+                              <VBox fx:id="matrixInputContainer" alignment="CENTER">
+                                 <children>
+                                    <GridPane fx:id="matrixGrid" alignment="CENTER" gridLinesVisible="true" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <Button fx:id="solveMatrixButton" disable="true" onAction="#handleSolveMatrix" styleClass="button-primary" text="Use This Configuration" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      
+      <Separator />
+      
+      <!-- Algorithm Selection -->
+      <VBox alignment="CENTER" spacing="15.0">
+         <children>
+            <Label styleClass="label-subtitle" text="Algorithm Settings" />
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Label text="Algorithm:" />
+                        <ComboBox fx:id="algorithmComboBox" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Label text="Heuristic:" />
+                        <ComboBox fx:id="heuristicComboBox" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="solveButton" disable="true" onAction="#handleSolve" styleClass="button-primary" text="Solve Puzzle" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
