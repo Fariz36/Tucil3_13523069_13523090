@@ -1,0 +1,8 @@
+6 6
+11
+ABCCCD
+ABE..D
+.BE.FF
+PP..G.K
+H.IIGJ
+HLLLGJ
