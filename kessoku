@@ -1,0 +1,129 @@
+#!/bin/sh
+# KessokuNoOwari - Script with additional CLI command
+# Usage:
+#   ./kessoku build       # Build the JAR and run Gradle build
+#   ./kessoku run         # Run the GUI application using runGui task
+#   ./kessoku cli         # Run the CLI application using runCli task
+#   ./kessoku clean       # Clean .jar and .class files from bin folder
+
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+
+case "$1" in
+  build)
+    echo "Building KessokuNoOwari.jar..."
+    
+    # Check for Java
+    if ! command -v java >/dev/null 2>&1; then
+      echo "Error: Java not found. Please install Java."
+      exit 1
+    fi
+    
+    # Check for JDK
+    if ! command -v javac >/dev/null 2>&1; then
+      echo "Error: Java compiler not found. Please install JDK."
+      exit 1
+    fi
+    
+    # Create bin directory
+    mkdir -p "$SCRIPT_DIR/bin"
+    
+    # Compile Java source
+    javac -d "$SCRIPT_DIR/bin" "$SCRIPT_DIR/src/KessokuNoOwari.java"
+    if [ $? -ne 0 ]; then
+      echo "Error: Compilation failed."
+      exit 1
+    fi
+    
+    # Create JAR
+    cd "$SCRIPT_DIR/bin"
+    jar cvfe KessokuNoOwari.jar KessokuNoOwari KessokuNoOwari.class
+    if [ $? -ne 0 ]; then
+      echo "Error: JAR creation failed."
+      exit 1
+    fi
+    cd "$SCRIPT_DIR"
+    
+    echo "Success! JAR created at: $SCRIPT_DIR/bin/KessokuNoOwari.jar"
+    echo ""
+    echo "Now running Gradle build..."
+    
+    # Run Gradle build using the JAR
+    cd "$SCRIPT_DIR"
+    java -jar "$SCRIPT_DIR/bin/KessokuNoOwari.jar" build
+    ;;
+    
+  gui)
+    if [ ! -f "$SCRIPT_DIR/bin/KessokuNoOwari.jar" ]; then
+      echo "Error: KessokuNoOwari.jar not found! Please build it first with:"
+      echo "  ./kessoku build"
+      exit 1
+    fi
+    
+    echo "Running the GUI application..."
+    cd "$SCRIPT_DIR"
+    # Run the GUI application using Gradle runGui task
+    java -jar "$SCRIPT_DIR/bin/KessokuNoOwari.jar" runGui
+    ;;
+    
+  cli)
+    if [ ! -f "$SCRIPT_DIR/bin/KessokuNoOwari.jar" ]; then
+      echo "Error: KessokuNoOwari.jar not found! Please build it first with:"
+      echo "  ./kessoku build"
+      exit 1
+    fi
+    
+    echo "Running the CLI application..."
+    cd "$SCRIPT_DIR"
+    # Run the CLI application using Gradle runCli task
+    java -jar "$SCRIPT_DIR/bin/KessokuNoOwari.jar" runCli
+    ;;
+    
+  clean)
+    echo "Cleaning bin folder..."
+    bin_dir="$SCRIPT_DIR/bin"
+    
+    # Check if bin directory exists
+    if [ ! -d "$bin_dir" ]; then
+      echo "Bin directory does not exist. Nothing to clean."
+      exit 0
+    fi
+    
+    # Remove .jar files
+    jar_count=$(find "$bin_dir" -name "*.jar" | wc -l)
+    if [ "$jar_count" -gt 0 ]; then
+      find "$bin_dir" -name "*.jar" -delete
+      echo "Removed $jar_count JAR file(s)."
+    else
+      echo "No JAR files found."
+    fi
+    
+    # Remove .class files
+    class_count=$(find "$bin_dir" -name "*.class" | wc -l)
+    if [ "$class_count" -gt 0 ]; then
+      find "$bin_dir" -name "*.class" -delete
+      echo "Removed $class_count class file(s)."
+    else
+      echo "No class files found."
+    fi
+    
+    echo "Clean completed successfully."
+    ;;
+    
+  *)
+    echo "KessokuNoOwari - Gradle Launcher"
+    echo "Usage:"
+    echo "  ./kessoku build       # Build the JAR and run Gradle build"
+    echo "  ./kessoku run         # Run the GUI application"
+    echo "  ./kessoku cli         # Run the CLI application"
+    echo "  ./kessoku clean       # Clean .jar and .class files from bin folder"
+    echo ""
+    echo "Examples:"
+    echo "  ./kessoku build"
+    echo "  ./kessoku run"
+    echo "  ./kessoku cli"
+    echo "  ./kessoku clean"
+    exit 1
+    ;;
+esac
+
+exit $?
