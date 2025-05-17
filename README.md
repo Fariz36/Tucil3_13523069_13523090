@@ -36,6 +36,13 @@
   </p>
 </div>
 
+ <p align="center">
+    <br />
+    <a href="https://youtu.be/7FDRQifEMUQ?si=gKheP3GnBORXsDY4">Kessoku!</a>
+    ·
+    <a href="https://github.com/Fariz36/Tucil3_13523069_13523090/tree/main/doc/.pdf">Project Report (Bahasa Indonesia)</a>
+</p>
+
 ## Intermezzo
 
 <div style="text-align: justify">
