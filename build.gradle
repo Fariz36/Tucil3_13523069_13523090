@@ -13,7 +13,7 @@ repositories {
 
 javafx {
     version = "17"
-    modules = ["javafx.controls", "javafx.fxml"]
+    modules = ["javafx.controls", "javafx.fxml", "javafx.graphics", "javafx.media"]
 }
 
 java {
@@ -76,7 +76,6 @@ jar {
     }
 }
 
-// Process resources with duplicates strategy
 processResources {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
