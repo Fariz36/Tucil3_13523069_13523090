@@ -36,7 +36,27 @@
   </p>
 </div>
 
-is Web-Based Application to search for recipe from Little Alchemy 2 game. This application implements DFS, BFS, and Bidirectional search to search for the target recipe. For BFS and DFS, the app will start searching from the parent (the target element), and ends if all the leaf is base elements.
+## Intermezzo
+
+<div style="text-align: justify">
+
+The Kessoku Band: Hitori "Bocchi" Gotoh, Ryo Yamada, Nijika Ijichi, and Kita Ikuyo—are driving to a big gig at Starry in Shimo-Kitazawa. Their van, carrying their instruments and Bocchi's nerves, gets stuck in a traffic jam on a MxN grid of streets. Cars and trucks block the way, some moving side-to-side, others up-and-down. The band's van (the "red car") needs to slide horizontally to reach the exit on the right side, with as few moves as possible, to make it to the show on time.
+
+Bocchi panics but suggests, "C-can we solve this like a puzzle?" Nijika nods, "Let's find the fastest way out!" The band uses three pathfinding tricks, each matching their vibe:
+
+1. **A* Search**: Nijika's smart planning takes charge. She picks moves that balance how many steps they've taken and how close they are to the exit, like hitting the perfect drum rhythm. A* Search is efficient, guiding the van smoothly to Starry.
+
+2. **Uniform Cost Search (UCS)**: Ryo, always chill, says, "Just take the cheapest path, step by step." UCS checks every move to find the one with the lowest total cost, like Ryo carefully budgeting her snacks. It's steady but takes its time.
+
+3. **Greedy Best-First Search**: Kita's enthusiasm shines. "Go straight for the exit, full speed!" she cheers. This method picks moves that seem closest to the goal, like Kita's bold guitar strums, but it might miss the best path by rushing.
+
+The band works together, sliding cars and trucks out of the way. Nijika's A* keeps them on track, Ryo's UCS ensures no wasted moves, and Kita's Greedy Search adds speed. Bocchi, less shaky now, helps spot key moves. Finally, the van zooms through the exit, and they arrive at Starry just in time.
+
+</div>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a2d6e084-1fe2-4e9e-b4ab-63172a1aeedf" alt="Kessoku Band solving the traffic puzzle" width="600">
+</p>
 
 ## Installation & Setup
  
