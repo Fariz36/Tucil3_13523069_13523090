@@ -6,8 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.application.Platform;
@@ -24,6 +25,7 @@ public class InputController {
     @FXML private Tab fileTab;
     @FXML private Tab textTab;
     @FXML private Tab matrixTab;
+    @FXML private VBox rootContainer;
     
     // File input components
     @FXML private TextField filePathField;
@@ -47,6 +49,10 @@ public class InputController {
     @FXML private ComboBox<String> algorithmComboBox;
     @FXML private ComboBox<String> heuristicComboBox;
     @FXML private Button solveButton;
+    
+    // Status components
+    @FXML private Text statusText;
+    @FXML private ScrollPane statusScrollPane;
     
     private Board currentBoard;
     private List<TextField> matrixCells;
@@ -87,7 +93,55 @@ public class InputController {
         matrixInputContainer.setVisible(false);
         
         // Add sample configuration
-        configTextArea.setText("6 6\n12\nAAB..F\n..BCDF\nGPPCDFK\nGH.III\nGHJ...\nLLJMM.");
+        configTextArea.setText("6 6\n11\nAAB..F\n..BCDF\nGPPCDFK\nGH.III\nGHJ...\nLLJMM.");
+        
+        setBackground();
+    }
+    
+    private void setBackground() {
+        try {
+            // Try to load background image
+            String backgroundPath = "resources/images/bocchi.jpg";
+            BackgroundImage backgroundImage = null;
+            
+            try {
+                Image image = new Image(getClass().getClassLoader().getResourceAsStream(backgroundPath));
+                if (!image.isError()) {
+                    backgroundImage = new BackgroundImage(
+                        image,
+                        BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        new BackgroundSize(1.0, 1.0, true, true, false, false)
+                    );
+                }
+            } catch (Exception e) {
+                System.err.println("Error loading background image: " + e.getMessage());
+                // Try alternative path
+                try {
+                    File file = new File(backgroundPath);
+                    if (file.exists()) {
+                        Image image = new Image(file.toURI().toString());
+                        backgroundImage = new BackgroundImage(
+                            image,
+                            BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                            BackgroundPosition.DEFAULT,
+                            new BackgroundSize(1.0, 1.0, true, true, false, false)
+                        );
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error loading background from file: " + ex.getMessage());
+                }
+            }
+            
+            if (backgroundImage != null) {
+                rootContainer.setBackground(new Background(backgroundImage));
+            } else {
+                // Use dark color as fallback
+                rootContainer.setStyle("-fx-background-color: #121212;");
+            }
+        } catch (Exception e) {
+            System.err.println("Error setting background: " + e.getMessage());
+        }
     }
     
     @FXML
@@ -115,7 +169,7 @@ public class InputController {
     private void handleLoadFile() {
         String filePath = filePathField.getText();
         if (filePath.isEmpty()) {
-            showAlert("Error", "Please select a file first", Alert.AlertType.ERROR);
+            updateStatus("Error: Please select a file first", true);
             return;
         }
         
@@ -134,10 +188,10 @@ public class InputController {
                 }
             }
             
-            showAlert("Success", "Board loaded successfully!", Alert.AlertType.INFORMATION);
+            updateStatus("Board loaded successfully!", false);
             solveButton.setDisable(false);
         } catch (IOException e) {
-            showAlert("Error", "Error loading file: " + e.getMessage(), Alert.AlertType.ERROR);
+            updateStatus("Error: " + e.getMessage(), true);
             currentBoard = null;
             solveButton.setDisable(true);
         }
@@ -147,7 +201,7 @@ public class InputController {
     private void handleParseText() {
         String configText = configTextArea.getText();
         if (configText.trim().isEmpty()) {
-            showAlert("Error", "Please enter a configuration", Alert.AlertType.ERROR);
+            updateStatus("Error: Please enter a configuration", true);
             return;
         }
         
@@ -173,10 +227,10 @@ public class InputController {
                 }
             }
             
-            showAlert("Success", "Configuration parsed successfully!", Alert.AlertType.INFORMATION);
+            updateStatus("Configuration parsed successfully!", false);
             solveButton.setDisable(false);
         } catch (IOException e) {
-            showAlert("Error", "Error parsing configuration: " + e.getMessage(), Alert.AlertType.ERROR);
+            updateStatus("Error: " + e.getMessage(), true);
             currentBoard = null;
             solveButton.setDisable(true);
         }
@@ -246,12 +300,12 @@ public class InputController {
         }
         
         if (!foundP) {
-            showAlert("Error", "Primary piece 'P' not found in matrix", Alert.AlertType.ERROR);
+            updateStatus("Error: Primary piece 'P' not found in matrix", true);
             return;
         }
         
         if (!foundK) {
-            showAlert("Error", "Exit 'K' not found in matrix", Alert.AlertType.ERROR);
+            updateStatus("Error: Exit 'K' not found in matrix", true);
             return;
         }
         
@@ -265,10 +319,10 @@ public class InputController {
             currentBoard = Board.readFromFile(tempFile.getAbsolutePath());
             tempFile.delete();
             
-            showAlert("Success", "Matrix configuration loaded successfully!", Alert.AlertType.INFORMATION);
+            updateStatus("Matrix configuration loaded successfully!", false);
             solveButton.setDisable(false);
         } catch (IOException e) {
-            showAlert("Error", "Error parsing matrix: " + e.getMessage(), Alert.AlertType.ERROR);
+            updateStatus("Error: " + e.getMessage(), true);
             currentBoard = null;
             solveButton.setDisable(true);
         }
@@ -277,7 +331,7 @@ public class InputController {
     @FXML
     private void handleSolve() {
         if (currentBoard == null) {
-            showAlert("Error", "Please load a board configuration first", Alert.AlertType.ERROR);
+            updateStatus("Error: Please load a board configuration first", true);
             return;
         }
         
@@ -286,6 +340,7 @@ public class InputController {
         
         // Disable UI during solving
         solveButton.setDisable(true);
+        updateStatus("Solving puzzle...", false);
         
         // Run solving in background thread
         new Thread(() -> {
@@ -316,16 +371,17 @@ public class InputController {
                     solveButton.setDisable(false);
                     
                     if (finalSolution != null) {
+                        updateStatus("Solution found! Opening visualization...", false);
                         openVisualization(finalSolution, currentBoard, algorithm, heuristic, executionTime);
                     } else {
-                        showAlert("No Solution", "No solution found for this configuration", Alert.AlertType.WARNING);
+                        updateStatus("No solution found for this configuration", true);
                     }
                 });
                 
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     solveButton.setDisable(false);
-                    showAlert("Error", "Error solving puzzle: " + e.getMessage(), Alert.AlertType.ERROR);
+                    updateStatus("Error solving puzzle: " + e.getMessage(), true);
                     e.printStackTrace();
                 });
             }
@@ -349,7 +405,12 @@ public class InputController {
             try {
                 scene.getStylesheets().add(getClass().getResource("/resources/styles.css").toExternalForm());
             } catch (Exception e) {
-                System.out.println("Could not load styles.css");
+                System.out.println("Could not load dark-mode-styles.css, trying styles.css");
+                try {
+                    scene.getStylesheets().add(getClass().getResource("/resources/styles.css").toExternalForm());
+                } catch (Exception ex) {
+                    System.out.println("Could not load styles.css");
+                }
             }
             
             stage.setScene(scene);
@@ -358,17 +419,19 @@ public class InputController {
             stage.show();
             
         } catch (IOException e) {
-            showAlert("Error", "Error opening visualization: " + e.getMessage(), Alert.AlertType.ERROR);
+            updateStatus("Error opening visualization: " + e.getMessage(), true);
             e.printStackTrace();
         }
     }
     
-    private void showAlert(String title, String content, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+    private void updateStatus(String message, boolean isError) {
+        statusText.setText(message);
+        
+        if (isError) {
+            statusText.getStyleClass().add("error");
+        } else {
+            statusText.getStyleClass().removeAll("error");
+        }
     }
     
     private boolean showConfirmation(String title, String content) {
@@ -376,6 +439,11 @@ public class InputController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
+        
+        // Apply dark mode to alert
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/resources/styles.css").toExternalForm());
+        dialogPane.getStyleClass().add("dark-dialog");
         
         ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
         return result == ButtonType.OK;
