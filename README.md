@@ -165,7 +165,11 @@ The band works together, sliding cars and trucks out of the way. Nijika's A* kee
  <br/>
  <br/>
  <br/>
- 
+
+ <p align="center">
+  <img src="https://github.com/user-attachments/assets/ce8a70e3-f8d0-40a1-b4e9-a0b11eb3eeb1" alt="Kessoku Band solving the traffic puzzle" width="600">
+</p>
+
  <div align="center">
  Strategi Algoritma • © 2025 • Kessoku No Owari
  </div>
