@@ -55,7 +55,7 @@ The band works together, sliding cars and trucks out of the way. Nijika's A* kee
 </div>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a2d6e084-1fe2-4e9e-b4ab-63172a1aeedf" alt="Kessoku Band solving the traffic puzzle" width="600">
+  <img src="https://github.com/user-attachments/assets/c267a42b-74f6-4d1f-8d42-fde28c104a29" alt="Kessoku Band solving the traffic puzzle" width="600">
 </p>
 
 ## Installation & Setup
