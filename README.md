@@ -41,92 +41,98 @@ is Web-Based Application to search for recipe from Little Alchemy 2 game. This a
 ## Installation & Setup
  
 ### Requirements
- > - Git
- > - Java 11
+- Git
+- Java 11
 
 ### Dependencies
- > - Gradle 8.7
+- Gradle 8.7
+
+<br/>
 
 ### Installing Dependencies
 
 <a id="dependencies"></a>
 > [!IMPORTANT]  
-> If you're working with development, then go to Tubes2_Labpro-Hebat/frontend for frontend
+> If you're using linux (mainly Ubuntu or Debian distro), make sure that java 11 is installed, or you can do:
    ```
-   npm i
-
-   or
-
-   npm install
+   sudo apt update
+   sudo apt install openjdk-11-jdk
+   sudo apt install gradle
 ```
 > For backend, just install golang: https://go.dev/dl/
 > For production, please refer to "How to Run" section
 
 ---
  ## How to Run
- ### Frontend (development)
+ ### Command Line Interface (Development)
  1. Open a terminal
- 2. Clone the repository
+ 2. Clone the repository (if not already cloned)
        ```bash
-    git clone https://github.com/Nayekah/Tubes2_Labpro-Hebat.git
+    git clone https://github.com/Fariz36/Tucil3_13523069_13523090.git
     
- 3. go to Tubes2_Labpro-Hebat/frontend:
+ 3. go to Tucil3_13523069_13523090 directory:
        ```bash
-    cd Tubes2_Labpro-Hebat/frontend/
+    cd Tucil3_13523069_13523090
     
  4. Install the [dependencies](#dependencies) first
  5. Do: 
     ```bash
-    npm run dev
-6. Access the frontend in [http://localhost:3000](http://localhost:3000)
+    # Windows
+    .\kessoku.bat cli
 
- ### Backend (development)
+    # Linux
+    ./kessoku cli
+
+ ### Graphical User Interface
  1. Open a terminal
- 2. Clone the repository
+ 2. Clone the repository (if not already cloned)
        ```bash
-    git clone https://github.com/Nayekah/Tubes2_Labpro-Hebat.git
+    git clone https://github.com/Fariz36/Tucil3_13523069_13523090.git
     
- 3. go to Tubes2_Labpro-Hebat/backend:
+ 3. go to Tucil3_13523069_13523090 directory:
        ```bash
-    cd Tubes2_Labpro-Hebat/backend
+    cd Tucil3_13523069_13523090
     
  4. Install the [dependencies](#dependencies) first
  5. Do: 
     ```bash
-    go run main.go
+    # Windows
+    .\kessoku.bat gui
+
+    # Linux
+    ./kessoku gui
 
 > [!Note]
 > Make sure that all of the dependencies are already installed
 
- ### Frontend and Backend (development w/ docker)
+---
+ ## Build and Clean
  1. Open a terminal
- 2. Clone the repository
+ 2. Clone the repository (if not already cloned)
        ```bash
-    git clone https://github.com/Nayekah/Tubes2_Labpro-Hebat.git
+    git clone https://github.com/Fariz36/Tucil3_13523069_13523090.git
     
- 3. go to Tubes2_Labpro-Hebat:
+ 3. go to Tucil3_13523069_13523090 directory:
        ```bash
-    cd Tubes2_Labpro-Hebat/
-    
- 5. Do: 
+    cd Tucil3_13523069_13523090
+ 5. Install the [dependencies](#dependencies) first (prerequisite for "build" command)
+
+ 7. Do: 
     ```bash
-    docker-compose -f docker-compose.yml up --build
-6. Access the web in [http://localhost:2211](http://localhost:2211)
-   
- ### Frontend and Backend (production w/ docker)
- 1. Open a terminal
- 2. Clone the repository
-       ```bash
-    git clone https://github.com/Nayekah/Tubes2_Labpro-Hebat.git
-    
- 3. go to Tubes2_Labpro-Hebat:
-       ```bash
-    cd Tubes2_Labpro-Hebat/
-    
- 5. Do: 
-    ```bash
-    docker-compose -f docker-compose.prod.yml up --build
-6. Access the web in [http://seleksiasistenlabpro.xyz](http://seleksiasistenlabpro.xyz)
+    Cleaning exxecutable in bin directory
+    # Windows
+    .\kessoku.bat clean
+
+    # Linux
+    ./kessoku clean
+
+
+    Building executable to bin directory
+    # Windows
+    .\kessoku.bat build
+
+    # Linux
+    ./kessoku build
 
  <br/>
  <br/>
