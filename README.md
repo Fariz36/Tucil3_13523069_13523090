@@ -32,7 +32,7 @@
 
   <p>
     <img src="https://github.com/user-attachments/assets/b9b22c03-8659-4afb-9b73-863c56939830" alt="Java" width="150"/>
-    <img src="https://github.com/user-attachments/assets/b2802b21-1ec3-4bb3-9b4d-e4ade5a027a6" alt="React" width="150"/>
+    <img src="https://github.com/user-attachments/assets/68aea290-2c23-423a-ad41-3a3eac88e71c" alt="Gradle" width="100"/>
   </p>
 </div>
 
