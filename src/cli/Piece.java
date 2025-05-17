@@ -1,15 +1,13 @@
 package cli;
 
-import java.util.*;
-
 public class Piece {
     private char id;
-    private List<Position> positions;
+    private java.util.List<Position> positions;
     private Orientation orientation;
     
-    public Piece(char id, List<Position> positions) {
+    public Piece(char id, java.util.List<Position> positions) {
         this.id = id;
-        this.positions = new ArrayList<>(positions);
+        this.positions = new java.util.ArrayList<>(positions);
         
         // Validate piece shape before determining orientation
         validatePieceShape();
@@ -72,7 +70,7 @@ public class Piece {
             }
             
             // Verify no gaps between min and max columns
-            Set<Integer> columns = new HashSet<>();
+            java.util.Set<Integer> columns = new java.util.HashSet<>();
             for (Position pos : positions) {
                 columns.add(pos.col);
             }
@@ -99,7 +97,7 @@ public class Piece {
             }
             
             // Verify no gaps between min and max rows
-            Set<Integer> rows = new HashSet<>();
+            java.util.Set<Integer> rows = new java.util.HashSet<>();
             for (Position pos : positions) {
                 rows.add(pos.row);
             }
@@ -137,15 +135,22 @@ public class Piece {
         }
     }
 
+    /**
+     * Copy constructor
+     */
     public Piece(Piece other) {
         this.id = other.id;
-        this.positions = new ArrayList<>();
+        this.positions = new java.util.ArrayList<>();
         for (Position pos : other.positions) {
             this.positions.add(new Position(pos));
         }
         this.orientation = other.orientation;
     }
     
+    /**
+     * Move the piece in the specified direction
+     * @param direction 1 for forward (right/down), -1 for backward (left/up)
+     */
     public void move(int direction) {
         for (Position pos : positions) {
             if (orientation == Orientation.HORIZONTAL) {
@@ -157,6 +162,9 @@ public class Piece {
         sortPositions();
     }
     
+    /**
+     * Sort positions for consistent ordering
+     */
     private void sortPositions() {
         positions.sort((p1, p2) -> {
             if (orientation == Orientation.HORIZONTAL) {
@@ -173,8 +181,9 @@ public class Piece {
         });
     }
     
+    // Getters
     public char getId() { return id; }
-    public List<Position> getPositions() { return positions; }
+    public java.util.List<Position> getPositions() { return positions; }
     public Orientation getOrientation() { return orientation; }
     public int getSize() { return positions.size(); }
     

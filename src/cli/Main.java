@@ -3,6 +3,10 @@ package cli;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Main class for the Rush Hour puzzle solver
+ * This version supports compound moves as shown in the sample image
+ */
 public class Main {
     // ANSI color codes
     private static final String RESET = "\u001B[0m";
@@ -49,10 +53,29 @@ public class Main {
             
             System.out.println("\nChoose algorithm:");
             System.out.println("1. Uniform Cost Search (UCS)");
-            System.out.println("2. Dijkstra's Algorithm");
-            System.out.print("Enter your choice (1-2): ");
+            System.out.println("2. Greedy Best First Search");
+            System.out.println("3. A* Search");
+            System.out.print("Enter your choice (1-3): ");
             
             int algorithmChoice = getAlgorithmChoice(scanner);
+            
+            // Ask for heuristic if using Greedy or A*
+            String heuristic = "manhattan";
+            if (algorithmChoice == 2 || algorithmChoice == 3) {
+                System.out.println("\nChoose heuristic:");
+                System.out.println("1. Manhattan Distance");
+                System.out.println("2. Direct Distance");
+                System.out.println("3. Blocking Count");
+                System.out.print("Enter your choice (1-3): ");
+                
+                int heuristicChoice = getHeuristicChoice(scanner);
+                switch (heuristicChoice) {
+                    case 1: heuristic = "manhattan"; break;
+                    case 2: heuristic = "direct"; break;
+                    case 3: heuristic = "blocking"; break;
+                    default: heuristic = "manhattan";
+                }
+            }
             
             // Solve the puzzle
             Solver solver = new Solver();
@@ -67,8 +90,12 @@ public class Main {
                     algorithmUsed = "Uniform Cost Search (UCS)";
                     break;
                 case 2:
-                    solution = solver.solveDijkstra(board);
-                    algorithmUsed = "Dijkstra's Algorithm";
+                    solution = solver.solveGreedy(board, heuristic);
+                    algorithmUsed = "Greedy Best First Search with " + heuristic + " heuristic";
+                    break;
+                case 3:
+                    solution = solver.solveAStar(board, heuristic);
+                    algorithmUsed = "A* Search with " + heuristic + " heuristic";
                     break;
                 default:
                     System.out.println("Using UCS as default.");
@@ -96,7 +123,8 @@ public class Main {
                 if (saveChoice.equalsIgnoreCase("y")) {
                     // Save solution to file
                     String outputFilename = filename.replace(".txt", "");
-                    String algoPrefix = algorithmChoice == 2 ? "dijkstra_" : "ucs_";
+                    String algoPrefix = algorithmChoice == 1 ? "ucs_" : 
+                                       (algorithmChoice == 2 ? "greedy_" : "astar_");
                     String outputPath = "test/output/" + algoPrefix + "output_" + outputFilename + ".txt";
                     
                     // Check if file already exists
@@ -144,7 +172,74 @@ public class Main {
         scanner.close();
     }
     
-    private static void saveSolutionToFile(Board initialBoard, Solution solution, long executionTime, String outputPath, String algorithmUsed) throws IOException {
+    /**
+     * Write final board state to file with primary piece shown next to exit
+     */
+    private static void writeFinalBoardWithExitedPiece(PrintWriter writer, Board board) {
+        int width = board.getWidth();
+        int height = board.getHeight();
+        
+        Exit exitSide = board.getExitSide();
+        Position exitPosition = board.getExitPosition();
+        
+        // Top exit if exists
+        if (exitSide == Exit.TOP) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    writer.print("KP"); // Show K with P outside
+                    j++; // Skip one column as we printed two characters
+                } else {
+                    writer.print(" ");
+                }
+            }
+            writer.println();
+        }
+        
+        // Board content
+        for (int i = 0; i < height; i++) {
+            // Left exit
+            if (exitSide == Exit.LEFT && i == exitPosition.row) {
+                writer.print("PK"); // Show P outside, then K
+            }
+            
+            // Board cells
+            for (int j = 0; j < width; j++) {
+                char c = board.getGridAt(i, j);
+                // Don't show P in the board for final state (it's exited)
+                if (c == 'P') {
+                    writer.print('.');
+                } else {
+                    writer.print(c);
+                }
+            }
+            
+            // Right exit
+            if (exitSide == Exit.RIGHT && i == exitPosition.row) {
+                writer.print("KP"); // Show K then P outside
+            }
+            
+            writer.println();
+        }
+        
+        // Bottom exit if exists
+        if (exitSide == Exit.BOTTOM) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    writer.print("KP"); // Show K with P outside
+                    j++; // Skip one column as we printed two characters
+                } else {
+                    writer.print(" ");
+                }
+            }
+            writer.println();
+        }
+    }
+
+    /**
+     * Save solution to a file with P shown next to exit K
+     */
+    private static void saveSolutionToFile(Board initialBoard, Solution solution, long executionTime, 
+                                        String outputPath, String algorithmUsed) throws IOException {
         // Create output directory if it doesn't exist
         File outputDir = new File("test/output");
         if (!outputDir.exists()) {
@@ -161,25 +256,117 @@ public class Main {
             writer.println("Execution time: " + executionTime + " ms");
             writer.println();
             
+            // Write move sequence
+            writer.println("Move sequence:");
+            writer.println(formatMoveSequence(solution.getMoves()));
+            writer.println();
+            
             // Write initial board
             writer.println("Papan Awal");
             writeBoard(writer, solution.getStates().get(0));
             
-            // Write each move
+            // Write each move except the last
             List<Move> moves = solution.getMoves();
             List<Board> states = solution.getStates();
             
-            for (int i = 0; i < moves.size(); i++) {
+            for (int i = 0; i < moves.size() - 1; i++) {
                 writer.println();
                 writer.println("Gerakan " + (i + 1) + ": " + moves.get(i));
                 writeBoard(writer, states.get(i + 1));
+            }
+            
+            // Write the final move with special visualization
+            if (moves.size() > 0) {
+                int lastIndex = moves.size() - 1;
+                writer.println();
+                writer.println("Gerakan " + (lastIndex + 1) + ": " + moves.get(lastIndex));
+                writeFinalBoardWithExitedPiece(writer, states.get(states.size() - 1));
             }
             
             writer.println();
             writer.println("[Primary piece has reached the exit!]");
         }
     }
+
+    /**
+     * Write final board state to file with primary piece shown exiting
+     */
+    public static void writeFinalBoard(PrintWriter writer, Board board) {
+        int width = board.getWidth();
+        int height = board.getHeight();
+        
+        Exit exitSide = board.getExitSide();
+        Position exitPosition = board.getExitPosition();
+        
+        // Top exit if exists
+        if (exitSide == Exit.TOP) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    writer.print("P"); // Show primary piece exiting at top
+                } else {
+                    writer.print(" ");
+                }
+            }
+            writer.println();
+        }
+        
+        // Board content
+        for (int i = 0; i < height; i++) {
+            // Left exit
+            if (exitSide == Exit.LEFT && i == exitPosition.row) {
+                writer.print("P"); // Show primary piece exiting at left
+            }
+            
+            // Board cells
+            for (int j = 0; j < width; j++) {
+                writer.print(board.getGridAt(i, j));
+            }
+            
+            // Right exit
+            if (exitSide == Exit.RIGHT && i == exitPosition.row) {
+                writer.print("P"); // Show primary piece exiting at right
+            }
+            
+            writer.println();
+        }
+        
+        // Bottom exit if exists
+        if (exitSide == Exit.BOTTOM) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    writer.print("P"); // Show primary piece exiting at bottom
+                } else {
+                    writer.print(" ");
+                }
+            }
+            writer.println();
+        }
+    }
     
+    /**
+     * Format move sequence for display
+     */
+    private static String formatMoveSequence(List<Move> moves) {
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        
+        for (Move move : moves) {
+            sb.append(move.toString()).append(" ");
+            count++;
+            
+            // Add newline every 16 moves for readability
+            if (count % 16 == 0) {
+                sb.append("\n");
+            }
+        }
+        
+        sb.append("(").append(moves.size()).append(" moves)");
+        return sb.toString();
+    }
+    
+    /**
+     * Write board to a file
+     */
     private static void writeBoard(PrintWriter writer, Board board) {
         // Write board without colors (plain text for file)
         int width = board.getWidth();
@@ -233,6 +420,9 @@ public class Main {
         }
     }
     
+    /**
+     * Get yes/no choice from user
+     */
     private static String getYesNoChoice(Scanner scanner) {
         String choice = scanner.nextLine().trim();
         
@@ -244,20 +434,45 @@ public class Main {
         return choice;
     }
     
+    /**
+     * Get algorithm choice from user
+     */
     private static int getAlgorithmChoice(Scanner scanner) {
         String input = scanner.nextLine().trim();
         
         while (true) {
             try {
                 int choice = Integer.parseInt(input);
-                if (choice >= 1 && choice <= 2) {
+                if (choice >= 1 && choice <= 3) {
                     return choice;
                 } else {
-                    System.out.print(RED + "Invalid choice! Please enter 1 or 2: " + RESET);
+                    System.out.print(RED + "Invalid choice! Please enter a number between 1 and 3: " + RESET);
                     input = scanner.nextLine().trim();
                 }
             } catch (NumberFormatException e) {
-                System.out.print(RED + "Invalid input! Please enter a number (1-2): " + RESET);
+                System.out.print(RED + "Invalid input! Please enter a number (1-3): " + RESET);
+                input = scanner.nextLine().trim();
+            }
+        }
+    }
+    
+    /**
+     * Get heuristic choice from user
+     */
+    private static int getHeuristicChoice(Scanner scanner) {
+        String input = scanner.nextLine().trim();
+        
+        while (true) {
+            try {
+                int choice = Integer.parseInt(input);
+                if (choice >= 1 && choice <= 3) {
+                    return choice;
+                } else {
+                    System.out.print(RED + "Invalid choice! Please enter a number between 1 and 3: " + RESET);
+                    input = scanner.nextLine().trim();
+                }
+            } catch (NumberFormatException e) {
+                System.out.print(RED + "Invalid input! Please enter a number (1-3): " + RESET);
                 input = scanner.nextLine().trim();
             }
         }

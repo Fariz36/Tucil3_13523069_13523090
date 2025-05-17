@@ -3,6 +3,9 @@ package cli;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Board class representing the Rush Hour puzzle grid state
+ */
 public class Board {
     private int width;
     private int height;
@@ -69,36 +72,27 @@ public class Board {
         if (parsed.exitPosition.row == -1) {
             // Top exit
             board.exitPosition = new Position(0, parsed.exitPosition.col);
+            board.exitSide = Exit.TOP;
         } else if (parsed.exitPosition.row == parsed.rows) {
             // Bottom exit
             board.exitPosition = new Position(parsed.rows - 1, parsed.exitPosition.col);
+            board.exitSide = Exit.BOTTOM;
         } else if (parsed.exitPosition.col == -1) {
             // Left exit
             board.exitPosition = new Position(parsed.exitPosition.row, 0);
+            board.exitSide = Exit.LEFT;
         } else if (parsed.exitPosition.col == parsed.cols) {
             // Right exit
             board.exitPosition = new Position(parsed.exitPosition.row, parsed.cols - 1);
-        } else {
-            // Exit is within the grid
-            board.exitPosition = new Position(parsed.exitPosition);
-        }
-        
-        // Store the actual exit side for display purposes
-        if (parsed.exitPosition.row == -1) {
-            board.exitSide = Exit.TOP;
-        } else if (parsed.exitPosition.row == parsed.rows) {
-            board.exitSide = Exit.BOTTOM;
-        } else if (parsed.exitPosition.col == -1) {
-            board.exitSide = Exit.LEFT;
-        } else if (parsed.exitPosition.col == parsed.cols) {
             board.exitSide = Exit.RIGHT;
         } else {
+            // Exit is within the grid (should not normally happen)
+            board.exitPosition = new Position(parsed.exitPosition);
             board.exitSide = Exit.NONE;
         }
         
         // Parse pieces from grid
         Map<Character, List<Position>> piecePositions = new HashMap<>();
-        Set<Character> validPieceChars = new HashSet<>();
         
         for (int i = 0; i < parsed.rows; i++) {
             for (int j = 0; j < parsed.cols; j++) {
@@ -111,7 +105,6 @@ public class Board {
                     if (!Character.isUpperCase(c)) {
                         throw new IOException("Invalid character '" + c + "' at position (" + i + ", " + j + "). Only uppercase letters (A-Z) are allowed for pieces.");
                     }
-                    validPieceChars.add(c);
                     piecePositions.computeIfAbsent(c, k -> new ArrayList<>())
                                  .add(new Position(i, j));
                 }
@@ -125,7 +118,7 @@ public class Board {
             List<Position> positions = entry.getValue();
             
             try {
-                // Piece constructor now performs validation automatically
+                // Piece constructor performs validation
                 Piece piece = new Piece(id, positions);
                 board.pieces.add(piece);
                 actualPieceCount++;
@@ -134,7 +127,6 @@ public class Board {
                     board.primaryPiece = piece;
                 }
             } catch (IllegalArgumentException e) {
-                // Convert IllegalArgumentException to IOException for consistency
                 throw new IOException("Invalid piece configuration: " + e.getMessage());
             }
         }
@@ -153,18 +145,10 @@ public class Board {
         System.out.println("Board loaded successfully:");
         System.out.println("- Primary piece: " + board.primaryPiece.getId());
         System.out.println("- Exit position: " + board.exitPosition);
-        System.out.println("- Exit on: " + getExitSide(parsed.exitPosition, parsed.rows, parsed.cols));
+        System.out.println("- Exit on: " + board.exitSide);
         System.out.println("- Total pieces: " + board.pieces.size());
         
         return board;
-    }
-    
-    private static String getExitSide(Position exitPos, int rows, int cols) {
-        if (exitPos.row == -1) return "TOP";
-        if (exitPos.row == rows) return "BOTTOM";
-        if (exitPos.col == -1) return "LEFT";
-        if (exitPos.col == cols) return "RIGHT";
-        return "UNKNOWN";
     }
     
     public List<Move> getPossibleMoves() {
@@ -185,6 +169,10 @@ public class Board {
         return moves;
     }
     
+/**
+ * Check if a piece can move in a given direction
+ * With improved exit detection
+ */
     private boolean canMovePiece(Piece piece, int direction) {
         List<Position> positions = piece.getPositions();
         Set<Position> currentPositionsSet = new HashSet<>(positions);
@@ -207,15 +195,20 @@ public class Board {
         for (Position newPos : newPositions) {
             // Special case: primary piece exiting
             if (piece == primaryPiece && exitPosition != null) {
-                if (piece.getOrientation() == Orientation.HORIZONTAL && newPos.row == exitPosition.row) {
-                    if ((exitPosition.col == width - 1 && newPos.col == width) ||
-                        (exitPosition.col == 0 && newPos.col == -1)) {
-                        continue; // Allow exit
+                // Check if this move would reach or exit through the exit
+                if (piece.getOrientation() == Orientation.HORIZONTAL) {
+                    if (newPos.row == exitPosition.row) {
+                        if ((exitSide == Exit.RIGHT && newPos.col >= width) ||
+                            (exitSide == Exit.LEFT && newPos.col < 0)) {
+                            return true; // Allow exit
+                        }
                     }
-                } else if (piece.getOrientation() == Orientation.VERTICAL && newPos.col == exitPosition.col) {
-                    if ((exitPosition.row == height - 1 && newPos.row == height) ||
-                        (exitPosition.row == 0 && newPos.row == -1)) {
-                        continue; // Allow exit
+                } else { // VERTICAL
+                    if (newPos.col == exitPosition.col) {
+                        if ((exitSide == Exit.BOTTOM && newPos.row >= height) ||
+                            (exitSide == Exit.TOP && newPos.row < 0)) {
+                            return true; // Allow exit
+                        }
                     }
                 }
             }
@@ -243,28 +236,45 @@ public class Board {
         return true;
     }
     
-    private Position getFrontPosition(Piece piece, int direction) {
-        List<Position> positions = piece.getPositions();
-        if (piece.getOrientation() == Orientation.HORIZONTAL) {
-            return direction > 0 ? positions.get(positions.size() - 1) : positions.get(0);
-        } else {
-            return direction > 0 ? positions.get(positions.size() - 1) : positions.get(0);
-        }
-    }
-    
-    private Position getBackPosition(Piece piece, int direction) {
-        List<Position> positions = piece.getPositions();
-        if (piece.getOrientation() == Orientation.HORIZONTAL) {
-            return direction > 0 ? positions.get(0) : positions.get(positions.size() - 1);
-        } else {
-            return direction > 0 ? positions.get(0) : positions.get(positions.size() - 1);
-        }
-    }
-    
+/**
+ * Make a move on the board, with improved exit handling
+ */
     public Board makeMove(Move move) {
         Board newBoard = new Board(this);
         Piece piece = newBoard.getPieceById(move.getPiece().getId());
         int direction = move.getDirectionValue();
+        
+        // Check if this is an exit move for the primary piece
+        boolean isExitMove = false;
+        if (piece == newBoard.primaryPiece) {
+            if (piece.getOrientation() == Orientation.HORIZONTAL) {
+                if ((exitSide == Exit.RIGHT && direction > 0) || 
+                    (exitSide == Exit.LEFT && direction < 0)) {
+                    // Check if this move would position the primary piece at the exit
+                    for (Position pos : piece.getPositions()) {
+                        Position newPos = new Position(pos.row, pos.col + direction);
+                        if ((exitSide == Exit.RIGHT && newPos.col >= width && pos.row == exitPosition.row) ||
+                            (exitSide == Exit.LEFT && newPos.col < 0 && pos.row == exitPosition.row)) {
+                            isExitMove = true;
+                            break;
+                        }
+                    }
+                }
+            } else { // VERTICAL
+                if ((exitSide == Exit.BOTTOM && direction > 0) || 
+                    (exitSide == Exit.TOP && direction < 0)) {
+                    // Check if this move would position the primary piece at the exit
+                    for (Position pos : piece.getPositions()) {
+                        Position newPos = new Position(pos.row + direction, pos.col);
+                        if ((exitSide == Exit.BOTTOM && newPos.row >= height && pos.col == exitPosition.col) ||
+                            (exitSide == Exit.TOP && newPos.row < 0 && pos.col == exitPosition.col)) {
+                            isExitMove = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         
         // Clear current positions
         for (Position pos : piece.getPositions()) {
@@ -276,11 +286,19 @@ public class Board {
         // Update piece positions
         piece.move(direction);
         
-        // Set new positions (only if within bounds)
-        for (Position pos : piece.getPositions()) {
-            if (pos.row >= 0 && pos.row < height && pos.col >= 0 && pos.col < width) {
-                newBoard.grid[pos.row][pos.col] = piece.getId();
+        // Only set new positions if it's not an exit move for primary piece
+        if (!isExitMove) {
+            // Set new positions (only if within bounds)
+            for (Position pos : piece.getPositions()) {
+                if (pos.row >= 0 && pos.row < height && pos.col >= 0 && pos.col < width) {
+                    newBoard.grid[pos.row][pos.col] = piece.getId();
+                }
             }
+        } else {
+            // For exit moves, leave primary piece positions empty
+            // Remove primary piece from the list to ensure it won't be considered again
+            newBoard.pieces.remove(piece);
+            newBoard.primaryPiece = null; // Clear primary piece reference
         }
         
         return newBoard;
@@ -291,61 +309,50 @@ public class Board {
             return false;
         }
         
-        // Check if primary piece has reached or passed the exit
-        for (Position pos : primaryPiece.getPositions()) {
-            // Check if piece is at the exit position
-            if (pos.equals(exitPosition)) {
-                return true;
-            }
-            
-            // Check if piece has passed through the exit
-            if (exitPosition.row == 0 && pos.row < 0 && pos.col == exitPosition.col) {
-                return true; // Exited top
-            } else if (exitPosition.row == height - 1 && pos.row >= height && pos.col == exitPosition.col) {
-                return true; // Exited bottom
-            } else if (exitPosition.col == 0 && pos.col < 0 && pos.row == exitPosition.row) {
-                return true; // Exited left
-            } else if (exitPosition.col == width - 1 && pos.col >= width && pos.row == exitPosition.row) {
-                return true; // Exited right
-            }
-        }
+        // Get positions of the primary piece
+        List<Position> primaryPositions = primaryPiece.getPositions();
         
-        return false;
-    }
-    
-    private boolean isAtExit(Position pos) {
-        if (exitPosition == null) {
-            return false;
-        }
-        
-        // Exit position rules based on primary piece orientation
+        // Check based on exit side and primary piece orientation
         if (primaryPiece.getOrientation() == Orientation.HORIZONTAL) {
-            // For horizontal pieces, exit must be on the left or right edge
-            if ((exitPosition.col == 0 || exitPosition.col == width - 1) && 
-                exitPosition.row == pos.row) {
+            // For horizontal primary piece, check if it's at exit
+            if (exitSide == Exit.RIGHT) {
+                // Find rightmost position of the piece
+                Position rightmost = primaryPositions.stream()
+                    .max(Comparator.comparingInt(p -> p.col))
+                    .orElse(primaryPositions.get(0));
                 
-                // Check if the piece is adjacent to exit
-                if (exitPosition.col == 0) {
-                    // Exit on left - check if piece can exit
-                    return pos.col == 0;
-                } else {
-                    // Exit on right - check if piece can exit
-                    return pos.col == width - 1;
-                }
+                // Primary piece solved if rightmost position is at the rightmost cell AND same row as exit
+                return rightmost.col == width - 1 && rightmost.row == exitPosition.row;
+            } 
+            else if (exitSide == Exit.LEFT) {
+                // Find leftmost position of the piece
+                Position leftmost = primaryPositions.stream()
+                    .min(Comparator.comparingInt(p -> p.col))
+                    .orElse(primaryPositions.get(0));
+                
+                // Primary piece solved if leftmost position is at the leftmost cell AND same row as exit
+                return leftmost.col == 0 && leftmost.row == exitPosition.row;
             }
-        } else {
-            // For vertical pieces, exit must be on the top or bottom edge
-            if ((exitPosition.row == 0 || exitPosition.row == height - 1) && 
-                exitPosition.col == pos.col) {
+        } 
+        else if (primaryPiece.getOrientation() == Orientation.VERTICAL) {
+            // For vertical primary piece, check if it's at exit
+            if (exitSide == Exit.BOTTOM) {
+                // Find bottommost position of the piece
+                Position bottommost = primaryPositions.stream()
+                    .max(Comparator.comparingInt(p -> p.row))
+                    .orElse(primaryPositions.get(0));
                 
-                // Check if the piece is adjacent to exit
-                if (exitPosition.row == 0) {
-                    // Exit on top - check if piece can exit
-                    return pos.row == 0;
-                } else {
-                    // Exit on bottom - check if piece can exit
-                    return pos.row == height - 1;
-                }
+                // Primary piece solved if bottommost position is at the bottom cell AND same column as exit
+                return bottommost.row == height - 1 && bottommost.col == exitPosition.col;
+            } 
+            else if (exitSide == Exit.TOP) {
+                // Find topmost position of the piece
+                Position topmost = primaryPositions.stream()
+                    .min(Comparator.comparingInt(p -> p.row))
+                    .orElse(primaryPositions.get(0));
+                
+                // Primary piece solved if topmost position is at the top cell AND same column as exit
+                return topmost.row == 0 && topmost.col == exitPosition.col;
             }
         }
         
@@ -357,7 +364,6 @@ public class Board {
         String RESET = "\u001B[0m";
         String RED = "\u001B[31m";     // Primary piece
         String GREEN = "\u001B[32m";   // Exit
-        String YELLOW = "\u001B[33m";  // Moving piece (will be used in solution display)
         
         // Display top exit if exists
         if (exitSide == Exit.TOP) {
@@ -490,36 +496,6 @@ public class Board {
         return null;
     }
     
-    
-    public Piece getPrimaryPiece() { return primaryPiece; }
-    public Position getExitPosition() { return exitPosition; }
-    public Exit getExitSide() { return exitSide; }
-    
-    // Debug methods
-    public boolean canMovePieceDebug(Piece piece, int direction) {
-        System.out.println("DEBUG: Checking move for " + piece.getId() + " direction: " + direction);
-        boolean result = canMovePiece(piece, direction);
-        System.out.println("DEBUG: Result: " + result);
-        return result;
-    }
-    
-    public Piece getPieceByIdDebug(char id) {
-        for (Piece piece : pieces) {
-            if (piece.getId() == id) {
-                return piece;
-            }
-        }
-        return null;
-    }
-    
-    public char getGridAt(int row, int col) {
-        if (row >= 0 && row < height && col >= 0 && col < width) {
-            return grid[row][col];
-        }
-        return ' ';
-    }
-    
-    
     public boolean isPrimaryPieceAlignedWithExit() {
         if (primaryPiece == null || exitPosition == null) {
             return false;
@@ -550,10 +526,167 @@ public class Board {
         
         return false;
     }
+
+    /**
+ * Display board with improved visualization for exit state
+ */
+    public void displayWithFinalState() {
+        // Use ANSI colors for better visualization
+        String RESET = "\u001B[0m";
+        String RED = "\u001B[31m";     // Primary piece
+        String GREEN = "\u001B[32m";   // Exit
+        
+        // Display top exit if exists
+        if (exitSide == Exit.TOP) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    // Show primary piece in the exit
+                    if (primaryPiece != null && primaryPiece.getOrientation() == Orientation.VERTICAL) {
+                        System.out.print(RED + "P" + RESET);
+                    } else {
+                        System.out.print(GREEN + "K" + RESET);
+                    }
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+        
+        // Display board content
+        for (int i = 0; i < height; i++) {
+            // Left exit
+            if (exitSide == Exit.LEFT && i == exitPosition.row) {
+                // Show primary piece in the exit
+                if (primaryPiece != null && primaryPiece.getOrientation() == Orientation.HORIZONTAL) {
+                    System.out.print(RED + "P" + RESET);
+                } else {
+                    System.out.print(GREEN + "K" + RESET);
+                }
+            }
+            
+            // Board content
+            for (int j = 0; j < width; j++) {
+                char c = grid[i][j];
+                if (c == 'P') {
+                    System.out.print(RED + c + RESET);
+                } else {
+                    System.out.print(c);
+                }
+            }
+            
+            // Right exit
+            if (exitSide == Exit.RIGHT && i == exitPosition.row) {
+                // Show primary piece in the exit for the final state
+                if (this.isSolved() || primaryPiece == null) {
+                    System.out.print(RED + "P" + RESET);
+                } else {
+                    System.out.print(GREEN + "K" + RESET);
+                }
+            }
+            
+            System.out.println();
+        }
+        
+        // Display bottom exit if exists
+        if (exitSide == Exit.BOTTOM) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    // Show primary piece in the exit
+                    if (primaryPiece != null && primaryPiece.getOrientation() == Orientation.VERTICAL) {
+                        System.out.print(RED + "P" + RESET);
+                    } else {
+                        System.out.print(GREEN + "K" + RESET);
+                    }
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Display board with primary piece shown next to exit K
+     */
+    public void displayWithExitedPiece() {
+        // Use ANSI colors for better visualization
+        String RESET = "\u001B[0m";
+        String RED = "\u001B[31m";     // Primary piece
+        String GREEN = "\u001B[32m";   // Exit
+        
+        // Display top exit if exists
+        if (exitSide == Exit.TOP) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    // Show K with P outside
+                    System.out.print(GREEN + "K" + RED + "P" + RESET);
+                    j++; // Skip one column as we printed two characters
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+        
+        // Display board content
+        for (int i = 0; i < height; i++) {
+            // Left exit
+            if (exitSide == Exit.LEFT && i == exitPosition.row) {
+                // Show P outside, then K
+                System.out.print(RED + "P" + GREEN + "K" + RESET);
+            }
+            
+            // Board content
+            for (int j = 0; j < width; j++) {
+                char c = grid[i][j];
+                // Don't show P in the board for final state (it's exited)
+                if (c == 'P' && this.isSolved()) {
+                    System.out.print('.');
+                } else if (c == 'P') {
+                    System.out.print(RED + c + RESET);
+                } else {
+                    System.out.print(c);
+                }
+            }
+            
+            // Right exit
+            if (exitSide == Exit.RIGHT && i == exitPosition.row) {
+                // Show K then P outside
+                System.out.print(GREEN + "K" + RED + "P" + RESET);
+            }
+            
+            System.out.println();
+        }
+        
+        // Display bottom exit if exists
+        if (exitSide == Exit.BOTTOM) {
+            for (int j = 0; j < width; j++) {
+                if (j == exitPosition.col) {
+                    // Show K with P outside
+                    System.out.print(GREEN + "K" + RED + "P" + RESET);
+                    j++; // Skip one column as we printed two characters
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
     
-    // Original getters
+    // Getters
     public int getWidth() { return width; }
     public int getHeight() { return height; }
     public List<Piece> getPieces() { return pieces; }
+    public Piece getPrimaryPiece() { return primaryPiece; }
+    public Position getExitPosition() { return exitPosition; }
+    public Exit getExitSide() { return exitSide; }
     public char[][] getGrid() { return grid; }
+    
+    public char getGridAt(int row, int col) {
+        if (row >= 0 && row < height && col >= 0 && col < width) {
+            return grid[row][col];
+        }
+        return ' ';
+    }
 }

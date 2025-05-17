@@ -12,6 +12,10 @@ public class Move {
     public Piece getPiece() { return piece; }
     public String getDirection() { return direction; }
     
+    /**
+     * Returns the direction as an integer value
+     * @return 1 for right/down, -1 for left/up
+     */
     public int getDirectionValue() {
         if (direction.equals("right") || direction.equals("down")) {
             return 1;
@@ -22,6 +26,7 @@ public class Move {
     
     @Override
     public String toString() {
-        return piece.getId() + "-" + direction;
+        // Convert the direction to uppercase
+        return direction.toUpperCase();
     }
 }
