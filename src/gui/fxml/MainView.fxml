@@ -124,6 +124,14 @@
                                     <ComboBox fx:id="heuristicComboBox" prefWidth="260.0" />
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                              <children>
+                                 <Label text="Compound Move:" style="-fx-text-fill: white;" />
+                                 <Button fx:id="compoundButton" text="ON" onAction="#handleToggleCompound" />
+                              </children>
+                           </HBox>
+                           </HBox>
                               <Button fx:id="solveButton" mnemonicParsing="false" onAction="#handleSolve" styleClass="solve-button" text="Solve Puzzle" />
                               <VBox styleClass="status-section">
                                  <children>

@@ -86,7 +86,7 @@ public class Main {
             
             switch (algorithmChoice) {
                 case 1:
-                    solution = solver.solveUCS(board);
+                    solution = solver.solveUCS(board, false);
                     algorithmUsed = "Uniform Cost Search (UCS)";
                     break;
                 case 2:
@@ -99,7 +99,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("Using UCS as default.");
-                    solution = solver.solveUCS(board);
+                    solution = solver.solveUCS(board, false);
                     algorithmUsed = "Uniform Cost Search (UCS)";
             }
             

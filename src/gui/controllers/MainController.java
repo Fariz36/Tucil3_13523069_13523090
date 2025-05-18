@@ -46,6 +46,7 @@ public class MainController {
     @FXML private Button solveButton;
     @FXML private Text statusText;
     @FXML private ProgressBar progressBar;
+    @FXML private Button compoundButton;
     
     // Board visualization elements
     @FXML private StackPane canvasContainer;
@@ -74,6 +75,7 @@ public class MainController {
     private boolean isPlaying = false;
     private long executionTime;
     private int nodesExamined;
+    private boolean isCompound = false;
 
     
     // Visualization constants
@@ -338,6 +340,16 @@ public class MainController {
         }).start();
     }
 
+    @FXML
+    private void handleToggleCompound() {
+        isCompound = !isCompound;
+        compoundButton.setText(isCompound ? "ON" : "OFF");
+    }
+
+    public boolean isCompoundEnabled() {
+        return isCompound;
+    }
+
     /**
      * Handle create matrix button click
      */
@@ -496,7 +508,7 @@ public class MainController {
                 
                 // Select algorithm based on combo box selection
                 if (algorithm.contains("UCS")) {
-                    solution = solver.solveUCS(currentBoard);
+                    solution = solver.solveUCS(currentBoard, isCompound);
                 } else if (algorithm.contains("Dijkstra")) {
                     solution = solver.solveDijkstra(currentBoard);
                 } else if (algorithm.contains("Greedy")) {

@@ -22,7 +22,7 @@ public class Solver {
     /**
      * UCS Implementation with compound moves
      */
-    public Solution solveUCS(Board initialBoard) {
+    public Solution solveUCS(Board initialBoard, boolean isCompound) {
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
         Set<String> visited = new HashSet<>();
         lastNodesExamined = 0; // Reset counter
@@ -47,7 +47,7 @@ public class Solver {
             }
             
             // Generate compound moves (multi-cell movements)
-            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board);
+            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board, isCompound);
             
             for (CompoundMove move : compoundMoves) {
                 Board newBoard = makeCompoundMove(current.board, move);
@@ -213,38 +213,74 @@ public class Solver {
         
         return null; // No solution found, but lastNodesExamined has been updated
     }
+
+    private List<CompoundMove> generateCompoundMoves(Board board) {
+        return generateCompoundMoves(board, true); // default isCompound = true
+    }
     
     /**
      * Generate all possible compound moves (multi-cell movements) for a board
      */
-    private List<CompoundMove> generateCompoundMoves(Board board) {
+    private List<CompoundMove> generateCompoundMoves(Board board, boolean isCompound) {
         List<CompoundMove> compoundMoves = new ArrayList<>();
         
-        for (Piece piece : board.getPieces()) {
+        if (isCompound) {
+            for (Piece piece : board.getPieces()) {
             // Try all possible moves for each piece
-            if (piece.getOrientation() == Orientation.HORIZONTAL) {
-                // Try moving right
-                int maxRight = findMaximumDistance(board, piece, "right");
-                if (maxRight > 0) {
-                    compoundMoves.add(new CompoundMove(piece, "right", maxRight));
+                if (piece.getOrientation() == Orientation.HORIZONTAL) {
+                    // Try moving right
+                    int maxRight = findMaximumDistance(board, piece, "right");
+                    if (maxRight > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "right", maxRight));
+                    }
+                    
+                    // Try moving left
+                    int maxLeft = findMaximumDistance(board, piece, "left");
+                    if (maxLeft > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "left", maxLeft));
+                    }
+                } else {
+                    // Try moving down
+                    int maxDown = findMaximumDistance(board, piece, "down");
+                    if (maxDown > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "down", maxDown));
+                    }
+                    
+                    // Try moving up
+                    int maxUp = findMaximumDistance(board, piece, "up");
+                    if (maxUp > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "up", maxUp));
+                    }
                 }
-                
-                // Try moving left
-                int maxLeft = findMaximumDistance(board, piece, "left");
-                if (maxLeft > 0) {
-                    compoundMoves.add(new CompoundMove(piece, "left", maxLeft));
-                }
-            } else {
-                // Try moving down
-                int maxDown = findMaximumDistance(board, piece, "down");
-                if (maxDown > 0) {
-                    compoundMoves.add(new CompoundMove(piece, "down", maxDown));
-                }
-                
-                // Try moving up
-                int maxUp = findMaximumDistance(board, piece, "up");
-                if (maxUp > 0) {
-                    compoundMoves.add(new CompoundMove(piece, "up", maxUp));
+            }
+        }
+        else {
+            for (Piece piece : board.getPieces()) {
+            // Try all possible moves for each piece
+                if (piece.getOrientation() == Orientation.HORIZONTAL) {
+                    // Try moving right
+                    int maxRight = findMaximumDistance(board, piece, "right");
+                    if (maxRight > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "right", 1));
+                    }
+                    
+                    // Try moving left
+                    int maxLeft = findMaximumDistance(board, piece, "left");
+                    if (maxLeft > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "left", 1));
+                    }
+                } else {
+                    // Try moving down
+                    int maxDown = findMaximumDistance(board, piece, "down");
+                    if (maxDown > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "down", 1));
+                    }
+                    
+                    // Try moving up
+                    int maxUp = findMaximumDistance(board, piece, "up");
+                    if (maxUp > 0) {
+                        compoundMoves.add(new CompoundMove(piece, "up", 1));
+                    }
                 }
             }
         }

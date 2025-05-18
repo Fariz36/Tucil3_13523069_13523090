@@ -56,6 +56,7 @@ public class InputController {
     
     private Board currentBoard;
     private List<TextField> matrixCells;
+    private boolean isCompound = false; 
     
     @FXML
     public void initialize() {
@@ -141,6 +142,16 @@ public class InputController {
             }
         } catch (Exception e) {
             System.err.println("Error setting background: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleToggleCompound() {
+        isCompound = !isCompound;
+        if (isCompound) {
+            updateStatus("Compound moves enabled", false);
+        } else {
+            updateStatus("Compound moves disabled", false);
         }
     }
     
@@ -352,7 +363,7 @@ public class InputController {
                 
                 // Select algorithm based on combo box selection
                 if (algorithm.contains("UCS")) {
-                    solution = solver.solveUCS(currentBoard);
+                    solution = solver.solveUCS(currentBoard, isCompound);
                 } else if (algorithm.contains("Dijkstra")) {
                     solution = solver.solveDijkstra(currentBoard);
                 } else if (algorithm.contains("Greedy")) {
