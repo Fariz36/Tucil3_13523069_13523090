@@ -104,7 +104,7 @@ public class MainController {
     private boolean isPlaying = false;
     private long executionTime;
     private int nodesExamined;
-    private boolean isCompound = false;
+    private boolean isCompound = true;
 
     
     // Visualization constants
@@ -133,6 +133,8 @@ public class MainController {
 
         // optionally play the first song by default
         playBackgroundMusic(songs.get(0));
+
+        updateCompoundButtonText();
 
         // Initialize UI components
         initializeInputs();
@@ -386,16 +388,19 @@ public class MainController {
         }).start();
     }
 
+    
+    private void updateCompoundButtonText() {
+        if (compoundButton != null) {
+            compoundButton.setText(isCompound ? "ON" : "OFF");
+        }
+    }
+
     @FXML
     private void handleToggleCompound() {
         isCompound = !isCompound;
-        compoundButton.setText(isCompound ? "ON" : "OFF");
+        updateCompoundButtonText();
     }
-
-    public boolean isCompoundEnabled() {
-        return isCompound;
-    }
-
+    
     /**
      * Handle create matrix button click
      */
