@@ -1,23 +1,50 @@
 package gui.controllers;
 
-import cli.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import cli.Board;
+import cli.Exit;
+import cli.Move;
+import cli.Piece;
+import cli.Position;
+import cli.Solution;
+import cli.Solver;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
 
 /**
  * MainController - Combined controller for inputs and visualization
@@ -61,6 +88,8 @@ public class MainController {
     @FXML private Slider speedSlider;
     @FXML private Label moveLabel;
     @FXML private Label statsLabel;
+    @FXML private ComboBox<String> songComboBox;
+    @FXML private Button playSelectedSongButton;
     
     // Board state and data
     private Board currentBoard;
@@ -82,12 +111,29 @@ public class MainController {
     private static final int CELL_SIZE = 60;
     private static final int PADDING = 40;
     private final Map<Character, Color> pieceColors = new HashMap<>();
+
+    // Misc
+    private MediaPlayer mediaPlayer;
+    private final String SONG_PATH = "src/resources/song/";
     
     /**
      * Initialize the controller
      */
     @FXML
     public void initialize() {
+        ObservableList<String> songs = FXCollections.observableArrayList(
+            "If_I_could_be_a_constellation.mp3",
+            "Re_Re_.mp3",
+            "Rockn'_Roll,_Morning_Light_Falls_on_You.mp3",
+            "seisyun_complex.mp3",
+            "Color_Your_Night.mp3"
+        );
+        songComboBox.setItems(songs);
+        songComboBox.getSelectionModel().selectFirst();
+
+        // optionally play the first song by default
+        playBackgroundMusic(songs.get(0));
+
         // Initialize UI components
         initializeInputs();
         
@@ -1081,6 +1127,35 @@ public class MainController {
                 }
             }
             writer.write("\n");
+        }
+    }
+
+    @FXML
+    private void handlePlaySelectedSong() {
+        String selectedSong = songComboBox.getValue();
+        if (selectedSong != null && !selectedSong.isEmpty()) {
+            playBackgroundMusic(selectedSong);
+        }
+    }
+
+    public void playBackgroundMusic(String filename) {
+        try {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
+
+            File file = new File(SONG_PATH + filename);
+            if (!file.exists()) {
+                System.err.println("Audio file not found: " + file.getAbsolutePath());
+                return;
+            }
+
+            Media media = new Media(file.toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // loop the song
+            mediaPlayer.play();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

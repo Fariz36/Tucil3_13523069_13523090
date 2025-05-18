@@ -36,6 +36,13 @@
                         <VBox fx:id="sidebarContainer" prefWidth="400.0" spacing="15.0" styleClass="sidebar" visible="true">
                            <children>
                               <Label styleClass="sidebar-title" text="Yahallo, Minna!" />
+                              <Label styleClass="section-header" text="What do you wanna vibe to? :3" />
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <ComboBox fx:id="songComboBox" prefWidth="260.0" promptText="Select a song..." />
+                                    <Button fx:id="playSelectedSongButton" text="Play" onAction="#handlePlaySelectedSong" />
+                                 </children>
+                              </HBox>
                               <TabPane fx:id="inputTabPane" prefHeight="320.0" prefWidth="200.0" styleClass="config-tabs" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                   <Tab fx:id="fileTab" text="File Input">
