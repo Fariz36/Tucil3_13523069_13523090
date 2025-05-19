@@ -132,6 +132,9 @@ The band works together, sliding cars and trucks out of the way. Nijika's A* kee
 > [!Note]
 > Make sure that all of the dependencies are already installed
 
+> [!Note]
+> The CLI implementation is not fully updated yet, maybe there are some features in GUI that are not in CLI, try to use GUI instead.
+
 ---
  ## Build and Clean
  1. Open a terminal
