@@ -1,0 +1,598 @@
+=== Rush Hour Solution ===
+Algorithm: Dijkstra's Algorithm
+Heuristic: -
+Number of states examined: 87817
+Number of moves: 58
+Execution time: 15165 ms
+
+Papan Awal
+GGJ...M
+.CJ.UUM
+ICAAALF
+IRRPBLF
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 1: LEFT (1)
+GGJ...M
+.CJUU.M
+ICAAALF
+IRRPBLF
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 2: UP (2)
+GGJ..LM
+.CJUULM
+ICAAA.F
+IRRPB.F
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 3: RIGHT (1)
+GGJ..LM
+.CJUULM
+IC.AAAF
+IRRPB.F
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 4: DOWN (1)
+GG...LM
+.CJUULM
+ICJAAAF
+IRRPB.F
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 5: RIGHT (3)
+...GGLM
+.CJUULM
+ICJAAAF
+IRRPB.F
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 6: UP (2)
+I..GGLM
+ICJUULM
+ICJAAAF
+.RRPB.F
+..DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 7: LEFT (1)
+I..GGLM
+ICJUULM
+ICJAAAF
+RR.PB.F
+..DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+Gerakan 8: UP (1)
+I..GGLM
+ICJUULM
+ICJAAAF
+RR.PB.F
+E.DPBQQ
+E.D.BH.
+.NNOOH.
+   K   
+
+Gerakan 9: LEFT (1)
+I..GGLM
+ICJUULM
+ICJAAAF
+RR.PB.F
+E.DPBQQ
+E.D.BH.
+NN.OOH.
+   K   
+
+Gerakan 10: DOWN (1)
+I..GGLM
+ICJUULM
+ICJAAAF
+RR.PB.F
+E..PBQQ
+E.D.BH.
+NNDOOH.
+   K   
+
+Gerakan 11: DOWN (1)
+I..GGLM
+ICJUULM
+ICJAAAF
+RR..B.F
+E..PBQQ
+E.DPBH.
+NNDOOH.
+   K   
+
+Gerakan 12: UP (1)
+IC.GGLM
+ICJUULM
+I.JAAAF
+RR..B.F
+E..PBQQ
+E.DPBH.
+NNDOOH.
+   K   
+
+Gerakan 13: DOWN (2)
+IC.GGLM
+IC.UULM
+I..AAAF
+RRJ.B.F
+E.JPBQQ
+E.DPBH.
+NNDOOH.
+   K   
+
+Gerakan 14: LEFT (2)
+IC.GGLM
+IC.UULM
+IAAA..F
+RRJ.B.F
+E.JPBQQ
+E.DPBH.
+NNDOOH.
+   K   
+
+Gerakan 15: LEFT (1)
+IC.GGLM
+ICUU.LM
+IAAA..F
+RRJ.B.F
+E.JPBQQ
+E.DPBH.
+NNDOOH.
+   K   
+
+Gerakan 16: UP (2)
+IC.GGLM
+ICUUBLM
+IAAAB.F
+RRJ.B.F
+E.JP.QQ
+E.DP.H.
+NNDOOH.
+   K   
+
+Gerakan 17: LEFT (1)
+IC.GGLM
+ICUUBLM
+IAAAB.F
+RRJ.B.F
+E.JPQQ.
+E.DP.H.
+NNDOOH.
+   K   
+
+Gerakan 18: DOWN (3)
+IC.GGLM
+ICUUBLM
+IAAAB..
+RRJ.B..
+E.JPQQ.
+E.DP.HF
+NNDOOHF
+   K   
+
+Gerakan 19: RIGHT (1)
+IC.GGLM
+ICUUBLM
+IAAAB..
+RRJ.B..
+E.JP.QQ
+E.DP.HF
+NNDOOHF
+   K   
+
+Gerakan 20: DOWN (2)
+IC.GGLM
+ICUU.LM
+IAAA...
+RRJ.B..
+E.JPBQQ
+E.DPBHF
+NNDOOHF
+   K   
+
+Gerakan 21: RIGHT (3)
+IC.GGLM
+ICUU.LM
+I...AAA
+RRJ.B..
+E.JPBQQ
+E.DPBHF
+NNDOOHF
+   K   
+
+Gerakan 22: RIGHT (1)
+IC.GGLM
+IC.UULM
+I...AAA
+RRJ.B..
+E.JPBQQ
+E.DPBHF
+NNDOOHF
+   K   
+
+Gerakan 23: UP (3)
+ICJGGLM
+ICJUULM
+I...AAA
+RR..B..
+E..PBQQ
+E.DPBHF
+NNDOOHF
+   K   
+
+Gerakan 24: RIGHT (2)
+ICJGGLM
+ICJUULM
+I...AAA
+..RRB..
+E..PBQQ
+E.DPBHF
+NNDOOHF
+   K   
+
+Gerakan 25: UP (1)
+ICJGGLM
+ICJUULM
+I...AAA
+..RRB..
+E.DPBQQ
+E.DPBHF
+NN.OOHF
+   K   
+
+Gerakan 26: LEFT (1)
+ICJGGLM
+ICJUULM
+I...AAA
+..RRB..
+E.DPBQQ
+E.DPBHF
+NNOO.HF
+   K   
+
+Gerakan 27: DOWN (1)
+ICJGGLM
+ICJUULM
+I...AAA
+..RR...
+E.DPBQQ
+E.DPBHF
+NNOOBHF
+   K   
+
+Gerakan 28: RIGHT (3)
+ICJGGLM
+ICJUULM
+I...AAA
+.....RR
+E.DPBQQ
+E.DPBHF
+NNOOBHF
+   K   
+
+Gerakan 29: UP (1)
+ICJGGLM
+ICJUULM
+I...AAA
+....BRR
+E.DPBQQ
+E.DPBHF
+NNOO.HF
+   K   
+
+Gerakan 30: RIGHT (1)
+ICJGGLM
+ICJUULM
+I...AAA
+....BRR
+E.DPBQQ
+E.DPBHF
+NN.OOHF
+   K   
+
+Gerakan 31: RIGHT (1)
+ICJGGLM
+ICJUULM
+I...AAA
+....BRR
+E.DPBQQ
+E.DPBHF
+.NNOOHF
+   K   
+
+Gerakan 32: DOWN (1)
+ICJGGLM
+ICJUULM
+I...AAA
+....BRR
+..DPBQQ
+E.DPBHF
+ENNOOHF
+   K   
+
+Gerakan 33: DOWN (4)
+I.JGGLM
+I.JUULM
+I...AAA
+....BRR
+.CDPBQQ
+ECDPBHF
+ENNOOHF
+   K   
+
+Gerakan 34: DOWN (2)
+I..GGLM
+I..UULM
+I.J.AAA
+..J.BRR
+.CDPBQQ
+ECDPBHF
+ENNOOHF
+   K   
+
+Gerakan 35: DOWN (2)
+...GGLM
+...UULM
+I.J.AAA
+I.J.BRR
+ICDPBQQ
+ECDPBHF
+ENNOOHF
+   K   
+
+Gerakan 36: LEFT (3)
+...GGLM
+UU...LM
+I.J.AAA
+I.J.BRR
+ICDPBQQ
+ECDPBHF
+ENNOOHF
+   K   
+
+Gerakan 37: LEFT (3)
+GG...LM
+UU...LM
+I.J.AAA
+I.J.BRR
+ICDPBQQ
+ECDPBHF
+ENNOOHF
+   K   
+
+Gerakan 38: UP (4)
+GG.P.LM
+UU.P.LM
+I.J.AAA
+I.J.BRR
+ICD.BQQ
+ECD.BHF
+ENNOOHF
+   K   
+
+Gerakan 39: UP (2)
+GGJP.LM
+UUJP.LM
+I...AAA
+I...BRR
+ICD.BQQ
+ECD.BHF
+ENNOOHF
+   K   
+
+Gerakan 40: LEFT (3)
+GGJP.LM
+UUJP.LM
+IAAA...
+I...BRR
+ICD.BQQ
+ECD.BHF
+ENNOOHF
+   K   
+
+Gerakan 41: UP (3)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICD..QQ
+ECD..HF
+ENNOOHF
+   K   
+
+Gerakan 42: LEFT (2)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICDQQ..
+ECD..HF
+ENNOOHF
+   K   
+
+Gerakan 43: UP (1)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICDQQH.
+ECD..HF
+ENNOO.F
+   K   
+
+Gerakan 44: UP (1)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICDQQHF
+ECD..HF
+ENNOO..
+   K   
+
+Gerakan 45: RIGHT (2)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICDQQHF
+ECD..HF
+ENN..OO
+   K   
+
+Gerakan 46: RIGHT (2)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICDQQHF
+ECD..HF
+E..NNOO
+   K   
+
+Gerakan 47: DOWN (1)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+IC.QQHF
+ECD..HF
+E.DNNOO
+   K   
+
+Gerakan 48: LEFT (1)
+GGJPBLM
+UUJPBLM
+IAAAB..
+I....RR
+ICQQ.HF
+ECD..HF
+E.DNNOO
+   K   
+
+Gerakan 49: DOWN (3)
+GGJP.LM
+UUJP.LM
+IAAA...
+I...BRR
+ICQQBHF
+ECD.BHF
+E.DNNOO
+   K   
+
+Gerakan 50: RIGHT (3)
+GGJP.LM
+UUJP.LM
+I...AAA
+I...BRR
+ICQQBHF
+ECD.BHF
+E.DNNOO
+   K   
+
+Gerakan 51: DOWN (2)
+GG.P.LM
+UU.P.LM
+I.J.AAA
+I.J.BRR
+ICQQBHF
+ECD.BHF
+E.DNNOO
+   K   
+
+Gerakan 52: RIGHT (1)
+GG.P.LM
+.UUP.LM
+I.J.AAA
+I.J.BRR
+ICQQBHF
+ECD.BHF
+E.DNNOO
+   K   
+
+Gerakan 53: UP (2)
+GG.P.LM
+.UUP.LM
+ICJ.AAA
+ICJ.BRR
+I.QQBHF
+E.D.BHF
+E.DNNOO
+   K   
+
+Gerakan 54: UP (1)
+GG.P.LM
+IUUP.LM
+ICJ.AAA
+ICJ.BRR
+..QQBHF
+E.D.BHF
+E.DNNOO
+   K   
+
+Gerakan 55: LEFT (2)
+GG.P.LM
+IUUP.LM
+ICJ.AAA
+ICJ.BRR
+QQ..BHF
+E.D.BHF
+E.DNNOO
+   K   
+
+Gerakan 56: UP (1)
+GG.P.LM
+IUUP.LM
+ICJ.AAA
+ICJ.BRR
+QQD.BHF
+E.D.BHF
+E..NNOO
+   K   
+
+Gerakan 57: LEFT (2)
+GG.P.LM
+IUUP.LM
+ICJ.AAA
+ICJ.BRR
+QQD.BHF
+E.D.BHF
+ENN..OO
+   K   
+
+Gerakan 58: DOWN (5)
+GG...LM
+IUU..LM
+ICJ.AAA
+ICJ.BRR
+QQD.BHF
+E.DPBHF
+ENNP.OO
+   K   
+
+[Primary piece has reached the exit!]

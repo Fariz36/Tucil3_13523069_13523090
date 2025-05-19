@@ -1,0 +1,18 @@
+=== Rush Hour Solution ===
+Algorithm: Beam Search [Not Complete Search]
+Heuristic: Blocking Count
+Number of states examined: 8284
+Number of moves: NO SOLUTION FOUND
+Execution time: 1370 ms
+
+Papan Awal
+GGJ...M
+.CJ.UUM
+ICAAALF
+IRRPBLF
+I.DPBQQ
+E.D.BH.
+ENNOOH.
+   K   
+
+[No solution found for this configuration]
