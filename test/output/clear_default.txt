@@ -1,0 +1,64 @@
+=== Rush Hour Solution ===
+Algorithm: A* Search
+Heuristic: Clearing Moves
+Number of states examined: 1855
+Number of moves: 6
+Execution time: 204 ms
+
+Papan Awal
+AAB..F
+..BCDF
+GPPCDFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 1: UP (1)
+AABC.F
+..BCDF
+GPP.DFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 2: LEFT (1)
+AABC.F
+..BCDF
+GPP.DFK
+GHIII.
+GHJ...
+LLJMM.
+
+Gerakan 3: UP (1)
+AABCDF
+..BCDF
+GPP..FK
+GHIII.
+GHJ...
+LLJMM.
+
+Gerakan 4: RIGHT (2)
+AABCDF
+..BCDF
+G..PPFK
+GHIII.
+GHJ...
+LLJMM.
+
+Gerakan 5: DOWN (3)
+AABCD.
+..BCD.
+G..PP.K
+GHIIIF
+GHJ..F
+LLJMMF
+
+Gerakan 6: RIGHT (1)
+AABCD.
+..BCD.
+G...PPK
+GHIIIF
+GHJ..F
+LLJMMF
+
+[Primary piece has reached the exit!]

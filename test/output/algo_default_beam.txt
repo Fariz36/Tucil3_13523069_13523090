@@ -1,0 +1,64 @@
+=== Rush Hour Solution ===
+Algorithm: Beam Search [Not Complete Search]
+Heuristic: Manhattan Distance
+Number of states examined: 113
+Number of moves: 6
+Execution time: 13 ms
+
+Papan Awal
+AAB..F
+..BCDF
+GPPCDFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 1: UP (1)
+AABC.F
+..BCDF
+GPP.DFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 2: UP (1)
+AABCDF
+..BCDF
+GPP..FK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 3: RIGHT (2)
+AABCDF
+..BCDF
+G..PPFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 4: LEFT (1)
+AABCDF
+..BCDF
+G..PPFK
+GHIII.
+GHJ...
+LLJMM.
+
+Gerakan 5: DOWN (3)
+AABCD.
+..BCD.
+G..PP.K
+GHIIIF
+GHJ..F
+LLJMMF
+
+Gerakan 6: RIGHT (1)
+AABCD.
+..BCD.
+G...PPK
+GHIIIF
+GHJ..F
+LLJMMF
+
+[Primary piece has reached the exit!]

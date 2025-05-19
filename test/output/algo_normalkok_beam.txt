@@ -1,0 +1,16 @@
+=== Rush Hour Solution ===
+Algorithm: Beam Search [Not Complete Search]
+Heuristic: Manhattan Distance
+Number of states examined: 14310
+Number of moves: NO SOLUTION FOUND
+Execution time: 1489 ms
+
+Papan Awal
+RSSBBZ
+RDDJ.Z
+K..VJPP
+EEV...
+.L.FFF
+.LHHGG
+
+[No solution found for this configuration]

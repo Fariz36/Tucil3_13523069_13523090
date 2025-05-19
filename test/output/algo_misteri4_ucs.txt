@@ -1,0 +1,408 @@
+=== Rush Hour Solution ===
+Algorithm: Uniform Cost Search (UCS)
+Heuristic: -
+Number of states examined: 13499
+Number of moves: 49
+Execution time: 1788 ms
+
+Papan Awal
+BBBZLM
+HCCZLM
+H.PPLMK
+DDJ...
+.IJEE.
+.IFFGG
+
+Gerakan 1: LEFT (1)
+BBBZLM
+HCCZLM
+HPP.LMK
+DDJ...
+.IJEE.
+.IFFGG
+
+Gerakan 2: DOWN (2)
+BBB.LM
+HCC.LM
+HPPZLMK
+DDJZ..
+.IJEE.
+.IFFGG
+
+Gerakan 3: RIGHT (1)
+.BBBLM
+HCC.LM
+HPPZLMK
+DDJZ..
+.IJEE.
+.IFFGG
+
+Gerakan 4: UP (1)
+HBBBLM
+HCC.LM
+.PPZLMK
+DDJZ..
+.IJEE.
+.IFFGG
+
+Gerakan 5: LEFT (1)
+HBBBLM
+HCC.LM
+PP.ZLMK
+DDJZ..
+.IJEE.
+.IFFGG
+
+Gerakan 6: UP (1)
+HBBBLM
+HCC.LM
+PPJZLMK
+DDJZ..
+.I.EE.
+.IFFGG
+
+Gerakan 7: LEFT (1)
+HBBBLM
+HCC.LM
+PPJZLMK
+DDJZ..
+.IEE..
+.IFFGG
+
+Gerakan 8: DOWN (2)
+HBBB.M
+HCC..M
+PPJZLMK
+DDJZL.
+.IEEL.
+.IFFGG
+
+Gerakan 9: DOWN (2)
+HBBB..
+HCC...
+PPJZLMK
+DDJZLM
+.IEELM
+.IFFGG
+
+Gerakan 10: RIGHT (3)
+HBBB..
+H...CC
+PPJZLMK
+DDJZLM
+.IEELM
+.IFFGG
+
+Gerakan 11: RIGHT (2)
+H..BBB
+H...CC
+PPJZLMK
+DDJZLM
+.IEELM
+.IFFGG
+
+Gerakan 12: UP (2)
+H.JBBB
+H.J.CC
+PP.ZLMK
+DD.ZLM
+.IEELM
+.IFFGG
+
+Gerakan 13: RIGHT (1)
+H.JBBB
+H.J.CC
+.PPZLMK
+DD.ZLM
+.IEELM
+.IFFGG
+
+Gerakan 14: RIGHT (1)
+H.JBBB
+H.J.CC
+.PPZLMK
+.DDZLM
+.IEELM
+.IFFGG
+
+Gerakan 15: DOWN (4)
+..JBBB
+..J.CC
+.PPZLMK
+.DDZLM
+HIEELM
+HIFFGG
+
+Gerakan 16: LEFT (1)
+..JBBB
+..J.CC
+.PPZLMK
+DD.ZLM
+HIEELM
+HIFFGG
+
+Gerakan 17: LEFT (1)
+..JBBB
+..J.CC
+PP.ZLMK
+DD.ZLM
+HIEELM
+HIFFGG
+
+Gerakan 18: DOWN (2)
+...BBB
+....CC
+PPJZLMK
+DDJZLM
+HIEELM
+HIFFGG
+
+Gerakan 19: LEFT (3)
+BBB...
+....CC
+PPJZLMK
+DDJZLM
+HIEELM
+HIFFGG
+
+Gerakan 20: LEFT (4)
+BBB...
+CC....
+PPJZLMK
+DDJZLM
+HIEELM
+HIFFGG
+
+Gerakan 21: UP (2)
+BBBZ..
+CC.Z..
+PPJ.LMK
+DDJ.LM
+HIEELM
+HIFFGG
+
+Gerakan 22: UP (2)
+BBBZ.M
+CC.Z.M
+PPJ.LMK
+DDJ.L.
+HIEEL.
+HIFFGG
+
+Gerakan 23: UP (2)
+BBBZLM
+CC.ZLM
+PPJ.LMK
+DDJ...
+HIEE..
+HIFFGG
+
+Gerakan 24: UP (1)
+BBBZLM
+CCJZLM
+PPJ.LMK
+DD....
+HIEE..
+HIFFGG
+
+Gerakan 25: RIGHT (4)
+BBBZLM
+CCJZLM
+PPJ.LMK
+....DD
+HIEE..
+HIFFGG
+
+Gerakan 26: UP (1)
+BBBZLM
+CCJZLM
+PPJ.LMK
+.I..DD
+HIEE..
+H.FFGG
+
+Gerakan 27: UP (1)
+BBBZLM
+CCJZLM
+PPJ.LMK
+HI..DD
+HIEE..
+..FFGG
+
+Gerakan 28: RIGHT (2)
+BBBZLM
+CCJZLM
+PPJ.LMK
+HI..DD
+HI..EE
+..FFGG
+
+Gerakan 29: LEFT (2)
+BBBZLM
+CCJZLM
+PPJ.LMK
+HI..DD
+HI..EE
+FF..GG
+
+Gerakan 30: DOWN (4)
+BBB.LM
+CCJ.LM
+PPJ.LMK
+HI..DD
+HI.ZEE
+FF.ZGG
+
+Gerakan 31: DOWN (3)
+BBB.LM
+CC..LM
+PP..LMK
+HI..DD
+HIJZEE
+FFJZGG
+
+Gerakan 32: LEFT (2)
+BBB.LM
+CC..LM
+PP..LMK
+HIDD..
+HIJZEE
+FFJZGG
+
+Gerakan 33: RIGHT (2)
+BBB.LM
+CC..LM
+..PPLMK
+HIDD..
+HIJZEE
+FFJZGG
+
+Gerakan 34: DOWN (1)
+BBB..M
+CC..LM
+..PPLMK
+HIDDL.
+HIJZEE
+FFJZGG
+
+Gerakan 35: RIGHT (2)
+..BBBM
+CC..LM
+..PPLMK
+HIDDL.
+HIJZEE
+FFJZGG
+
+Gerakan 36: RIGHT (2)
+..BBBM
+..CCLM
+..PPLMK
+HIDDL.
+HIJZEE
+FFJZGG
+
+Gerakan 37: UP (3)
+.IBBBM
+.ICCLM
+..PPLMK
+H.DDL.
+H.JZEE
+FFJZGG
+
+Gerakan 38: UP (3)
+HIBBBM
+HICCLM
+..PPLMK
+..DDL.
+..JZEE
+FFJZGG
+
+Gerakan 39: LEFT (2)
+HIBBBM
+HICCLM
+..PPLMK
+DD..L.
+..JZEE
+FFJZGG
+
+Gerakan 40: LEFT (2)
+HIBBBM
+HICCLM
+PP..LMK
+DD..L.
+..JZEE
+FFJZGG
+
+Gerakan 41: UP (2)
+HIBBBM
+HICCLM
+PP.ZLMK
+DD.ZL.
+..J.EE
+FFJ.GG
+
+Gerakan 42: UP (2)
+HIBBBM
+HICCLM
+PPJZLMK
+DDJZL.
+....EE
+FF..GG
+
+Gerakan 43: LEFT (4)
+HIBBBM
+HICCLM
+PPJZLMK
+DDJZL.
+EE....
+FF..GG
+
+Gerakan 44: LEFT (2)
+HIBBBM
+HICCLM
+PPJZLMK
+DDJZL.
+EE....
+FFGG..
+
+Gerakan 45: DOWN (3)
+HIBBB.
+HICCL.
+PPJZL.K
+DDJZLM
+EE...M
+FFGG.M
+
+Gerakan 46: DOWN (1)
+HIBBB.
+HICCL.
+PPJ.L.K
+DDJZLM
+EE.Z.M
+FFGG.M
+
+Gerakan 47: DOWN (1)
+HIBBB.
+HICCL.
+PP..L.K
+DDJZLM
+EEJZ.M
+FFGG.M
+
+Gerakan 48: DOWN (2)
+HIBBB.
+HICC..
+PP....K
+DDJZLM
+EEJZLM
+FFGGLM
+
+Gerakan 49: RIGHT (4)
+HIBBB.
+HICC..
+....PPK
+DDJZLM
+EEJZLM
+FFGGLM
+
+[Primary piece has reached the exit!]

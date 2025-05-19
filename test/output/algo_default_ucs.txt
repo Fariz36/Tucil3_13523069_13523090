@@ -1,0 +1,56 @@
+=== Rush Hour Solution ===
+Algorithm: Uniform Cost Search (UCS)
+Heuristic: -
+Number of states examined: 177
+Number of moves: 5
+Execution time: 15 ms
+
+Papan Awal
+AAB..F
+..BCDF
+GPPCDFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 1: LEFT (1)
+AAB..F
+..BCDF
+GPPCDFK
+GHIII.
+GHJ...
+LLJMM.
+
+Gerakan 2: DOWN (3)
+AAB...
+..BCD.
+GPPCD.K
+GHIIIF
+GHJ..F
+LLJMMF
+
+Gerakan 3: UP (1)
+AAB.D.
+..BCD.
+GPPC..K
+GHIIIF
+GHJ..F
+LLJMMF
+
+Gerakan 4: UP (1)
+AABCD.
+..BCD.
+GPP...K
+GHIIIF
+GHJ..F
+LLJMMF
+
+Gerakan 5: RIGHT (3)
+AABCD.
+..BCD.
+G...PPK
+GHIIIF
+GHJ..F
+LLJMMF
+
+[Primary piece has reached the exit!]

@@ -1,0 +1,7480 @@
+=== Rush Hour Solution ===
+Algorithm: Greedy Best First Search
+Heuristic: Manhattan Distance
+Number of states examined: 5466
+Number of moves: 933
+Execution time: 607 ms
+
+Papan Awal
+GBBB.L
+G.HCCL
+PPHINMK
+.DDINM
+...JEE
+.FFJ..
+
+Gerakan 1: LEFT (1)
+GBBB.L
+G.HCCL
+PPHINMK
+.DDINM
+...JEE
+FF.J..
+
+Gerakan 2: LEFT (1)
+GBBB.L
+G.HCCL
+PPHINMK
+DD.INM
+...JEE
+FF.J..
+
+Gerakan 3: DOWN (3)
+GBBB.L
+G..CCL
+PP.INMK
+DD.INM
+..HJEE
+FFHJ..
+
+Gerakan 4: RIGHT (1)
+GBBB.L
+G..CCL
+.PPINMK
+DD.INM
+..HJEE
+FFHJ..
+
+Gerakan 5: RIGHT (1)
+G.BBBL
+G..CCL
+.PPINMK
+DD.INM
+..HJEE
+FFHJ..
+
+Gerakan 6: DOWN (1)
+..BBBL
+G..CCL
+GPPINMK
+DD.INM
+..HJEE
+FFHJ..
+
+Gerakan 7: UP (1)
+..BBBL
+G..CCL
+GPPINMK
+DDHINM
+..HJEE
+FF.J..
+
+Gerakan 8: LEFT (2)
+..BBBL
+GCC..L
+GPPINMK
+DDHINM
+..HJEE
+FF.J..
+
+Gerakan 9: UP (1)
+..BBBL
+GCC.NL
+GPPINMK
+DDHI.M
+..HJEE
+FF.J..
+
+Gerakan 10: UP (1)
+..BBBL
+GCCINL
+GPPINMK
+DDH..M
+..HJEE
+FF.J..
+
+Gerakan 11: DOWN (1)
+..BBBL
+GCCI.L
+GPPINMK
+DDH.NM
+..HJEE
+FF.J..
+
+Gerakan 12: LEFT (2)
+BBB..L
+GCCI.L
+GPPINMK
+DDH.NM
+..HJEE
+FF.J..
+
+Gerakan 13: UP (2)
+BBB.NL
+GCCINL
+GPPI.MK
+DDH..M
+..HJEE
+FF.J..
+
+Gerakan 14: UP (1)
+BBB.NL
+GCCINL
+GPPI.MK
+DDHJ.M
+..HJEE
+FF....
+
+Gerakan 15: DOWN (2)
+BBB..L
+GCCI.L
+GPPINMK
+DDHJNM
+..HJEE
+FF....
+
+Gerakan 16: RIGHT (4)
+BBB..L
+GCCI.L
+GPPINMK
+DDHJNM
+..HJEE
+....FF
+
+Gerakan 17: UP (2)
+BBB.NL
+GCCINL
+GPPI.MK
+DDHJ.M
+..HJEE
+....FF
+
+Gerakan 18: DOWN (1)
+BBB.NL
+GCCINL
+GPPI.MK
+DDH..M
+..HJEE
+...JFF
+
+Gerakan 19: DOWN (2)
+BBB..L
+GCCI.L
+GPPINMK
+DDH.NM
+..HJEE
+...JFF
+
+Gerakan 20: UP (1)
+BBBI.L
+GCCI.L
+GPP.NMK
+DDH.NM
+..HJEE
+...JFF
+
+Gerakan 21: RIGHT (1)
+BBBI.L
+GCCI.L
+G.PPNMK
+DDH.NM
+..HJEE
+...JFF
+
+Gerakan 22: UP (1)
+BBBI.L
+GCCI.L
+G.PPNMK
+DDHJNM
+..HJEE
+....FF
+
+Gerakan 23: LEFT (4)
+BBBI.L
+GCCI.L
+G.PPNMK
+DDHJNM
+..HJEE
+FF....
+
+Gerakan 24: DOWN (1)
+BBBI.L
+GCCI.L
+G.PPNMK
+DD.JNM
+..HJEE
+FFH...
+
+Gerakan 25: DOWN (1)
+BBBI.L
+GCCI.L
+G.PPNMK
+DD..NM
+..HJEE
+FFHJ..
+
+Gerakan 26: UP (2)
+BBBINL
+GCCINL
+G.PP.MK
+DD...M
+..HJEE
+FFHJ..
+
+Gerakan 27: RIGHT (3)
+BBBINL
+GCCINL
+G.PP.MK
+...DDM
+..HJEE
+FFHJ..
+
+Gerakan 28: DOWN (2)
+BBBINL
+.CCINL
+..PP.MK
+G..DDM
+G.HJEE
+FFHJ..
+
+Gerakan 29: LEFT (1)
+BBBINL
+CC.INL
+..PP.MK
+G..DDM
+G.HJEE
+FFHJ..
+
+Gerakan 30: UP (1)
+BBBINL
+CC.INL
+G.PP.MK
+G..DDM
+..HJEE
+FFHJ..
+
+Gerakan 31: RIGHT (1)
+BBBINL
+.CCINL
+G.PP.MK
+G..DDM
+..HJEE
+FFHJ..
+
+Gerakan 32: UP (1)
+BBBINL
+.CCINL
+G.PP.MK
+G.HDDM
+..HJEE
+FF.J..
+
+Gerakan 33: LEFT (1)
+BBBINL
+.CCINL
+GPP..MK
+G.HDDM
+..HJEE
+FF.J..
+
+Gerakan 34: DOWN (1)
+BBBINL
+.CCINL
+GPP..MK
+G..DDM
+..HJEE
+FFHJ..
+
+Gerakan 35: DOWN (1)
+BBB.NL
+.CCINL
+GPPI.MK
+G..DDM
+..HJEE
+FFHJ..
+
+Gerakan 36: DOWN (1)
+BBB..L
+.CCINL
+GPPINMK
+G..DDM
+..HJEE
+FFHJ..
+
+Gerakan 37: LEFT (2)
+BBB..L
+.CCINL
+GPPINMK
+GDD..M
+..HJEE
+FFHJ..
+
+Gerakan 38: LEFT (1)
+BBB..L
+CC.INL
+GPPINMK
+GDD..M
+..HJEE
+FFHJ..
+
+Gerakan 39: UP (1)
+BBBI.L
+CC.INL
+GPP.NMK
+GDD..M
+..HJEE
+FFHJ..
+
+Gerakan 40: RIGHT (1)
+BBBI.L
+.CCINL
+GPP.NMK
+GDD..M
+..HJEE
+FFHJ..
+
+Gerakan 41: UP (2)
+BBBI.L
+.CCINL
+GPPJNMK
+GDDJ.M
+..H.EE
+FFH...
+
+Gerakan 42: LEFT (1)
+BBBI.L
+.CCINL
+GPPJNMK
+GDDJ.M
+..HEE.
+FFH...
+
+Gerakan 43: UP (1)
+BBBI.L
+GCCINL
+GPPJNMK
+.DDJ.M
+..HEE.
+FFH...
+
+Gerakan 44: DOWN (2)
+BBBI.L
+GCCINL
+GPPJN.K
+.DDJ..
+..HEEM
+FFH..M
+
+Gerakan 45: LEFT (1)
+BBBI.L
+GCCINL
+GPPJN.K
+DD.J..
+..HEEM
+FFH..M
+
+Gerakan 46: UP (1)
+BBBI.L
+GCCINL
+GPPJN.K
+DDHJ..
+..HEEM
+FF...M
+
+Gerakan 47: UP (2)
+BBBI.L
+GCCINL
+GPPJNMK
+DDHJ.M
+..HEE.
+FF....
+
+Gerakan 48: RIGHT (4)
+BBBI.L
+GCCINL
+GPPJNMK
+DDHJ.M
+..HEE.
+....FF
+
+Gerakan 49: DOWN (1)
+BBBI.L
+GCCINL
+GPPJN.K
+DDHJ.M
+..HEEM
+....FF
+
+Gerakan 50: DOWN (1)
+BBBI..
+GCCINL
+GPPJNLK
+DDHJ.M
+..HEEM
+....FF
+
+Gerakan 51: DOWN (1)
+BBBI..
+GCCI.L
+GPPJNLK
+DDHJNM
+..HEEM
+....FF
+
+Gerakan 52: DOWN (1)
+BBBI..
+GCCI.L
+GPPJNLK
+DD.JNM
+..HEEM
+..H.FF
+
+Gerakan 53: UP (2)
+BBBIN.
+GCCINL
+GPPJ.LK
+DD.J.M
+..HEEM
+..H.FF
+
+Gerakan 54: UP (1)
+BBBINL
+GCCINL
+GPPJ..K
+DD.J.M
+..HEEM
+..H.FF
+
+Gerakan 55: DOWN (2)
+BBBI.L
+GCCI.L
+GPPJN.K
+DD.JNM
+..HEEM
+..H.FF
+
+Gerakan 56: UP (1)
+BBBI.L
+GCCI.L
+GPPJNMK
+DD.JNM
+..HEE.
+..H.FF
+
+Gerakan 57: UP (2)
+BBBINL
+GCCINL
+GPPJ.MK
+DD.J.M
+..HEE.
+..H.FF
+
+Gerakan 58: RIGHT (1)
+BBBINL
+GCCINL
+GPPJ.MK
+.DDJ.M
+..HEE.
+..H.FF
+
+Gerakan 59: DOWN (2)
+BBBI.L
+GCCI.L
+GPPJNMK
+.DDJNM
+..HEE.
+..H.FF
+
+Gerakan 60: DOWN (1)
+BBBI.L
+GCCI.L
+GPPJN.K
+.DDJNM
+..HEEM
+..H.FF
+
+Gerakan 61: UP (2)
+BBBINL
+GCCINL
+GPPJ..K
+.DDJ.M
+..HEEM
+..H.FF
+
+Gerakan 62: DOWN (1)
+BBBIN.
+GCCINL
+GPPJ.LK
+.DDJ.M
+..HEEM
+..H.FF
+
+Gerakan 63: DOWN (2)
+BBBI..
+GCCI.L
+GPPJNLK
+.DDJNM
+..HEEM
+..H.FF
+
+Gerakan 64: DOWN (3)
+BBBI..
+.CCI.L
+.PPJNLK
+.DDJNM
+G.HEEM
+G.H.FF
+
+Gerakan 65: UP (1)
+BBBI.L
+.CCI.L
+.PPJN.K
+.DDJNM
+G.HEEM
+G.H.FF
+
+Gerakan 66: LEFT (1)
+BBBI.L
+.CCI.L
+PP.JN.K
+.DDJNM
+G.HEEM
+G.H.FF
+
+Gerakan 67: UP (2)
+BBBINL
+.CCINL
+PP.J..K
+.DDJ.M
+G.HEEM
+G.H.FF
+
+Gerakan 68: UP (1)
+BBBINL
+.CCINL
+PP.J.MK
+.DDJ.M
+G.HEE.
+G.H.FF
+
+Gerakan 69: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JNMK
+.DDJNM
+G.HEE.
+G.H.FF
+
+Gerakan 70: UP (1)
+BBBI.L
+.CCI.L
+PP.JNMK
+GDDJNM
+G.HEE.
+..H.FF
+
+Gerakan 71: UP (2)
+BBBINL
+.CCINL
+PP.J.MK
+GDDJ.M
+G.HEE.
+..H.FF
+
+Gerakan 72: DOWN (1)
+BBBINL
+.CCINL
+PP.J..K
+GDDJ.M
+G.HEEM
+..H.FF
+
+Gerakan 73: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JN.K
+GDDJNM
+G.HEEM
+..H.FF
+
+Gerakan 74: DOWN (1)
+BBBI..
+.CCI.L
+PP.JNLK
+GDDJNM
+G.HEEM
+..H.FF
+
+Gerakan 75: UP (2)
+BBBIN.
+.CCINL
+PP.J.LK
+GDDJ.M
+G.HEEM
+..H.FF
+
+Gerakan 76: DOWN (1)
+BBBIN.
+.CCINL
+PP.J.LK
+.DDJ.M
+G.HEEM
+G.H.FF
+
+Gerakan 77: DOWN (2)
+BBBI..
+.CCI.L
+PP.JNLK
+.DDJNM
+G.HEEM
+G.H.FF
+
+Gerakan 78: LEFT (1)
+BBBI..
+.CCI.L
+PP.JNLK
+DD.JNM
+G.HEEM
+G.H.FF
+
+Gerakan 79: UP (2)
+BBBIN.
+.CCINL
+PP.J.LK
+DD.J.M
+G.HEEM
+G.H.FF
+
+Gerakan 80: UP (1)
+BBBINL
+.CCINL
+PP.J..K
+DD.J.M
+G.HEEM
+G.H.FF
+
+Gerakan 81: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JN.K
+DD.JNM
+G.HEEM
+G.H.FF
+
+Gerakan 82: UP (1)
+BBBI.L
+.CCI.L
+PP.JNMK
+DD.JNM
+G.HEE.
+G.H.FF
+
+Gerakan 83: UP (2)
+BBBINL
+.CCINL
+PP.J.MK
+DD.J.M
+G.HEE.
+G.H.FF
+
+Gerakan 84: UP (2)
+BBBINL
+.CCINL
+PPHJ.MK
+DDHJ.M
+G..EE.
+G...FF
+
+Gerakan 85: DOWN (2)
+BBBI.L
+.CCI.L
+PPHJNMK
+DDHJNM
+G..EE.
+G...FF
+
+Gerakan 86: DOWN (1)
+BBBI.L
+.CCI.L
+PPHJN.K
+DDHJNM
+G..EEM
+G...FF
+
+Gerakan 87: UP (2)
+BBBINL
+.CCINL
+PPHJ..K
+DDHJ.M
+G..EEM
+G...FF
+
+Gerakan 88: DOWN (1)
+BBBIN.
+.CCINL
+PPHJ.LK
+DDHJ.M
+G..EEM
+G...FF
+
+Gerakan 89: DOWN (2)
+BBBI..
+.CCI.L
+PPHJNLK
+DDHJNM
+G..EEM
+G...FF
+
+Gerakan 90: LEFT (3)
+BBBI..
+.CCI.L
+PPHJNLK
+DDHJNM
+G..EEM
+GFF...
+
+Gerakan 91: UP (2)
+BBBIN.
+.CCINL
+PPHJ.LK
+DDHJ.M
+G..EEM
+GFF...
+
+Gerakan 92: DOWN (1)
+BBBIN.
+.CCINL
+PPHJ.LK
+DDHJ..
+G..EEM
+GFF..M
+
+Gerakan 93: DOWN (2)
+BBBI..
+.CCI.L
+PPHJNLK
+DDHJN.
+G..EEM
+GFF..M
+
+Gerakan 94: UP (1)
+BBBI.L
+.CCI.L
+PPHJN.K
+DDHJN.
+G..EEM
+GFF..M
+
+Gerakan 95: UP (2)
+BBBINL
+.CCINL
+PPHJ..K
+DDHJ..
+G..EEM
+GFF..M
+
+Gerakan 96: UP (2)
+BBBINL
+.CCINL
+PPHJ.MK
+DDHJ.M
+G..EE.
+GFF...
+
+Gerakan 97: DOWN (2)
+BBBI.L
+.CCI.L
+PPHJNMK
+DDHJNM
+G..EE.
+GFF...
+
+Gerakan 98: DOWN (1)
+BBBI.L
+.CCI.L
+PP.JNMK
+DDHJNM
+G.HEE.
+GFF...
+
+Gerakan 99: UP (2)
+BBBINL
+.CCINL
+PP.J.MK
+DDHJ.M
+G.HEE.
+GFF...
+
+Gerakan 100: DOWN (2)
+BBBINL
+.CCINL
+PP.J..K
+DDHJ..
+G.HEEM
+GFF..M
+
+Gerakan 101: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JN.K
+DDHJN.
+G.HEEM
+GFF..M
+
+Gerakan 102: DOWN (2)
+BBBI..
+.CCI..
+PP.JNLK
+DDHJNL
+G.HEEM
+GFF..M
+
+Gerakan 103: UP (2)
+BBBIN.
+.CCIN.
+PP.J.LK
+DDHJ.L
+G.HEEM
+GFF..M
+
+Gerakan 104: UP (1)
+BBBIN.
+.CCIN.
+PPHJ.LK
+DDHJ.L
+G..EEM
+GFF..M
+
+Gerakan 105: LEFT (2)
+BBBIN.
+.CCIN.
+PPHJ.LK
+DDHJ.L
+GEE..M
+GFF..M
+
+Gerakan 106: DOWN (4)
+BBBI..
+.CCI..
+PPHJ.LK
+DDHJ.L
+GEE.NM
+GFF.NM
+
+Gerakan 107: UP (2)
+BBBI.L
+.CCI.L
+PPHJ..K
+DDHJ..
+GEE.NM
+GFF.NM
+
+Gerakan 108: UP (4)
+BBBINL
+.CCINL
+PPHJ..K
+DDHJ..
+GEE..M
+GFF..M
+
+Gerakan 109: UP (2)
+BBBINL
+.CCINL
+PPHJ.MK
+DDHJ.M
+GEE...
+GFF...
+
+Gerakan 110: DOWN (4)
+BBBI.L
+.CCI.L
+PPHJ.MK
+DDHJ.M
+GEE.N.
+GFF.N.
+
+Gerakan 111: DOWN (2)
+BBBI.L
+.CCI.L
+PPH..MK
+DDH..M
+GEEJN.
+GFFJN.
+
+Gerakan 112: UP (4)
+BBBINL
+.CCINL
+PPH..MK
+DDH..M
+GEEJ..
+GFFJ..
+
+Gerakan 113: DOWN (2)
+BBBINL
+.CCINL
+PPH...K
+DDH...
+GEEJ.M
+GFFJ.M
+
+Gerakan 114: DOWN (4)
+BBBI.L
+.CCI.L
+PPH...K
+DDH...
+GEEJNM
+GFFJNM
+
+Gerakan 115: DOWN (2)
+BBBI..
+.CCI..
+PPH..LK
+DDH..L
+GEEJNM
+GFFJNM
+
+Gerakan 116: UP (4)
+BBBIN.
+.CCIN.
+PPH..LK
+DDH..L
+GEEJ.M
+GFFJ.M
+
+Gerakan 117: DOWN (2)
+BBB.N.
+.CC.N.
+PPHI.LK
+DDHI.L
+GEEJ.M
+GFFJ.M
+
+Gerakan 118: DOWN (4)
+BBB...
+.CC...
+PPHI.LK
+DDHI.L
+GEEJNM
+GFFJNM
+
+Gerakan 119: UP (2)
+BBB..L
+.CC..L
+PPHI..K
+DDHI..
+GEEJNM
+GFFJNM
+
+Gerakan 120: UP (4)
+BBB.NL
+.CC.NL
+PPHI..K
+DDHI..
+GEEJ.M
+GFFJ.M
+
+Gerakan 121: UP (2)
+BBB.NL
+.CC.NL
+PPHI.MK
+DDHI.M
+GEEJ..
+GFFJ..
+
+Gerakan 122: DOWN (4)
+BBB..L
+.CC..L
+PPHI.MK
+DDHI.M
+GEEJN.
+GFFJN.
+
+Gerakan 123: LEFT (1)
+BBB..L
+CC...L
+PPHI.MK
+DDHI.M
+GEEJN.
+GFFJN.
+
+Gerakan 124: UP (4)
+BBB.NL
+CC..NL
+PPHI.MK
+DDHI.M
+GEEJ..
+GFFJ..
+
+Gerakan 125: DOWN (2)
+BBB.NL
+CC..NL
+PPHI..K
+DDHI..
+GEEJ.M
+GFFJ.M
+
+Gerakan 126: DOWN (4)
+BBB..L
+CC...L
+PPHI..K
+DDHI..
+GEEJNM
+GFFJNM
+
+Gerakan 127: DOWN (2)
+BBB...
+CC....
+PPHI.LK
+DDHI.L
+GEEJNM
+GFFJNM
+
+Gerakan 128: UP (4)
+BBB.N.
+CC..N.
+PPHI.LK
+DDHI.L
+GEEJ.M
+GFFJ.M
+
+Gerakan 129: UP (2)
+BBBIN.
+CC.IN.
+PPH..LK
+DDH..L
+GEEJ.M
+GFFJ.M
+
+Gerakan 130: DOWN (4)
+BBBI..
+CC.I..
+PPH..LK
+DDH..L
+GEEJNM
+GFFJNM
+
+Gerakan 131: UP (2)
+BBBI.L
+CC.I.L
+PPH...K
+DDH...
+GEEJNM
+GFFJNM
+
+Gerakan 132: UP (4)
+BBBINL
+CC.INL
+PPH...K
+DDH...
+GEEJ.M
+GFFJ.M
+
+Gerakan 133: UP (2)
+BBBINL
+CC.INL
+PPH..MK
+DDH..M
+GEEJ..
+GFFJ..
+
+Gerakan 134: DOWN (4)
+BBBI.L
+CC.I.L
+PPH..MK
+DDH..M
+GEEJN.
+GFFJN.
+
+Gerakan 135: UP (2)
+BBBI.L
+CC.I.L
+PPHJ.MK
+DDHJ.M
+GEE.N.
+GFF.N.
+
+Gerakan 136: UP (4)
+BBBINL
+CC.INL
+PPHJ.MK
+DDHJ.M
+GEE...
+GFF...
+
+Gerakan 137: DOWN (2)
+BBBINL
+CC.INL
+PPHJ..K
+DDHJ..
+GEE..M
+GFF..M
+
+Gerakan 138: DOWN (4)
+BBBI.L
+CC.I.L
+PPHJ..K
+DDHJ..
+GEE.NM
+GFF.NM
+
+Gerakan 139: DOWN (2)
+BBBI..
+CC.I..
+PPHJ.LK
+DDHJ.L
+GEE.NM
+GFF.NM
+
+Gerakan 140: UP (4)
+BBBIN.
+CC.IN.
+PPHJ.LK
+DDHJ.L
+GEE..M
+GFF..M
+
+Gerakan 141: UP (1)
+BBBIN.
+CCHIN.
+PPHJ.LK
+DD.J.L
+GEE..M
+GFF..M
+
+Gerakan 142: DOWN (4)
+BBBI..
+CCHI..
+PPHJ.LK
+DD.J.L
+GEE.NM
+GFF.NM
+
+Gerakan 143: UP (2)
+BBBI.L
+CCHI.L
+PPHJ..K
+DD.J..
+GEE.NM
+GFF.NM
+
+Gerakan 144: UP (4)
+BBBINL
+CCHINL
+PPHJ..K
+DD.J..
+GEE..M
+GFF..M
+
+Gerakan 145: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+DD.J.M
+GEE...
+GFF...
+
+Gerakan 146: DOWN (4)
+BBBI.L
+CCHI.L
+PPHJ.MK
+DD.J.M
+GEE.N.
+GFF.N.
+
+Gerakan 147: DOWN (2)
+BBBI.L
+CCHI.L
+PPH..MK
+DD...M
+GEEJN.
+GFFJN.
+
+Gerakan 148: UP (4)
+BBBINL
+CCHINL
+PPH..MK
+DD...M
+GEEJ..
+GFFJ..
+
+Gerakan 149: DOWN (2)
+BBBINL
+CCHINL
+PPH...K
+DD....
+GEEJ.M
+GFFJ.M
+
+Gerakan 150: DOWN (4)
+BBBI.L
+CCHI.L
+PPH...K
+DD....
+GEEJNM
+GFFJNM
+
+Gerakan 151: DOWN (2)
+BBBI..
+CCHI..
+PPH..LK
+DD...L
+GEEJNM
+GFFJNM
+
+Gerakan 152: UP (4)
+BBBIN.
+CCHIN.
+PPH..LK
+DD...L
+GEEJ.M
+GFFJ.M
+
+Gerakan 153: DOWN (2)
+BBB.N.
+CCH.N.
+PPHI.LK
+DD.I.L
+GEEJ.M
+GFFJ.M
+
+Gerakan 154: DOWN (4)
+BBB...
+CCH...
+PPHI.LK
+DD.I.L
+GEEJNM
+GFFJNM
+
+Gerakan 155: UP (2)
+BBB..L
+CCH..L
+PPHI..K
+DD.I..
+GEEJNM
+GFFJNM
+
+Gerakan 156: UP (4)
+BBB.NL
+CCH.NL
+PPHI..K
+DD.I..
+GEEJ.M
+GFFJ.M
+
+Gerakan 157: UP (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+DD.I.M
+GEEJ..
+GFFJ..
+
+Gerakan 158: DOWN (4)
+BBB..L
+CCH..L
+PPHI.MK
+DD.I.M
+GEEJN.
+GFFJN.
+
+Gerakan 159: RIGHT (1)
+BBB..L
+CCH..L
+PPHI.MK
+.DDI.M
+GEEJN.
+GFFJN.
+
+Gerakan 160: UP (4)
+BBB.NL
+CCH.NL
+PPHI.MK
+.DDI.M
+GEEJ..
+GFFJ..
+
+Gerakan 161: DOWN (2)
+BBB.NL
+CCH.NL
+PPHI..K
+.DDI..
+GEEJ.M
+GFFJ.M
+
+Gerakan 162: DOWN (4)
+BBB..L
+CCH..L
+PPHI..K
+.DDI..
+GEEJNM
+GFFJNM
+
+Gerakan 163: DOWN (2)
+BBB...
+CCH...
+PPHI.LK
+.DDI.L
+GEEJNM
+GFFJNM
+
+Gerakan 164: UP (4)
+BBB.N.
+CCH.N.
+PPHI.LK
+.DDI.L
+GEEJ.M
+GFFJ.M
+
+Gerakan 165: UP (2)
+BBBIN.
+CCHIN.
+PPH..LK
+.DD..L
+GEEJ.M
+GFFJ.M
+
+Gerakan 166: DOWN (4)
+BBBI..
+CCHI..
+PPH..LK
+.DD..L
+GEEJNM
+GFFJNM
+
+Gerakan 167: UP (2)
+BBBI.L
+CCHI.L
+PPH...K
+.DD...
+GEEJNM
+GFFJNM
+
+Gerakan 168: UP (4)
+BBBINL
+CCHINL
+PPH...K
+.DD...
+GEEJ.M
+GFFJ.M
+
+Gerakan 169: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+.DD..M
+GEEJ..
+GFFJ..
+
+Gerakan 170: DOWN (4)
+BBBI.L
+CCHI.L
+PPH..MK
+.DD..M
+GEEJN.
+GFFJN.
+
+Gerakan 171: UP (2)
+BBBI.L
+CCHI.L
+PPHJ.MK
+.DDJ.M
+GEE.N.
+GFF.N.
+
+Gerakan 172: UP (4)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+GEE...
+GFF...
+
+Gerakan 173: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+.DDJ..
+GEE..M
+GFF..M
+
+Gerakan 174: DOWN (4)
+BBBI.L
+CCHI.L
+PPHJ..K
+.DDJ..
+GEE.NM
+GFF.NM
+
+Gerakan 175: DOWN (2)
+BBBI..
+CCHI..
+PPHJ.LK
+.DDJ.L
+GEE.NM
+GFF.NM
+
+Gerakan 176: UP (4)
+BBBIN.
+CCHIN.
+PPHJ.LK
+.DDJ.L
+GEE..M
+GFF..M
+
+Gerakan 177: UP (1)
+BBBIN.
+CCHIN.
+PPHJ.LK
+GDDJ.L
+GEE..M
+.FF..M
+
+Gerakan 178: DOWN (4)
+BBBI..
+CCHI..
+PPHJ.LK
+GDDJ.L
+GEE.NM
+.FF.NM
+
+Gerakan 179: UP (2)
+BBBI.L
+CCHI.L
+PPHJ..K
+GDDJ..
+GEE.NM
+.FF.NM
+
+Gerakan 180: UP (4)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ..
+GEE..M
+.FF..M
+
+Gerakan 181: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+GEE...
+.FF...
+
+Gerakan 182: DOWN (4)
+BBBI.L
+CCHI.L
+PPHJ.MK
+GDDJ.M
+GEE.N.
+.FF.N.
+
+Gerakan 183: DOWN (2)
+BBBI.L
+CCHI.L
+PPH..MK
+GDD..M
+GEEJN.
+.FFJN.
+
+Gerakan 184: UP (4)
+BBBINL
+CCHINL
+PPH..MK
+GDD..M
+GEEJ..
+.FFJ..
+
+Gerakan 185: DOWN (2)
+BBBINL
+CCHINL
+PPH...K
+GDD...
+GEEJ.M
+.FFJ.M
+
+Gerakan 186: DOWN (4)
+BBBI.L
+CCHI.L
+PPH...K
+GDD...
+GEEJNM
+.FFJNM
+
+Gerakan 187: DOWN (2)
+BBBI..
+CCHI..
+PPH..LK
+GDD..L
+GEEJNM
+.FFJNM
+
+Gerakan 188: UP (4)
+BBBIN.
+CCHIN.
+PPH..LK
+GDD..L
+GEEJ.M
+.FFJ.M
+
+Gerakan 189: DOWN (2)
+BBB.N.
+CCH.N.
+PPHI.LK
+GDDI.L
+GEEJ.M
+.FFJ.M
+
+Gerakan 190: DOWN (4)
+BBB...
+CCH...
+PPHI.LK
+GDDI.L
+GEEJNM
+.FFJNM
+
+Gerakan 191: UP (2)
+BBB..L
+CCH..L
+PPHI..K
+GDDI..
+GEEJNM
+.FFJNM
+
+Gerakan 192: UP (4)
+BBB.NL
+CCH.NL
+PPHI..K
+GDDI..
+GEEJ.M
+.FFJ.M
+
+Gerakan 193: UP (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+GDDI.M
+GEEJ..
+.FFJ..
+
+Gerakan 194: DOWN (4)
+BBB..L
+CCH..L
+PPHI.MK
+GDDI.M
+GEEJN.
+.FFJN.
+
+Gerakan 195: LEFT (1)
+BBB..L
+CCH..L
+PPHI.MK
+GDDI.M
+GEEJN.
+FF.JN.
+
+Gerakan 196: UP (4)
+BBB.NL
+CCH.NL
+PPHI.MK
+GDDI.M
+GEEJ..
+FF.J..
+
+Gerakan 197: DOWN (2)
+BBB.NL
+CCH.NL
+PPHI..K
+GDDI..
+GEEJ.M
+FF.J.M
+
+Gerakan 198: DOWN (4)
+BBB..L
+CCH..L
+PPHI..K
+GDDI..
+GEEJNM
+FF.JNM
+
+Gerakan 199: DOWN (2)
+BBB...
+CCH...
+PPHI.LK
+GDDI.L
+GEEJNM
+FF.JNM
+
+Gerakan 200: UP (4)
+BBB.N.
+CCH.N.
+PPHI.LK
+GDDI.L
+GEEJ.M
+FF.J.M
+
+Gerakan 201: UP (2)
+BBBIN.
+CCHIN.
+PPH..LK
+GDD..L
+GEEJ.M
+FF.J.M
+
+Gerakan 202: DOWN (4)
+BBBI..
+CCHI..
+PPH..LK
+GDD..L
+GEEJNM
+FF.JNM
+
+Gerakan 203: UP (2)
+BBBI.L
+CCHI.L
+PPH...K
+GDD...
+GEEJNM
+FF.JNM
+
+Gerakan 204: UP (4)
+BBBINL
+CCHINL
+PPH...K
+GDD...
+GEEJ.M
+FF.J.M
+
+Gerakan 205: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+GDD..M
+GEEJ..
+FF.J..
+
+Gerakan 206: DOWN (4)
+BBBI.L
+CCHI.L
+PPH..MK
+GDD..M
+GEEJN.
+FF.JN.
+
+Gerakan 207: UP (2)
+BBBI.L
+CCHI.L
+PPHJ.MK
+GDDJ.M
+GEE.N.
+FF..N.
+
+Gerakan 208: UP (4)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+GEE...
+FF....
+
+Gerakan 209: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ..
+GEE..M
+FF...M
+
+Gerakan 210: DOWN (4)
+BBBI.L
+CCHI.L
+PPHJ..K
+GDDJ..
+GEE.NM
+FF..NM
+
+Gerakan 211: DOWN (2)
+BBBI..
+CCHI..
+PPHJ.LK
+GDDJ.L
+GEE.NM
+FF..NM
+
+Gerakan 212: UP (4)
+BBBIN.
+CCHIN.
+PPHJ.LK
+GDDJ.L
+GEE..M
+FF...M
+
+Gerakan 213: RIGHT (3)
+BBBIN.
+CCHIN.
+PPHJ.LK
+GDDJ.L
+GEE..M
+...FFM
+
+Gerakan 214: DOWN (3)
+BBBI..
+CCHI..
+PPHJ.LK
+GDDJNL
+GEE.NM
+...FFM
+
+Gerakan 215: UP (2)
+BBBI.L
+CCHI.L
+PPHJ..K
+GDDJN.
+GEE.NM
+...FFM
+
+Gerakan 216: UP (3)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ..
+GEE..M
+...FFM
+
+Gerakan 217: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+GEE...
+...FF.
+
+Gerakan 218: DOWN (3)
+BBBI.L
+CCHI.L
+PPHJ.MK
+GDDJNM
+GEE.N.
+...FF.
+
+Gerakan 219: DOWN (1)
+BBBI.L
+CCHI.L
+PPH..MK
+GDDJNM
+GEEJN.
+...FF.
+
+Gerakan 220: UP (3)
+BBBINL
+CCHINL
+PPH..MK
+GDDJ.M
+GEEJ..
+...FF.
+
+Gerakan 221: DOWN (2)
+BBBINL
+CCHINL
+PPH...K
+GDDJ..
+GEEJ.M
+...FFM
+
+Gerakan 222: DOWN (3)
+BBBI.L
+CCHI.L
+PPH...K
+GDDJN.
+GEEJNM
+...FFM
+
+Gerakan 223: DOWN (2)
+BBBI..
+CCHI..
+PPH..LK
+GDDJNL
+GEEJNM
+...FFM
+
+Gerakan 224: UP (3)
+BBBIN.
+CCHIN.
+PPH..LK
+GDDJ.L
+GEEJ.M
+...FFM
+
+Gerakan 225: DOWN (1)
+BBB.N.
+CCHIN.
+PPHI.LK
+GDDJ.L
+GEEJ.M
+...FFM
+
+Gerakan 226: DOWN (3)
+BBB...
+CCHI..
+PPHI.LK
+GDDJNL
+GEEJNM
+...FFM
+
+Gerakan 227: UP (2)
+BBB..L
+CCHI.L
+PPHI..K
+GDDJN.
+GEEJNM
+...FFM
+
+Gerakan 228: UP (3)
+BBB.NL
+CCHINL
+PPHI..K
+GDDJ..
+GEEJ.M
+...FFM
+
+Gerakan 229: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+GDDJ.M
+GEEJ..
+...FF.
+
+Gerakan 230: DOWN (3)
+BBB..L
+CCHI.L
+PPHI.MK
+GDDJNM
+GEEJN.
+...FF.
+
+Gerakan 231: DOWN (1)
+BBB..L
+CCHI.L
+PPHI.MK
+.DDJNM
+GEEJN.
+G..FF.
+
+Gerakan 232: UP (3)
+BBB.NL
+CCHINL
+PPHI.MK
+.DDJ.M
+GEEJ..
+G..FF.
+
+Gerakan 233: DOWN (2)
+BBB.NL
+CCHINL
+PPHI..K
+.DDJ..
+GEEJ.M
+G..FFM
+
+Gerakan 234: DOWN (3)
+BBB..L
+CCHI.L
+PPHI..K
+.DDJN.
+GEEJNM
+G..FFM
+
+Gerakan 235: DOWN (2)
+BBB...
+CCHI..
+PPHI.LK
+.DDJNL
+GEEJNM
+G..FFM
+
+Gerakan 236: UP (3)
+BBB.N.
+CCHIN.
+PPHI.LK
+.DDJ.L
+GEEJ.M
+G..FFM
+
+Gerakan 237: UP (1)
+BBBIN.
+CCHIN.
+PPH..LK
+.DDJ.L
+GEEJ.M
+G..FFM
+
+Gerakan 238: DOWN (3)
+BBBI..
+CCHI..
+PPH..LK
+.DDJNL
+GEEJNM
+G..FFM
+
+Gerakan 239: UP (2)
+BBBI.L
+CCHI.L
+PPH...K
+.DDJN.
+GEEJNM
+G..FFM
+
+Gerakan 240: UP (3)
+BBBINL
+CCHINL
+PPH...K
+.DDJ..
+GEEJ.M
+G..FFM
+
+Gerakan 241: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+.DDJ.M
+GEEJ..
+G..FF.
+
+Gerakan 242: DOWN (3)
+BBBI.L
+CCHI.L
+PPH..MK
+.DDJNM
+GEEJN.
+G..FF.
+
+Gerakan 243: UP (1)
+BBBI.L
+CCHI.L
+PPHJ.MK
+.DDJNM
+GEE.N.
+G..FF.
+
+Gerakan 244: UP (3)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+GEE...
+G..FF.
+
+Gerakan 245: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+.DDJ..
+GEE..M
+G..FFM
+
+Gerakan 246: DOWN (3)
+BBBI.L
+CCHI.L
+PPHJ..K
+.DDJN.
+GEE.NM
+G..FFM
+
+Gerakan 247: DOWN (2)
+BBBI..
+CCHI..
+PPHJ.LK
+.DDJNL
+GEE.NM
+G..FFM
+
+Gerakan 248: UP (3)
+BBBIN.
+CCHIN.
+PPHJ.LK
+.DDJ.L
+GEE..M
+G..FFM
+
+Gerakan 249: RIGHT (2)
+BBBIN.
+CCHIN.
+PPHJ.LK
+.DDJ.L
+G..EEM
+G..FFM
+
+Gerakan 250: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+.DDJNL
+G..EEM
+G..FFM
+
+Gerakan 251: UP (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+.DDJN.
+G..EEM
+G..FFM
+
+Gerakan 252: UP (2)
+BBBINL
+CCHINL
+PPHJ..K
+.DDJ..
+G..EEM
+G..FFM
+
+Gerakan 253: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+G..EE.
+G..FF.
+
+Gerakan 254: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+G..EE.
+G..FF.
+
+Gerakan 255: UP (1)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G..EE.
+...FF.
+
+Gerakan 256: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G..EE.
+...FF.
+
+Gerakan 257: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ..
+G..EEM
+...FFM
+
+Gerakan 258: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+GDDJN.
+G..EEM
+...FFM
+
+Gerakan 259: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+GDDJNL
+G..EEM
+...FFM
+
+Gerakan 260: UP (2)
+BBBIN.
+CCHIN.
+PPHJ.LK
+GDDJ.L
+G..EEM
+...FFM
+
+Gerakan 261: LEFT (3)
+BBBIN.
+CCHIN.
+PPHJ.LK
+GDDJ.L
+G..EEM
+FF...M
+
+Gerakan 262: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+GDDJNL
+G..EEM
+FF...M
+
+Gerakan 263: UP (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+GDDJN.
+G..EEM
+FF...M
+
+Gerakan 264: UP (2)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ..
+G..EEM
+FF...M
+
+Gerakan 265: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G..EE.
+FF....
+
+Gerakan 266: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G..EE.
+FF....
+
+Gerakan 267: RIGHT (4)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G..EE.
+....FF
+
+Gerakan 268: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G..EE.
+....FF
+
+Gerakan 269: DOWN (1)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ.M
+G..EEM
+....FF
+
+Gerakan 270: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+GDDJNM
+G..EEM
+....FF
+
+Gerakan 271: DOWN (1)
+BBBI..
+CCHI.L
+PPHJNLK
+GDDJNM
+G..EEM
+....FF
+
+Gerakan 272: UP (2)
+BBBIN.
+CCHINL
+PPHJ.LK
+GDDJ.M
+G..EEM
+....FF
+
+Gerakan 273: DOWN (1)
+BBBIN.
+CCHINL
+PPHJ.LK
+.DDJ.M
+G..EEM
+G...FF
+
+Gerakan 274: DOWN (2)
+BBBI..
+CCHI.L
+PPHJNLK
+.DDJNM
+G..EEM
+G...FF
+
+Gerakan 275: UP (1)
+BBBI.L
+CCHI.L
+PPHJN.K
+.DDJNM
+G..EEM
+G...FF
+
+Gerakan 276: UP (2)
+BBBINL
+CCHINL
+PPHJ..K
+.DDJ.M
+G..EEM
+G...FF
+
+Gerakan 277: UP (1)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+G..EE.
+G...FF
+
+Gerakan 278: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+G..EE.
+G...FF
+
+Gerakan 279: LEFT (3)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+G..EE.
+GFF...
+
+Gerakan 280: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+G..EE.
+GFF...
+
+Gerakan 281: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+.DDJ..
+G..EEM
+GFF..M
+
+Gerakan 282: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+.DDJN.
+G..EEM
+GFF..M
+
+Gerakan 283: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+.DDJNL
+G..EEM
+GFF..M
+
+Gerakan 284: UP (2)
+BBBIN.
+CCHIN.
+PPHJ.LK
+.DDJ.L
+G..EEM
+GFF..M
+
+Gerakan 285: UP (1)
+BBBIN.
+CCHIN.
+PPHJ.LK
+GDDJ.L
+G..EEM
+.FF..M
+
+Gerakan 286: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+GDDJNL
+G..EEM
+.FF..M
+
+Gerakan 287: UP (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+GDDJN.
+G..EEM
+.FF..M
+
+Gerakan 288: UP (2)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ..
+G..EEM
+.FF..M
+
+Gerakan 289: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G..EE.
+.FF...
+
+Gerakan 290: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G..EE.
+.FF...
+
+Gerakan 291: LEFT (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+GEE...
+.FF...
+
+Gerakan 292: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+GDDJN.
+GEE..M
+.FF..M
+
+Gerakan 293: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+GDDJNL
+GEE..M
+.FF..M
+
+Gerakan 294: DOWN (2)
+BBBI..
+CCHI..
+PPH.NLK
+GDD.NL
+GEEJ.M
+.FFJ.M
+
+Gerakan 295: UP (2)
+BBBI.L
+CCHI.L
+PPH.N.K
+GDD.N.
+GEEJ.M
+.FFJ.M
+
+Gerakan 296: UP (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+GDD.NM
+GEEJ..
+.FFJ..
+
+Gerakan 297: DOWN (2)
+BBB..L
+CCH..L
+PPHINMK
+GDDINM
+GEEJ..
+.FFJ..
+
+Gerakan 298: DOWN (2)
+BBB..L
+CCH..L
+PPHIN.K
+GDDIN.
+GEEJ.M
+.FFJ.M
+
+Gerakan 299: DOWN (2)
+BBB...
+CCH...
+PPHINLK
+GDDINL
+GEEJ.M
+.FFJ.M
+
+Gerakan 300: DOWN (1)
+BBB...
+CCH...
+PPHINLK
+.DDINL
+GEEJ.M
+GFFJ.M
+
+Gerakan 301: UP (2)
+BBB..L
+CCH..L
+PPHIN.K
+.DDIN.
+GEEJ.M
+GFFJ.M
+
+Gerakan 302: UP (2)
+BBB..L
+CCH..L
+PPHINMK
+.DDINM
+GEEJ..
+GFFJ..
+
+Gerakan 303: UP (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+.DD.NM
+GEEJ..
+GFFJ..
+
+Gerakan 304: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.N.K
+.DD.N.
+GEEJ.M
+GFFJ.M
+
+Gerakan 305: DOWN (2)
+BBBI..
+CCHI..
+PPH.NLK
+.DD.NL
+GEEJ.M
+GFFJ.M
+
+Gerakan 306: UP (2)
+BBBI..
+CCHI..
+PPHJNLK
+.DDJNL
+GEE..M
+GFF..M
+
+Gerakan 307: UP (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+.DDJN.
+GEE..M
+GFF..M
+
+Gerakan 308: UP (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+GEE...
+GFF...
+
+Gerakan 309: RIGHT (3)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+GEE...
+G...FF
+
+Gerakan 310: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+GEE...
+G...FF
+
+Gerakan 311: DOWN (3)
+BBBI.L
+CCHI.L
+PPHJ.MK
+.DDJNM
+GEE.N.
+G...FF
+
+Gerakan 312: DOWN (1)
+BBBI.L
+CCHI.L
+PPHJ..K
+.DDJNM
+GEE.NM
+G...FF
+
+Gerakan 313: UP (3)
+BBBINL
+CCHINL
+PPHJ..K
+.DDJ.M
+GEE..M
+G...FF
+
+Gerakan 314: DOWN (1)
+BBBIN.
+CCHINL
+PPHJ.LK
+.DDJ.M
+GEE..M
+G...FF
+
+Gerakan 315: DOWN (3)
+BBBI..
+CCHI.L
+PPHJ.LK
+.DDJNM
+GEE.NM
+G...FF
+
+Gerakan 316: DOWN (2)
+BBBI..
+CCHI.L
+PPH..LK
+.DD.NM
+GEEJNM
+G..JFF
+
+Gerakan 317: UP (3)
+BBBIN.
+CCHINL
+PPH..LK
+.DD..M
+GEEJ.M
+G..JFF
+
+Gerakan 318: UP (1)
+BBBINL
+CCHINL
+PPH...K
+.DD..M
+GEEJ.M
+G..JFF
+
+Gerakan 319: DOWN (3)
+BBBI.L
+CCHI.L
+PPH...K
+.DD.NM
+GEEJNM
+G..JFF
+
+Gerakan 320: UP (1)
+BBBI.L
+CCHI.L
+PPH..MK
+.DD.NM
+GEEJN.
+G..JFF
+
+Gerakan 321: UP (3)
+BBBINL
+CCHINL
+PPH..MK
+.DD..M
+GEEJ..
+G..JFF
+
+Gerakan 322: DOWN (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+.DDI.M
+GEEJ..
+G..JFF
+
+Gerakan 323: DOWN (3)
+BBB..L
+CCH..L
+PPHI.MK
+.DDINM
+GEEJN.
+G..JFF
+
+Gerakan 324: DOWN (1)
+BBB..L
+CCH..L
+PPHI..K
+.DDINM
+GEEJNM
+G..JFF
+
+Gerakan 325: UP (3)
+BBB.NL
+CCH.NL
+PPHI..K
+.DDI.M
+GEEJ.M
+G..JFF
+
+Gerakan 326: DOWN (1)
+BBB.N.
+CCH.NL
+PPHI.LK
+.DDI.M
+GEEJ.M
+G..JFF
+
+Gerakan 327: DOWN (3)
+BBB...
+CCH..L
+PPHI.LK
+.DDINM
+GEEJNM
+G..JFF
+
+Gerakan 328: UP (1)
+BBB...
+CCH..L
+PPHI.LK
+GDDINM
+GEEJNM
+...JFF
+
+Gerakan 329: UP (3)
+BBB.N.
+CCH.NL
+PPHI.LK
+GDDI.M
+GEEJ.M
+...JFF
+
+Gerakan 330: UP (1)
+BBB.NL
+CCH.NL
+PPHI..K
+GDDI.M
+GEEJ.M
+...JFF
+
+Gerakan 331: DOWN (3)
+BBB..L
+CCH..L
+PPHI..K
+GDDINM
+GEEJNM
+...JFF
+
+Gerakan 332: UP (1)
+BBB..L
+CCH..L
+PPHI.MK
+GDDINM
+GEEJN.
+...JFF
+
+Gerakan 333: UP (3)
+BBB.NL
+CCH.NL
+PPHI.MK
+GDDI.M
+GEEJ..
+...JFF
+
+Gerakan 334: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+GDD..M
+GEEJ..
+...JFF
+
+Gerakan 335: DOWN (3)
+BBBI.L
+CCHI.L
+PPH..MK
+GDD.NM
+GEEJN.
+...JFF
+
+Gerakan 336: DOWN (1)
+BBBI.L
+CCHI.L
+PPH...K
+GDD.NM
+GEEJNM
+...JFF
+
+Gerakan 337: UP (3)
+BBBINL
+CCHINL
+PPH...K
+GDD..M
+GEEJ.M
+...JFF
+
+Gerakan 338: DOWN (1)
+BBBIN.
+CCHINL
+PPH..LK
+GDD..M
+GEEJ.M
+...JFF
+
+Gerakan 339: DOWN (3)
+BBBI..
+CCHI.L
+PPH..LK
+GDD.NM
+GEEJNM
+...JFF
+
+Gerakan 340: UP (2)
+BBBI..
+CCHI.L
+PPHJ.LK
+GDDJNM
+GEE.NM
+....FF
+
+Gerakan 341: UP (3)
+BBBIN.
+CCHINL
+PPHJ.LK
+GDDJ.M
+GEE..M
+....FF
+
+Gerakan 342: UP (1)
+BBBINL
+CCHINL
+PPHJ..K
+GDDJ.M
+GEE..M
+....FF
+
+Gerakan 343: DOWN (3)
+BBBI.L
+CCHI.L
+PPHJ..K
+GDDJNM
+GEE.NM
+....FF
+
+Gerakan 344: UP (1)
+BBBI.L
+CCHI.L
+PPHJ.MK
+GDDJNM
+GEE.N.
+....FF
+
+Gerakan 345: UP (3)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+GEE...
+....FF
+
+Gerakan 346: RIGHT (3)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G...EE
+....FF
+
+Gerakan 347: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G...EE
+....FF
+
+Gerakan 348: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+GDD.NM
+G..JEE
+...JFF
+
+Gerakan 349: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+GDD..M
+G..JEE
+...JFF
+
+Gerakan 350: DOWN (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+GDDI.M
+G..JEE
+...JFF
+
+Gerakan 351: DOWN (2)
+BBB..L
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+...JFF
+
+Gerakan 352: DOWN (1)
+BBB..L
+CCH..L
+PPHINMK
+.DDINM
+G..JEE
+G..JFF
+
+Gerakan 353: UP (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+.DDI.M
+G..JEE
+G..JFF
+
+Gerakan 354: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+.DD..M
+G..JEE
+G..JFF
+
+Gerakan 355: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+.DD.NM
+G..JEE
+G..JFF
+
+Gerakan 356: UP (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+G...EE
+G...FF
+
+Gerakan 357: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+G...EE
+G...FF
+
+Gerakan 358: LEFT (3)
+BBBINL
+CCHINL
+PPHJ.MK
+.DDJ.M
+G...EE
+GFF...
+
+Gerakan 359: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+.DDJNM
+G...EE
+GFF...
+
+Gerakan 360: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+.DD.NM
+G..JEE
+GFFJ..
+
+Gerakan 361: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+.DD..M
+G..JEE
+GFFJ..
+
+Gerakan 362: DOWN (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+.DDI.M
+G..JEE
+GFFJ..
+
+Gerakan 363: DOWN (2)
+BBB..L
+CCH..L
+PPHINMK
+.DDINM
+G..JEE
+GFFJ..
+
+Gerakan 364: UP (1)
+BBB..L
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+.FFJ..
+
+Gerakan 365: UP (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+GDDI.M
+G..JEE
+.FFJ..
+
+Gerakan 366: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+GDD..M
+G..JEE
+.FFJ..
+
+Gerakan 367: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+GDD.NM
+G..JEE
+.FFJ..
+
+Gerakan 368: UP (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G...EE
+.FF...
+
+Gerakan 369: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G...EE
+.FF...
+
+Gerakan 370: LEFT (1)
+BBBINL
+CCHINL
+PPHJ.MK
+GDDJ.M
+G...EE
+FF....
+
+Gerakan 371: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+GDDJNM
+G...EE
+FF....
+
+Gerakan 372: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+GDD.NM
+G..JEE
+FF.J..
+
+Gerakan 373: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+GDD..M
+G..JEE
+FF.J..
+
+Gerakan 374: DOWN (2)
+BBB.NL
+CCH.NL
+PPHI.MK
+GDDI.M
+G..JEE
+FF.J..
+
+Gerakan 375: DOWN (2)
+BBB..L
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+FF.J..
+
+Gerakan 376: RIGHT (2)
+..BBBL
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+FF.J..
+
+Gerakan 377: UP (1)
+..BBBL
+CCH.NL
+PPHINMK
+GDDI.M
+G..JEE
+FF.J..
+
+Gerakan 378: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+GDD..M
+G..JEE
+FF.J..
+
+Gerakan 379: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+FF.J..
+
+Gerakan 380: UP (1)
+..BBBL
+CCHI.L
+PPHINMK
+GDDJNM
+G..JEE
+FF....
+
+Gerakan 381: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+GDDJ.M
+G..JEE
+FF....
+
+Gerakan 382: RIGHT (4)
+..BBBL
+CCHINL
+PPHINMK
+GDDJ.M
+G..JEE
+....FF
+
+Gerakan 383: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+GDDJNM
+G..JEE
+....FF
+
+Gerakan 384: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+...JFF
+
+Gerakan 385: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+GDD..M
+G..JEE
+...JFF
+
+Gerakan 386: DOWN (1)
+..BBBL
+CCH.NL
+PPHINMK
+GDDI.M
+G..JEE
+...JFF
+
+Gerakan 387: DOWN (1)
+..BBBL
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+...JFF
+
+Gerakan 388: DOWN (1)
+..BBBL
+CCH..L
+PPHINMK
+.DDINM
+G..JEE
+G..JFF
+
+Gerakan 389: UP (1)
+..BBBL
+CCH.NL
+PPHINMK
+.DDI.M
+G..JEE
+G..JFF
+
+Gerakan 390: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+.DD..M
+G..JEE
+G..JFF
+
+Gerakan 391: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+.DD.NM
+G..JEE
+G..JFF
+
+Gerakan 392: UP (1)
+..BBBL
+CCHI.L
+PPHINMK
+.DDJNM
+G..JEE
+G...FF
+
+Gerakan 393: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+.DDJ.M
+G..JEE
+G...FF
+
+Gerakan 394: LEFT (3)
+..BBBL
+CCHINL
+PPHINMK
+.DDJ.M
+G..JEE
+GFF...
+
+Gerakan 395: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+.DDJNM
+G..JEE
+GFF...
+
+Gerakan 396: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+.DD.NM
+G..JEE
+GFFJ..
+
+Gerakan 397: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+.DD..M
+G..JEE
+GFFJ..
+
+Gerakan 398: DOWN (1)
+..BBBL
+CCH.NL
+PPHINMK
+.DDI.M
+G..JEE
+GFFJ..
+
+Gerakan 399: DOWN (1)
+..BBBL
+CCH..L
+PPHINMK
+.DDINM
+G..JEE
+GFFJ..
+
+Gerakan 400: UP (1)
+..BBBL
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+.FFJ..
+
+Gerakan 401: UP (1)
+..BBBL
+CCH.NL
+PPHINMK
+GDDI.M
+G..JEE
+.FFJ..
+
+Gerakan 402: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+GDD..M
+G..JEE
+.FFJ..
+
+Gerakan 403: DOWN (1)
+..BBBL
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+.FFJ..
+
+Gerakan 404: UP (1)
+..BBBL
+CCHI.L
+PPHINMK
+GDDJNM
+G..JEE
+.FF...
+
+Gerakan 405: UP (1)
+..BBBL
+CCHINL
+PPHINMK
+GDDJ.M
+G..JEE
+.FF...
+
+Gerakan 406: LEFT (2)
+BBB..L
+CCHINL
+PPHINMK
+GDDJ.M
+G..JEE
+.FF...
+
+Gerakan 407: UP (1)
+BBB.NL
+CCHINL
+PPHI.MK
+GDDJ.M
+G..JEE
+.FF...
+
+Gerakan 408: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+GDDJNM
+G..JEE
+.FF...
+
+Gerakan 409: DOWN (1)
+BBB..L
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+.FFJ..
+
+Gerakan 410: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+GDD..M
+G..JEE
+.FFJ..
+
+Gerakan 411: DOWN (1)
+BBB.NL
+CCHINL
+PPHI.MK
+.DD..M
+G..JEE
+GFFJ..
+
+Gerakan 412: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+.DD.NM
+G..JEE
+GFFJ..
+
+Gerakan 413: UP (1)
+BBB..L
+CCHI.L
+PPHINMK
+.DDJNM
+G..JEE
+GFF...
+
+Gerakan 414: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+.DDJ.M
+G..JEE
+GFF...
+
+Gerakan 415: UP (1)
+BBBINL
+CCHINL
+PPH..MK
+.DDJ.M
+G..JEE
+GFF...
+
+Gerakan 416: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+.DDJNM
+G..JEE
+GFF...
+
+Gerakan 417: UP (1)
+BBBI.L
+CCHI.L
+PPH.NMK
+GDDJNM
+G..JEE
+.FF...
+
+Gerakan 418: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+GDDJ.M
+G..JEE
+.FF...
+
+Gerakan 419: LEFT (1)
+BBBINL
+CCHINL
+PPH..MK
+GDDJ.M
+G..JEE
+FF....
+
+Gerakan 420: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+GDDJNM
+G..JEE
+FF....
+
+Gerakan 421: DOWN (1)
+BBB..L
+CCHI.L
+PPHINMK
+GDDJNM
+G..JEE
+FF....
+
+Gerakan 422: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+GDDJ.M
+G..JEE
+FF....
+
+Gerakan 423: DOWN (1)
+BBB.NL
+CCHINL
+PPHI.MK
+GDD..M
+G..JEE
+FF.J..
+
+Gerakan 424: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+FF.J..
+
+Gerakan 425: RIGHT (1)
+BBB..L
+CCHI.L
+PPHINMK
+G.DDNM
+G..JEE
+FF.J..
+
+Gerakan 426: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+G.DD.M
+G..JEE
+FF.J..
+
+Gerakan 427: UP (1)
+BBBINL
+CCHINL
+PPH..MK
+G.DD.M
+G..JEE
+FF.J..
+
+Gerakan 428: DOWN (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+G.DDNM
+G..JEE
+FF.J..
+
+Gerakan 429: RIGHT (1)
+BBBI.L
+CCHI.L
+PPH.NMK
+G.DDNM
+G..JEE
+.FFJ..
+
+Gerakan 430: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+G.DD.M
+G..JEE
+.FFJ..
+
+Gerakan 431: DOWN (1)
+BBB.NL
+CCHINL
+PPHI.MK
+G.DD.M
+G..JEE
+.FFJ..
+
+Gerakan 432: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+G.DDNM
+G..JEE
+.FFJ..
+
+Gerakan 433: DOWN (1)
+BBB..L
+CCHI.L
+PPHINMK
+..DDNM
+G..JEE
+GFFJ..
+
+Gerakan 434: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+..DD.M
+G..JEE
+GFFJ..
+
+Gerakan 435: UP (1)
+BBBINL
+CCHINL
+PPH..MK
+..DD.M
+G..JEE
+GFFJ..
+
+Gerakan 436: RIGHT (1)
+BBBINL
+CCHINL
+PPH..MK
+...DDM
+G..JEE
+GFFJ..
+
+Gerakan 437: DOWN (1)
+BBBI.L
+CCHINL
+PPH.NMK
+...DDM
+G..JEE
+GFFJ..
+
+Gerakan 438: DOWN (1)
+BBB..L
+CCHINL
+PPHINMK
+...DDM
+G..JEE
+GFFJ..
+
+Gerakan 439: DOWN (2)
+BBB..L
+CC.INL
+PP.INMK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 440: UP (1)
+BBB.NL
+CC.INL
+PP.I.MK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 441: UP (1)
+BBBINL
+CC.INL
+PP...MK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 442: DOWN (1)
+BBBI.L
+CC.INL
+PP..NMK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 443: UP (1)
+BBBI.L
+CC.INL
+PP..NMK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 444: UP (1)
+BBBINL
+CC.INL
+PP...MK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 445: DOWN (1)
+BBB.NL
+CC.INL
+PP.I.MK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 446: RIGHT (1)
+BBB.NL
+.CCINL
+PP.I.MK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 447: DOWN (1)
+BBB..L
+.CCINL
+PP.INMK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 448: UP (1)
+BBBI.L
+.CCINL
+PP..NMK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 449: UP (1)
+BBBINL
+.CCINL
+PP...MK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 450: UP (1)
+BBBINL
+.CCINL
+PPH..MK
+G.HDDM
+G..JEE
+.FFJ..
+
+Gerakan 451: DOWN (1)
+BBBI.L
+.CCINL
+PPH.NMK
+G.HDDM
+G..JEE
+.FFJ..
+
+Gerakan 452: DOWN (1)
+BBB..L
+.CCINL
+PPHINMK
+G.HDDM
+G..JEE
+.FFJ..
+
+Gerakan 453: UP (1)
+BBB.NL
+.CCINL
+PPHI.MK
+G.HDDM
+G..JEE
+.FFJ..
+
+Gerakan 454: DOWN (1)
+BBB.NL
+.CCINL
+PPHI.MK
+..HDDM
+G..JEE
+GFFJ..
+
+Gerakan 455: DOWN (1)
+BBB..L
+.CCINL
+PPHINMK
+..HDDM
+G..JEE
+GFFJ..
+
+Gerakan 456: UP (1)
+BBBI.L
+.CCINL
+PPH.NMK
+..HDDM
+G..JEE
+GFFJ..
+
+Gerakan 457: UP (1)
+BBBINL
+.CCINL
+PPH..MK
+..HDDM
+G..JEE
+GFFJ..
+
+Gerakan 458: DOWN (1)
+BBBINL
+.CCINL
+PP...MK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 459: DOWN (1)
+BBBI.L
+.CCINL
+PP..NMK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 460: DOWN (1)
+BBB..L
+.CCINL
+PP.INMK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 461: UP (1)
+BBB.NL
+.CCINL
+PP.I.MK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 462: RIGHT (1)
+.BBBNL
+.CCINL
+PP.I.MK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 463: DOWN (1)
+.BBB.L
+.CCINL
+PP.INMK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 464: UP (1)
+.BBB.L
+.CCINL
+PPHINMK
+..HDDM
+G..JEE
+GFFJ..
+
+Gerakan 465: UP (1)
+.BBBNL
+.CCINL
+PPHI.MK
+..HDDM
+G..JEE
+GFFJ..
+
+Gerakan 466: UP (1)
+.BBBNL
+.CCINL
+PPHI.MK
+G.HDDM
+G..JEE
+.FFJ..
+
+Gerakan 467: DOWN (1)
+.BBB.L
+.CCINL
+PPHINMK
+G.HDDM
+G..JEE
+.FFJ..
+
+Gerakan 468: DOWN (1)
+.BBB.L
+.CCINL
+PP.INMK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 469: UP (1)
+.BBBNL
+.CCINL
+PP.I.MK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 470: LEFT (1)
+.BBBNL
+.CCINL
+PP.I.MK
+G.HDDM
+G.HJEE
+FF.J..
+
+Gerakan 471: DOWN (1)
+.BBB.L
+.CCINL
+PP.INMK
+G.HDDM
+G.HJEE
+FF.J..
+
+Gerakan 472: UP (1)
+.BBB.L
+.CCINL
+PPHINMK
+G.HDDM
+G..JEE
+FF.J..
+
+Gerakan 473: UP (1)
+.BBBNL
+.CCINL
+PPHI.MK
+G.HDDM
+G..JEE
+FF.J..
+
+Gerakan 474: DOWN (2)
+.BBBNL
+.CCINL
+PP.I.MK
+G..DDM
+G.HJEE
+FFHJ..
+
+Gerakan 475: DOWN (1)
+.BBB.L
+.CCINL
+PP.INMK
+G..DDM
+G.HJEE
+FFHJ..
+
+Gerakan 476: LEFT (2)
+.BBB.L
+.CCINL
+PP.INMK
+GDD..M
+G.HJEE
+FFHJ..
+
+Gerakan 477: UP (1)
+.BBBNL
+.CCINL
+PP.I.MK
+GDD..M
+G.HJEE
+FFHJ..
+
+Gerakan 478: DOWN (2)
+.BBB.L
+.CCI.L
+PP.INMK
+GDD.NM
+G.HJEE
+FFHJ..
+
+Gerakan 479: UP (1)
+.BBB.L
+.CCI.L
+PP.INMK
+GDDJNM
+G.HJEE
+FFH...
+
+Gerakan 480: UP (2)
+.BBBNL
+.CCINL
+PP.I.MK
+GDDJ.M
+G.HJEE
+FFH...
+
+Gerakan 481: LEFT (1)
+.BBBNL
+CC.INL
+PP.I.MK
+GDDJ.M
+G.HJEE
+FFH...
+
+Gerakan 482: DOWN (2)
+.BBB.L
+CC.I.L
+PP.INMK
+GDDJNM
+G.HJEE
+FFH...
+
+Gerakan 483: DOWN (1)
+.BBB.L
+CC.I.L
+PP.INMK
+GDD.NM
+G.HJEE
+FFHJ..
+
+Gerakan 484: UP (2)
+.BBBNL
+CC.INL
+PP.I.MK
+GDD..M
+G.HJEE
+FFHJ..
+
+Gerakan 485: RIGHT (2)
+.BBBNL
+CC.INL
+PP.I.MK
+G..DDM
+G.HJEE
+FFHJ..
+
+Gerakan 486: DOWN (1)
+.BBB.L
+CC.INL
+PP.INMK
+G..DDM
+G.HJEE
+FFHJ..
+
+Gerakan 487: UP (3)
+.BBB.L
+CCHINL
+PPHINMK
+G..DDM
+G..JEE
+FF.J..
+
+Gerakan 488: UP (1)
+.BBBNL
+CCHINL
+PPHI.MK
+G..DDM
+G..JEE
+FF.J..
+
+Gerakan 489: RIGHT (1)
+.BBBNL
+CCHINL
+PPHI.MK
+G..DDM
+G..JEE
+.FFJ..
+
+Gerakan 490: DOWN (1)
+.BBB.L
+CCHINL
+PPHINMK
+G..DDM
+G..JEE
+.FFJ..
+
+Gerakan 491: DOWN (2)
+.BBB.L
+CC.INL
+PP.INMK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 492: UP (1)
+.BBBNL
+CC.INL
+PP.I.MK
+G.HDDM
+G.HJEE
+.FFJ..
+
+Gerakan 493: DOWN (1)
+.BBBNL
+CC.INL
+PP.I.MK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 494: DOWN (1)
+.BBB.L
+CC.INL
+PP.INMK
+..HDDM
+G.HJEE
+GFFJ..
+
+Gerakan 495: UP (2)
+.BBB.L
+CCHINL
+PPHINMK
+...DDM
+G..JEE
+GFFJ..
+
+Gerakan 496: UP (1)
+.BBBNL
+CCHINL
+PPHI.MK
+...DDM
+G..JEE
+GFFJ..
+
+Gerakan 497: LEFT (3)
+.BBBNL
+CCHINL
+PPHI.MK
+DD...M
+G..JEE
+GFFJ..
+
+Gerakan 498: DOWN (2)
+.BBB.L
+CCHI.L
+PPHINMK
+DD..NM
+G..JEE
+GFFJ..
+
+Gerakan 499: UP (1)
+.BBB.L
+CCHI.L
+PPHINMK
+DD.JNM
+G..JEE
+GFF...
+
+Gerakan 500: UP (2)
+.BBBNL
+CCHINL
+PPHI.MK
+DD.J.M
+G..JEE
+GFF...
+
+Gerakan 501: DOWN (2)
+.BBBNL
+CC.INL
+PP.I.MK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 502: DOWN (2)
+.BBB.L
+CC.I.L
+PP.INMK
+DDHJNM
+G.HJEE
+GFF...
+
+Gerakan 503: DOWN (1)
+.BBB.L
+CC.I.L
+PP.INMK
+DDH.NM
+G.HJEE
+GFFJ..
+
+Gerakan 504: UP (2)
+.BBBNL
+CC.INL
+PP.I.MK
+DDH..M
+G.HJEE
+GFFJ..
+
+Gerakan 505: DOWN (1)
+.BBBNL
+CC..NL
+PP.I.MK
+DDHI.M
+G.HJEE
+GFFJ..
+
+Gerakan 506: DOWN (2)
+.BBB.L
+CC...L
+PP.INMK
+DDHINM
+G.HJEE
+GFFJ..
+
+Gerakan 507: UP (2)
+.BBB.L
+CCH..L
+PPHINMK
+DD.INM
+G..JEE
+GFFJ..
+
+Gerakan 508: UP (2)
+.BBBNL
+CCH.NL
+PPHI.MK
+DD.I.M
+G..JEE
+GFFJ..
+
+Gerakan 509: RIGHT (1)
+.BBBNL
+CCH.NL
+PPHI.MK
+.DDI.M
+G..JEE
+GFFJ..
+
+Gerakan 510: DOWN (2)
+.BBB.L
+CCH..L
+PPHINMK
+.DDINM
+G..JEE
+GFFJ..
+
+Gerakan 511: UP (1)
+.BBB.L
+CCHI.L
+PPHINMK
+.DD.NM
+G..JEE
+GFFJ..
+
+Gerakan 512: UP (2)
+.BBBNL
+CCHINL
+PPHI.MK
+.DD..M
+G..JEE
+GFFJ..
+
+Gerakan 513: UP (1)
+.BBBNL
+CCHINL
+PPHI.MK
+.DDJ.M
+G..JEE
+GFF...
+
+Gerakan 514: DOWN (2)
+.BBB.L
+CCHI.L
+PPHINMK
+.DDJNM
+G..JEE
+GFF...
+
+Gerakan 515: RIGHT (3)
+.BBB.L
+CCHI.L
+PPHINMK
+.DDJNM
+G..JEE
+G...FF
+
+Gerakan 516: UP (2)
+.BBBNL
+CCHINL
+PPHI.MK
+.DDJ.M
+G..JEE
+G...FF
+
+Gerakan 517: DOWN (1)
+.BBBNL
+CCHINL
+PPHI.MK
+.DD..M
+G..JEE
+G..JFF
+
+Gerakan 518: DOWN (2)
+.BBB.L
+CCHI.L
+PPHINMK
+.DD.NM
+G..JEE
+G..JFF
+
+Gerakan 519: DOWN (1)
+.BBB.L
+CCH..L
+PPHINMK
+.DDINM
+G..JEE
+G..JFF
+
+Gerakan 520: UP (2)
+.BBBNL
+CCH.NL
+PPHI.MK
+.DDI.M
+G..JEE
+G..JFF
+
+Gerakan 521: UP (1)
+.BBBNL
+CCH.NL
+PPHI.MK
+GDDI.M
+G..JEE
+...JFF
+
+Gerakan 522: DOWN (2)
+.BBB.L
+CCH..L
+PPHINMK
+GDDINM
+G..JEE
+...JFF
+
+Gerakan 523: UP (1)
+.BBB.L
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+...JFF
+
+Gerakan 524: UP (2)
+.BBBNL
+CCHINL
+PPHI.MK
+GDD..M
+G..JEE
+...JFF
+
+Gerakan 525: UP (1)
+.BBBNL
+CCHINL
+PPHI.MK
+GDDJ.M
+G..JEE
+....FF
+
+Gerakan 526: LEFT (1)
+BBB.NL
+CCHINL
+PPHI.MK
+GDDJ.M
+G..JEE
+....FF
+
+Gerakan 527: DOWN (1)
+BBB.NL
+CCHINL
+PPHI.MK
+GDD..M
+G..JEE
+...JFF
+
+Gerakan 528: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+GDD.NM
+G..JEE
+...JFF
+
+Gerakan 529: DOWN (1)
+BBB..L
+CCHI.L
+PPHINMK
+.DD.NM
+G..JEE
+G..JFF
+
+Gerakan 530: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+.DD..M
+G..JEE
+G..JFF
+
+Gerakan 531: UP (1)
+BBB.NL
+CCHINL
+PPHI.MK
+.DDJ.M
+G..JEE
+G...FF
+
+Gerakan 532: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+.DDJNM
+G..JEE
+G...FF
+
+Gerakan 533: LEFT (1)
+BBB..L
+CCHI.L
+PPHINMK
+DD.JNM
+G..JEE
+G...FF
+
+Gerakan 534: DOWN (1)
+BBB..L
+CCHI.L
+PPHINMK
+DD..NM
+G..JEE
+G..JFF
+
+Gerakan 535: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+DD...M
+G..JEE
+G..JFF
+
+Gerakan 536: DOWN (3)
+BBB.NL
+CC.INL
+PP.I.MK
+DD...M
+G.HJEE
+G.HJFF
+
+Gerakan 537: DOWN (2)
+BBB..L
+CC.I.L
+PP.INMK
+DD..NM
+G.HJEE
+G.HJFF
+
+Gerakan 538: UP (1)
+BBB..L
+CC.I.L
+PP.INMK
+DD.JNM
+G.HJEE
+G.H.FF
+
+Gerakan 539: UP (2)
+BBB.NL
+CC.INL
+PP.I.MK
+DD.J.M
+G.HJEE
+G.H.FF
+
+Gerakan 540: LEFT (1)
+BBB.NL
+CC.INL
+PP.I.MK
+DD.J.M
+G.HJEE
+G.HFF.
+
+Gerakan 541: UP (1)
+BBBINL
+CC.INL
+PP...MK
+DD.J.M
+G.HJEE
+G.HFF.
+
+Gerakan 542: DOWN (2)
+BBBI.L
+CC.I.L
+PP..NMK
+DD.JNM
+G.HJEE
+G.HFF.
+
+Gerakan 543: UP (1)
+BBBI.L
+CC.I.L
+PP.JNMK
+DD.JNM
+G.H.EE
+G.HFF.
+
+Gerakan 544: UP (2)
+BBBINL
+CC.INL
+PP.J.MK
+DD.J.M
+G.H.EE
+G.HFF.
+
+Gerakan 545: UP (3)
+BBBINL
+CCHINL
+PPHJ.MK
+DD.J.M
+G...EE
+G..FF.
+
+Gerakan 546: LEFT (3)
+BBBINL
+CCHINL
+PPHJ.MK
+DD.J.M
+GEE...
+G..FF.
+
+Gerakan 547: DOWN (3)
+BBBI.L
+CCHI.L
+PPHJ.MK
+DD.JNM
+GEE.N.
+G..FF.
+
+Gerakan 548: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJ..K
+DD.JN.
+GEE.NM
+G..FFM
+
+Gerakan 549: UP (3)
+BBBINL
+CCHINL
+PPHJ..K
+DD.J..
+GEE..M
+G..FFM
+
+Gerakan 550: DOWN (2)
+BBBIN.
+CCHIN.
+PPHJ.LK
+DD.J.L
+GEE..M
+G..FFM
+
+Gerakan 551: DOWN (3)
+BBBI..
+CCHI..
+PPHJ.LK
+DD.JNL
+GEE.NM
+G..FFM
+
+Gerakan 552: DOWN (1)
+BBBI..
+CCHI..
+PPH..LK
+DD.JNL
+GEEJNM
+G..FFM
+
+Gerakan 553: UP (3)
+BBBIN.
+CCHIN.
+PPH..LK
+DD.J.L
+GEEJ.M
+G..FFM
+
+Gerakan 554: DOWN (1)
+BBB.N.
+CCHIN.
+PPHI.LK
+DD.J.L
+GEEJ.M
+G..FFM
+
+Gerakan 555: UP (2)
+BBB.NL
+CCHINL
+PPHI..K
+DD.J..
+GEEJ.M
+G..FFM
+
+Gerakan 556: DOWN (3)
+BBB..L
+CCHI.L
+PPHI..K
+DD.JN.
+GEEJNM
+G..FFM
+
+Gerakan 557: UP (2)
+BBB..L
+CCHI.L
+PPHI.MK
+DD.JNM
+GEEJN.
+G..FF.
+
+Gerakan 558: UP (3)
+BBB.NL
+CCHINL
+PPHI.MK
+DD.J.M
+GEEJ..
+G..FF.
+
+Gerakan 559: DOWN (1)
+BBB.NL
+CC.INL
+PPHI.MK
+DDHJ.M
+GEEJ..
+G..FF.
+
+Gerakan 560: DOWN (3)
+BBB..L
+CC.I.L
+PPHI.MK
+DDHJNM
+GEEJN.
+G..FF.
+
+Gerakan 561: UP (1)
+BBBI.L
+CC.I.L
+PPH..MK
+DDHJNM
+GEEJN.
+G..FF.
+
+Gerakan 562: DOWN (2)
+BBBI.L
+CC.I.L
+PPH...K
+DDHJN.
+GEEJNM
+G..FFM
+
+Gerakan 563: UP (3)
+BBBINL
+CC.INL
+PPH...K
+DDHJ..
+GEEJ.M
+G..FFM
+
+Gerakan 564: DOWN (2)
+BBBIN.
+CC.IN.
+PPH..LK
+DDHJ.L
+GEEJ.M
+G..FFM
+
+Gerakan 565: DOWN (3)
+BBBI..
+CC.I..
+PPH..LK
+DDHJNL
+GEEJNM
+G..FFM
+
+Gerakan 566: UP (1)
+BBBI..
+CC.I..
+PPHJ.LK
+DDHJNL
+GEE.NM
+G..FFM
+
+Gerakan 567: UP (3)
+BBBIN.
+CC.IN.
+PPHJ.LK
+DDHJ.L
+GEE..M
+G..FFM
+
+Gerakan 568: RIGHT (2)
+BBBIN.
+CC.IN.
+PPHJ.LK
+DDHJ.L
+G..EEM
+G..FFM
+
+Gerakan 569: DOWN (2)
+BBBI..
+CC.I..
+PPHJNLK
+DDHJNL
+G..EEM
+G..FFM
+
+Gerakan 570: UP (2)
+BBBI.L
+CC.I.L
+PPHJN.K
+DDHJN.
+G..EEM
+G..FFM
+
+Gerakan 571: UP (2)
+BBBINL
+CC.INL
+PPHJ..K
+DDHJ..
+G..EEM
+G..FFM
+
+Gerakan 572: UP (2)
+BBBINL
+CC.INL
+PPHJ.MK
+DDHJ.M
+G..EE.
+G..FF.
+
+Gerakan 573: DOWN (2)
+BBBI.L
+CC.I.L
+PPHJNMK
+DDHJNM
+G..EE.
+G..FF.
+
+Gerakan 574: UP (1)
+BBBI.L
+CCHI.L
+PPHJNMK
+DD.JNM
+G..EE.
+G..FF.
+
+Gerakan 575: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+DD.J.M
+G..EE.
+G..FF.
+
+Gerakan 576: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+DD.J..
+G..EEM
+G..FFM
+
+Gerakan 577: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+DD.JN.
+G..EEM
+G..FFM
+
+Gerakan 578: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+DD.JNL
+G..EEM
+G..FFM
+
+Gerakan 579: UP (2)
+BBBIN.
+CCHIN.
+PPHJ.LK
+DD.J.L
+G..EEM
+G..FFM
+
+Gerakan 580: DOWN (3)
+BBBIN.
+CC.IN.
+PP.J.LK
+DD.J.L
+G.HEEM
+G.HFFM
+
+Gerakan 581: DOWN (2)
+BBBI..
+CC.I..
+PP.JNLK
+DD.JNL
+G.HEEM
+G.HFFM
+
+Gerakan 582: UP (2)
+BBBI.L
+CC.I.L
+PP.JN.K
+DD.JN.
+G.HEEM
+G.HFFM
+
+Gerakan 583: UP (2)
+BBBINL
+CC.INL
+PP.J..K
+DD.J..
+G.HEEM
+G.HFFM
+
+Gerakan 584: UP (2)
+BBBINL
+CC.INL
+PP.J.MK
+DD.J.M
+G.HEE.
+G.HFF.
+
+Gerakan 585: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JNMK
+DD.JNM
+G.HEE.
+G.HFF.
+
+Gerakan 586: RIGHT (1)
+BBBI.L
+CC.I.L
+PP.JNMK
+DD.JNM
+G.HEE.
+G.H.FF
+
+Gerakan 587: UP (2)
+BBBINL
+CC.INL
+PP.J.MK
+DD.J.M
+G.HEE.
+G.H.FF
+
+Gerakan 588: DOWN (1)
+BBBINL
+CC.INL
+PP.J..K
+DD.J.M
+G.HEEM
+G.H.FF
+
+Gerakan 589: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JN.K
+DD.JNM
+G.HEEM
+G.H.FF
+
+Gerakan 590: DOWN (1)
+BBBI..
+CC.I.L
+PP.JNLK
+DD.JNM
+G.HEEM
+G.H.FF
+
+Gerakan 591: UP (2)
+BBBIN.
+CC.INL
+PP.J.LK
+DD.J.M
+G.HEEM
+G.H.FF
+
+Gerakan 592: UP (3)
+BBBIN.
+CCHINL
+PPHJ.LK
+DD.J.M
+G..EEM
+G...FF
+
+Gerakan 593: DOWN (2)
+BBBI..
+CCHI.L
+PPHJNLK
+DD.JNM
+G..EEM
+G...FF
+
+Gerakan 594: UP (1)
+BBBI.L
+CCHI.L
+PPHJN.K
+DD.JNM
+G..EEM
+G...FF
+
+Gerakan 595: UP (2)
+BBBINL
+CCHINL
+PPHJ..K
+DD.J.M
+G..EEM
+G...FF
+
+Gerakan 596: UP (1)
+BBBINL
+CCHINL
+PPHJ.MK
+DD.J.M
+G..EE.
+G...FF
+
+Gerakan 597: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJNMK
+DD.JNM
+G..EE.
+G...FF
+
+Gerakan 598: LEFT (3)
+BBBI.L
+CCHI.L
+PPHJNMK
+DD.JNM
+G..EE.
+GFF...
+
+Gerakan 599: UP (2)
+BBBINL
+CCHINL
+PPHJ.MK
+DD.J.M
+G..EE.
+GFF...
+
+Gerakan 600: DOWN (2)
+BBBINL
+CCHINL
+PPHJ..K
+DD.J..
+G..EEM
+GFF..M
+
+Gerakan 601: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+DD.JN.
+G..EEM
+GFF..M
+
+Gerakan 602: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+DD.JNL
+G..EEM
+GFF..M
+
+Gerakan 603: UP (2)
+BBBIN.
+CCHIN.
+PPHJ.LK
+DD.J.L
+G..EEM
+GFF..M
+
+Gerakan 604: DOWN (2)
+BBBIN.
+CC.IN.
+PP.J.LK
+DDHJ.L
+G.HEEM
+GFF..M
+
+Gerakan 605: DOWN (2)
+BBBI..
+CC.I..
+PP.JNLK
+DDHJNL
+G.HEEM
+GFF..M
+
+Gerakan 606: UP (2)
+BBBI.L
+CC.I.L
+PP.JN.K
+DDHJN.
+G.HEEM
+GFF..M
+
+Gerakan 607: UP (2)
+BBBINL
+CC.INL
+PP.J..K
+DDHJ..
+G.HEEM
+GFF..M
+
+Gerakan 608: UP (2)
+BBBINL
+CC.INL
+PP.J.MK
+DDHJ.M
+G.HEE.
+GFF...
+
+Gerakan 609: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JNMK
+DDHJNM
+G.HEE.
+GFF...
+
+Gerakan 610: RIGHT (3)
+BBBI.L
+CC.I.L
+PP.JNMK
+DDHJNM
+G.HEE.
+G...FF
+
+Gerakan 611: UP (2)
+BBBINL
+CC.INL
+PP.J.MK
+DDHJ.M
+G.HEE.
+G...FF
+
+Gerakan 612: DOWN (1)
+BBBINL
+CC.INL
+PP.J..K
+DDHJ.M
+G.HEEM
+G...FF
+
+Gerakan 613: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JN.K
+DDHJNM
+G.HEEM
+G...FF
+
+Gerakan 614: DOWN (1)
+BBBI..
+CC.I.L
+PP.JNLK
+DDHJNM
+G.HEEM
+G...FF
+
+Gerakan 615: UP (2)
+BBBIN.
+CC.INL
+PP.J.LK
+DDHJ.M
+G.HEEM
+G...FF
+
+Gerakan 616: LEFT (3)
+BBBIN.
+CC.INL
+PP.J.LK
+DDHJ.M
+G.HEEM
+GFF...
+
+Gerakan 617: DOWN (2)
+BBBI..
+CC.I.L
+PP.JNLK
+DDHJNM
+G.HEEM
+GFF...
+
+Gerakan 618: DOWN (1)
+BBBI..
+CC.I.L
+PP.JNLK
+DDHJN.
+G.HEEM
+GFF..M
+
+Gerakan 619: UP (2)
+BBBIN.
+CC.INL
+PP.J.LK
+DDHJ..
+G.HEEM
+GFF..M
+
+Gerakan 620: UP (2)
+BBBIN.
+CCHINL
+PPHJ.LK
+DD.J..
+G..EEM
+GFF..M
+
+Gerakan 621: DOWN (2)
+BBBI..
+CCHI.L
+PPHJNLK
+DD.JN.
+G..EEM
+GFF..M
+
+Gerakan 622: UP (1)
+BBBI..
+CCHI.L
+PPHJNLK
+DD.JNM
+G..EEM
+GFF...
+
+Gerakan 623: UP (2)
+BBBIN.
+CCHINL
+PPHJ.LK
+DD.J.M
+G..EEM
+GFF...
+
+Gerakan 624: UP (1)
+BBBINL
+CCHINL
+PPHJ..K
+DD.J.M
+G..EEM
+GFF...
+
+Gerakan 625: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+DD.JNM
+G..EEM
+GFF...
+
+Gerakan 626: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JN.K
+DDHJNM
+G.HEEM
+GFF...
+
+Gerakan 627: UP (2)
+BBBINL
+CC.INL
+PP.J..K
+DDHJ.M
+G.HEEM
+GFF...
+
+Gerakan 628: RIGHT (1)
+BBBINL
+.CCINL
+PP.J..K
+DDHJ.M
+G.HEEM
+GFF...
+
+Gerakan 629: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JN.K
+DDHJNM
+G.HEEM
+GFF...
+
+Gerakan 630: DOWN (1)
+BBBI..
+.CCI.L
+PP.JNLK
+DDHJNM
+G.HEEM
+GFF...
+
+Gerakan 631: UP (2)
+BBBIN.
+.CCINL
+PP.J.LK
+DDHJ.M
+G.HEEM
+GFF...
+
+Gerakan 632: DOWN (1)
+BBBIN.
+.CCINL
+PP.J.LK
+DDHJ..
+G.HEEM
+GFF..M
+
+Gerakan 633: DOWN (2)
+BBBI..
+.CCI.L
+PP.JNLK
+DDHJN.
+G.HEEM
+GFF..M
+
+Gerakan 634: RIGHT (2)
+BBBI..
+.CCI.L
+PP.JNLK
+DDHJN.
+G.HEEM
+G..FFM
+
+Gerakan 635: UP (2)
+BBBIN.
+.CCINL
+PP.J.LK
+DDHJ..
+G.HEEM
+G..FFM
+
+Gerakan 636: UP (1)
+BBBIN.
+.CCINL
+PP.J.LK
+DDHJ.M
+G.HEEM
+G..FF.
+
+Gerakan 637: DOWN (2)
+BBBI..
+.CCI.L
+PP.JNLK
+DDHJNM
+G.HEEM
+G..FF.
+
+Gerakan 638: UP (1)
+BBBI.L
+.CCI.L
+PP.JN.K
+DDHJNM
+G.HEEM
+G..FF.
+
+Gerakan 639: UP (2)
+BBBINL
+.CCINL
+PP.J..K
+DDHJ.M
+G.HEEM
+G..FF.
+
+Gerakan 640: UP (1)
+BBBINL
+.CCINL
+PP.J.MK
+DDHJ.M
+G.HEE.
+G..FF.
+
+Gerakan 641: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JNMK
+DDHJNM
+G.HEE.
+G..FF.
+
+Gerakan 642: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JN.K
+DDHJN.
+G.HEEM
+G..FFM
+
+Gerakan 643: UP (2)
+BBBINL
+.CCINL
+PP.J..K
+DDHJ..
+G.HEEM
+G..FFM
+
+Gerakan 644: DOWN (2)
+BBBIN.
+.CCIN.
+PP.J.LK
+DDHJ.L
+G.HEEM
+G..FFM
+
+Gerakan 645: DOWN (2)
+BBBI..
+.CCI..
+PP.JNLK
+DDHJNL
+G.HEEM
+G..FFM
+
+Gerakan 646: LEFT (1)
+BBBI..
+CC.I..
+PP.JNLK
+DDHJNL
+G.HEEM
+G..FFM
+
+Gerakan 647: UP (2)
+BBBIN.
+CC.IN.
+PP.J.LK
+DDHJ.L
+G.HEEM
+G..FFM
+
+Gerakan 648: UP (2)
+BBBINL
+CC.INL
+PP.J..K
+DDHJ..
+G.HEEM
+G..FFM
+
+Gerakan 649: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JN.K
+DDHJN.
+G.HEEM
+G..FFM
+
+Gerakan 650: UP (2)
+BBBI.L
+CC.I.L
+PP.JNMK
+DDHJNM
+G.HEE.
+G..FF.
+
+Gerakan 651: UP (2)
+BBBINL
+CC.INL
+PP.J.MK
+DDHJ.M
+G.HEE.
+G..FF.
+
+Gerakan 652: RIGHT (1)
+BBBINL
+CC.INL
+PP.J.MK
+DDHJ.M
+G.H.EE
+G..FF.
+
+Gerakan 653: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JNMK
+DDHJNM
+G.H.EE
+G..FF.
+
+Gerakan 654: DOWN (1)
+BBBI.L
+CC.I.L
+PP..NMK
+DDHJNM
+G.HJEE
+G..FF.
+
+Gerakan 655: UP (2)
+BBBINL
+CC.INL
+PP...MK
+DDHJ.M
+G.HJEE
+G..FF.
+
+Gerakan 656: DOWN (1)
+BBB.NL
+CC.INL
+PP.I.MK
+DDHJ.M
+G.HJEE
+G..FF.
+
+Gerakan 657: DOWN (2)
+BBB..L
+CC.I.L
+PP.INMK
+DDHJNM
+G.HJEE
+G..FF.
+
+Gerakan 658: LEFT (2)
+BBB..L
+CC.I.L
+PP.INMK
+DDHJNM
+G.HJEE
+GFF...
+
+Gerakan 659: UP (2)
+BBB.NL
+CC.INL
+PP.I.MK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 660: DOWN (1)
+BBB.NL
+CC.INL
+PP.I.MK
+DDH..M
+G.HJEE
+GFFJ..
+
+Gerakan 661: DOWN (2)
+BBB..L
+CC.I.L
+PP.INMK
+DDH.NM
+G.HJEE
+GFFJ..
+
+Gerakan 662: UP (2)
+BBB..L
+CCHI.L
+PPHINMK
+DD..NM
+G..JEE
+GFFJ..
+
+Gerakan 663: UP (2)
+BBB.NL
+CCHINL
+PPHI.MK
+DD...M
+G..JEE
+GFFJ..
+
+Gerakan 664: UP (1)
+BBB.NL
+CCHINL
+PPHI.MK
+DD.J.M
+G..JEE
+GFF...
+
+Gerakan 665: DOWN (2)
+BBB..L
+CCHI.L
+PPHINMK
+DD.JNM
+G..JEE
+GFF...
+
+Gerakan 666: UP (1)
+BBBI.L
+CCHI.L
+PPH.NMK
+DD.JNM
+G..JEE
+GFF...
+
+Gerakan 667: UP (2)
+BBBINL
+CCHINL
+PPH..MK
+DD.J.M
+G..JEE
+GFF...
+
+Gerakan 668: DOWN (2)
+BBBINL
+CC.INL
+PP...MK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 669: DOWN (2)
+BBBI.L
+CC.I.L
+PP..NMK
+DDHJNM
+G.HJEE
+GFF...
+
+Gerakan 670: RIGHT (3)
+BBBI.L
+CC.I.L
+PP..NMK
+DDHJNM
+G.HJEE
+G...FF
+
+Gerakan 671: UP (2)
+BBBINL
+CC.INL
+PP...MK
+DDHJ.M
+G.HJEE
+G...FF
+
+Gerakan 672: UP (1)
+BBBINL
+CC.INL
+PP.J.MK
+DDHJ.M
+G.H.EE
+G...FF
+
+Gerakan 673: DOWN (2)
+BBBI.L
+CC.I.L
+PP.JNMK
+DDHJNM
+G.H.EE
+G...FF
+
+Gerakan 674: DOWN (2)
+BBBI.L
+CC.I.L
+PP..NMK
+DDH.NM
+G.HJEE
+G..JFF
+
+Gerakan 675: UP (2)
+BBBINL
+CC.INL
+PP...MK
+DDH..M
+G.HJEE
+G..JFF
+
+Gerakan 676: DOWN (2)
+BBB.NL
+CC..NL
+PP.I.MK
+DDHI.M
+G.HJEE
+G..JFF
+
+Gerakan 677: DOWN (2)
+BBB..L
+CC...L
+PP.INMK
+DDHINM
+G.HJEE
+G..JFF
+
+Gerakan 678: RIGHT (3)
+BBB..L
+...CCL
+PP.INMK
+DDHINM
+G.HJEE
+G..JFF
+
+Gerakan 679: RIGHT (2)
+..BBBL
+...CCL
+PP.INMK
+DDHINM
+G.HJEE
+G..JFF
+
+Gerakan 680: LEFT (3)
+..BBBL
+CC...L
+PP.INMK
+DDHINM
+G.HJEE
+G..JFF
+
+Gerakan 681: UP (1)
+..BBBL
+CC..NL
+PP.INMK
+DDHI.M
+G.HJEE
+G..JFF
+
+Gerakan 682: UP (1)
+..BBBL
+CC.INL
+PP.INMK
+DDH..M
+G.HJEE
+G..JFF
+
+Gerakan 683: DOWN (1)
+..BBBL
+CC.I.L
+PP.INMK
+DDH.NM
+G.HJEE
+G..JFF
+
+Gerakan 684: UP (1)
+..BBBL
+CC.I.L
+PP.INMK
+DDHJNM
+G.HJEE
+G...FF
+
+Gerakan 685: UP (1)
+..BBBL
+CC.INL
+PP.INMK
+DDHJ.M
+G.HJEE
+G...FF
+
+Gerakan 686: RIGHT (1)
+..BBBL
+.CCINL
+PP.INMK
+DDHJ.M
+G.HJEE
+G...FF
+
+Gerakan 687: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+DDHJNM
+G.HJEE
+G...FF
+
+Gerakan 688: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+DDH.NM
+G.HJEE
+G..JFF
+
+Gerakan 689: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+DDH..M
+G.HJEE
+G..JFF
+
+Gerakan 690: DOWN (1)
+..BBBL
+.CC.NL
+PP.INMK
+DDHI.M
+G.HJEE
+G..JFF
+
+Gerakan 691: DOWN (1)
+..BBBL
+.CC..L
+PP.INMK
+DDHINM
+G.HJEE
+G..JFF
+
+Gerakan 692: UP (1)
+..BBBL
+.CC..L
+PPHINMK
+DDHINM
+G..JEE
+G..JFF
+
+Gerakan 693: UP (1)
+..BBBL
+.CC.NL
+PPHINMK
+DDHI.M
+G..JEE
+G..JFF
+
+Gerakan 694: UP (1)
+..BBBL
+.CCINL
+PPHINMK
+DDH..M
+G..JEE
+G..JFF
+
+Gerakan 695: DOWN (1)
+..BBBL
+.CCI.L
+PPHINMK
+DDH.NM
+G..JEE
+G..JFF
+
+Gerakan 696: UP (1)
+..BBBL
+.CCI.L
+PPHINMK
+DDHJNM
+G..JEE
+G...FF
+
+Gerakan 697: UP (1)
+..BBBL
+.CCINL
+PPHINMK
+DDHJ.M
+G..JEE
+G...FF
+
+Gerakan 698: DOWN (2)
+..BBBL
+.CCINL
+PP.INMK
+DD.J.M
+G.HJEE
+G.H.FF
+
+Gerakan 699: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+DD.JNM
+G.HJEE
+G.H.FF
+
+Gerakan 700: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+DD..NM
+G.HJEE
+G.HJFF
+
+Gerakan 701: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+DD...M
+G.HJEE
+G.HJFF
+
+Gerakan 702: DOWN (1)
+..BBBL
+.CC.NL
+PP.INMK
+DD.I.M
+G.HJEE
+G.HJFF
+
+Gerakan 703: DOWN (1)
+..BBBL
+.CC..L
+PP.INMK
+DD.INM
+G.HJEE
+G.HJFF
+
+Gerakan 704: RIGHT (1)
+..BBBL
+.CC..L
+PP.INMK
+.DDINM
+G.HJEE
+G.HJFF
+
+Gerakan 705: UP (1)
+..BBBL
+.CC.NL
+PP.INMK
+.DDI.M
+G.HJEE
+G.HJFF
+
+Gerakan 706: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+.DD..M
+G.HJEE
+G.HJFF
+
+Gerakan 707: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+.DD.NM
+G.HJEE
+G.HJFF
+
+Gerakan 708: UP (1)
+..BBBL
+.CCI.L
+PP.INMK
+.DDJNM
+G.HJEE
+G.H.FF
+
+Gerakan 709: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+.DDJ.M
+G.HJEE
+G.H.FF
+
+Gerakan 710: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+GDDJ.M
+G.HJEE
+..H.FF
+
+Gerakan 711: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+GDDJNM
+G.HJEE
+..H.FF
+
+Gerakan 712: LEFT (1)
+..BBBL
+.CCI.L
+PP.INMK
+GDDJNM
+G.HJEE
+..HFF.
+
+Gerakan 713: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+GDDJ.M
+G.HJEE
+..HFF.
+
+Gerakan 714: DOWN (1)
+..BBBL
+.CCINL
+PP.INMK
+.DDJ.M
+G.HJEE
+G.HFF.
+
+Gerakan 715: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+.DDJNM
+G.HJEE
+G.HFF.
+
+Gerakan 716: LEFT (1)
+..BBBL
+.CCI.L
+PP.INMK
+DD.JNM
+G.HJEE
+G.HFF.
+
+Gerakan 717: UP (2)
+..BBBL
+.CCI.L
+PPHINMK
+DDHJNM
+G..JEE
+G..FF.
+
+Gerakan 718: UP (1)
+..BBBL
+.CCINL
+PPHINMK
+DDHJ.M
+G..JEE
+G..FF.
+
+Gerakan 719: LEFT (2)
+..BBBL
+.CCINL
+PPHINMK
+DDHJ.M
+G..JEE
+GFF...
+
+Gerakan 720: DOWN (1)
+..BBBL
+.CCI.L
+PPHINMK
+DDHJNM
+G..JEE
+GFF...
+
+Gerakan 721: DOWN (1)
+..BBBL
+.CCI.L
+PPHINMK
+DDH.NM
+G..JEE
+GFFJ..
+
+Gerakan 722: UP (1)
+..BBBL
+.CCINL
+PPHINMK
+DDH..M
+G..JEE
+GFFJ..
+
+Gerakan 723: DOWN (1)
+..BBBL
+.CC.NL
+PPHINMK
+DDHI.M
+G..JEE
+GFFJ..
+
+Gerakan 724: DOWN (1)
+..BBBL
+.CC..L
+PPHINMK
+DDHINM
+G..JEE
+GFFJ..
+
+Gerakan 725: DOWN (1)
+..BBBL
+.CC..L
+PP.INMK
+DDHINM
+G.HJEE
+GFFJ..
+
+Gerakan 726: UP (1)
+..BBBL
+.CC.NL
+PP.INMK
+DDHI.M
+G.HJEE
+GFFJ..
+
+Gerakan 727: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+DDH..M
+G.HJEE
+GFFJ..
+
+Gerakan 728: DOWN (1)
+..BBBL
+.CCI.L
+PP.INMK
+DDH.NM
+G.HJEE
+GFFJ..
+
+Gerakan 729: UP (1)
+..BBBL
+.CCI.L
+PP.INMK
+DDHJNM
+G.HJEE
+GFF...
+
+Gerakan 730: UP (1)
+..BBBL
+.CCINL
+PP.INMK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 731: LEFT (2)
+BBB..L
+.CCINL
+PP.INMK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 732: UP (1)
+BBB.NL
+.CCINL
+PP.I.MK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 733: DOWN (2)
+BBB..L
+.CCI.L
+PP.INMK
+DDHJNM
+G.HJEE
+GFF...
+
+Gerakan 734: DOWN (1)
+BBB..L
+.CCI.L
+PP.INMK
+DDH.NM
+G.HJEE
+GFFJ..
+
+Gerakan 735: UP (2)
+BBB.NL
+.CCINL
+PP.I.MK
+DDH..M
+G.HJEE
+GFFJ..
+
+Gerakan 736: UP (1)
+BBBINL
+.CCINL
+PP...MK
+DDH..M
+G.HJEE
+GFFJ..
+
+Gerakan 737: DOWN (2)
+BBBI.L
+.CCI.L
+PP..NMK
+DDH.NM
+G.HJEE
+GFFJ..
+
+Gerakan 738: UP (2)
+BBBI.L
+.CCI.L
+PP.JNMK
+DDHJNM
+G.H.EE
+GFF...
+
+Gerakan 739: RIGHT (3)
+BBBI.L
+.CCI.L
+PP.JNMK
+DDHJNM
+G.H.EE
+G...FF
+
+Gerakan 740: UP (2)
+BBBINL
+.CCINL
+PP.J.MK
+DDHJ.M
+G.H.EE
+G...FF
+
+Gerakan 741: DOWN (2)
+BBBINL
+.CCINL
+PP...MK
+DDH..M
+G.HJEE
+G..JFF
+
+Gerakan 742: DOWN (2)
+BBBI.L
+.CCI.L
+PP..NMK
+DDH.NM
+G.HJEE
+G..JFF
+
+Gerakan 743: DOWN (2)
+BBB..L
+.CC..L
+PP.INMK
+DDHINM
+G.HJEE
+G..JFF
+
+Gerakan 744: UP (2)
+BBB.NL
+.CC.NL
+PP.I.MK
+DDHI.M
+G.HJEE
+G..JFF
+
+Gerakan 745: UP (1)
+BBB.NL
+.CC.NL
+PPHI.MK
+DDHI.M
+G..JEE
+G..JFF
+
+Gerakan 746: DOWN (2)
+BBB..L
+.CC..L
+PPHINMK
+DDHINM
+G..JEE
+G..JFF
+
+Gerakan 747: UP (2)
+BBBI.L
+.CCI.L
+PPH.NMK
+DDH.NM
+G..JEE
+G..JFF
+
+Gerakan 748: UP (2)
+BBBI.L
+.CCI.L
+PPHJNMK
+DDHJNM
+G...EE
+G...FF
+
+Gerakan 749: UP (2)
+BBBINL
+.CCINL
+PPHJ.MK
+DDHJ.M
+G...EE
+G...FF
+
+Gerakan 750: DOWN (2)
+BBBINL
+.CCINL
+PP.J.MK
+DD.J.M
+G.H.EE
+G.H.FF
+
+Gerakan 751: DOWN (2)
+BBBI.L
+.CCI.L
+PP.JNMK
+DD.JNM
+G.H.EE
+G.H.FF
+
+Gerakan 752: LEFT (1)
+BBBI.L
+.CCI.L
+PP.JNMK
+DD.JNM
+G.H.EE
+G.HFF.
+
+Gerakan 753: DOWN (1)
+BBBI.L
+.CCI.L
+PP..NMK
+DD.JNM
+G.HJEE
+G.HFF.
+
+Gerakan 754: UP (2)
+BBBINL
+.CCINL
+PP...MK
+DD.J.M
+G.HJEE
+G.HFF.
+
+Gerakan 755: DOWN (1)
+BBB.NL
+.CCINL
+PP.I.MK
+DD.J.M
+G.HJEE
+G.HFF.
+
+Gerakan 756: DOWN (2)
+BBB..L
+.CCI.L
+PP.INMK
+DD.JNM
+G.HJEE
+G.HFF.
+
+Gerakan 757: UP (2)
+BBB..L
+.CCI.L
+PPHINMK
+DDHJNM
+G..JEE
+G..FF.
+
+Gerakan 758: UP (2)
+BBB.NL
+.CCINL
+PPHI.MK
+DDHJ.M
+G..JEE
+G..FF.
+
+Gerakan 759: LEFT (2)
+BBB.NL
+.CCINL
+PPHI.MK
+DDHJ.M
+G..JEE
+GFF...
+
+Gerakan 760: UP (1)
+BBBINL
+.CCINL
+PPH..MK
+DDHJ.M
+G..JEE
+GFF...
+
+Gerakan 761: DOWN (2)
+BBBI.L
+.CCI.L
+PPH.NMK
+DDHJNM
+G..JEE
+GFF...
+
+Gerakan 762: DOWN (1)
+BBBI.L
+.CCI.L
+PP..NMK
+DDHJNM
+G.HJEE
+GFF...
+
+Gerakan 763: UP (2)
+BBBINL
+.CCINL
+PP...MK
+DDHJ.M
+G.HJEE
+GFF...
+
+Gerakan 764: RIGHT (3)
+BBBINL
+.CCINL
+PP...MK
+DDHJ.M
+G.HJEE
+G...FF
+
+Gerakan 765: DOWN (2)
+BBBI.L
+.CCI.L
+PP..NMK
+DDHJNM
+G.HJEE
+G...FF
+
+Gerakan 766: DOWN (1)
+BBB..L
+.CCI.L
+PP.INMK
+DDHJNM
+G.HJEE
+G...FF
+
+Gerakan 767: UP (2)
+BBB.NL
+.CCINL
+PP.I.MK
+DDHJ.M
+G.HJEE
+G...FF
+
+Gerakan 768: DOWN (1)
+BBB.NL
+.CCINL
+PP.I.MK
+DDH..M
+G.HJEE
+G..JFF
+
+Gerakan 769: DOWN (2)
+BBB..L
+.CCI.L
+PP.INMK
+DDH.NM
+G.HJEE
+G..JFF
+
+Gerakan 770: UP (1)
+BBB..L
+.CCI.L
+PPHINMK
+DDH.NM
+G..JEE
+G..JFF
+
+Gerakan 771: UP (2)
+BBB.NL
+.CCINL
+PPHI.MK
+DDH..M
+G..JEE
+G..JFF
+
+Gerakan 772: UP (1)
+BBB.NL
+.CCINL
+PPHI.MK
+DDHJ.M
+G..JEE
+G...FF
+
+Gerakan 773: DOWN (2)
+BBB..L
+.CCI.L
+PPHINMK
+DDHJNM
+G..JEE
+G...FF
+
+Gerakan 774: UP (1)
+BBBI.L
+.CCI.L
+PPH.NMK
+DDHJNM
+G..JEE
+G...FF
+
+Gerakan 775: UP (2)
+BBBINL
+.CCINL
+PPH..MK
+DDHJ.M
+G..JEE
+G...FF
+
+Gerakan 776: DOWN (2)
+BBBINL
+.CCINL
+PP...MK
+DD.J.M
+G.HJEE
+G.H.FF
+
+Gerakan 777: DOWN (2)
+BBBI.L
+.CCI.L
+PP..NMK
+DD.JNM
+G.HJEE
+G.H.FF
+
+Gerakan 778: DOWN (1)
+BBB..L
+.CCI.L
+PP.INMK
+DD.JNM
+G.HJEE
+G.H.FF
+
+Gerakan 779: UP (2)
+BBB.NL
+.CCINL
+PP.I.MK
+DD.J.M
+G.HJEE
+G.H.FF
+
+Gerakan 780: DOWN (1)
+BBB.NL
+.CCINL
+PP.I.MK
+DD...M
+G.HJEE
+G.HJFF
+
+Gerakan 781: DOWN (2)
+BBB..L
+.CCI.L
+PP.INMK
+DD..NM
+G.HJEE
+G.HJFF
+
+Gerakan 782: DOWN (1)
+BBB..L
+.CC..L
+PP.INMK
+DD.INM
+G.HJEE
+G.HJFF
+
+Gerakan 783: UP (2)
+BBB.NL
+.CC.NL
+PP.I.MK
+DD.I.M
+G.HJEE
+G.HJFF
+
+Gerakan 784: RIGHT (1)
+BBB.NL
+..CCNL
+PP.I.MK
+DD.I.M
+G.HJEE
+G.HJFF
+
+Gerakan 785: DOWN (2)
+BBB..L
+..CC.L
+PP.INMK
+DD.INM
+G.HJEE
+G.HJFF
+
+Gerakan 786: UP (2)
+BBB..L
+..CC.L
+PPHINMK
+DDHINM
+G..JEE
+G..JFF
+
+Gerakan 787: UP (2)
+BBB.NL
+..CCNL
+PPHI.MK
+DDHI.M
+G..JEE
+G..JFF
+
+Gerakan 788: LEFT (2)
+BBB.NL
+CC..NL
+PPHI.MK
+DDHI.M
+G..JEE
+G..JFF
+
+Gerakan 789: DOWN (2)
+BBB..L
+CC...L
+PPHINMK
+DDHINM
+G..JEE
+G..JFF
+
+Gerakan 790: UP (2)
+BBBI.L
+CC.I.L
+PPH.NMK
+DDH.NM
+G..JEE
+G..JFF
+
+Gerakan 791: UP (2)
+BBBI.L
+CC.I.L
+PPHJNMK
+DDHJNM
+G...EE
+G...FF
+
+Gerakan 792: LEFT (3)
+BBBI.L
+CC.I.L
+PPHJNMK
+DDHJNM
+GEE...
+G...FF
+
+Gerakan 793: DOWN (1)
+BBBI.L
+CC.I.L
+PPHJN.K
+DDHJNM
+GEE..M
+G...FF
+
+Gerakan 794: DOWN (1)
+BBBI..
+CC.I.L
+PPHJNLK
+DDHJNM
+GEE..M
+G...FF
+
+Gerakan 795: DOWN (2)
+BBBI..
+CC.I.L
+PPH.NLK
+DDH.NM
+GEEJ.M
+G..JFF
+
+Gerakan 796: UP (1)
+BBBI.L
+CC.I.L
+PPH.N.K
+DDH.NM
+GEEJ.M
+G..JFF
+
+Gerakan 797: UP (1)
+BBBI.L
+CC.I.L
+PPH.NMK
+DDH.NM
+GEEJ..
+G..JFF
+
+Gerakan 798: DOWN (2)
+BBB..L
+CC...L
+PPHINMK
+DDHINM
+GEEJ..
+G..JFF
+
+Gerakan 799: DOWN (1)
+BBB..L
+CC...L
+PPHIN.K
+DDHINM
+GEEJ.M
+G..JFF
+
+Gerakan 800: DOWN (1)
+BBB...
+CC...L
+PPHINLK
+DDHINM
+GEEJ.M
+G..JFF
+
+Gerakan 801: UP (1)
+BBB...
+CCH..L
+PPHINLK
+DD.INM
+GEEJ.M
+G..JFF
+
+Gerakan 802: UP (1)
+BBB..L
+CCH..L
+PPHIN.K
+DD.INM
+GEEJ.M
+G..JFF
+
+Gerakan 803: UP (1)
+BBB..L
+CCH..L
+PPHINMK
+DD.INM
+GEEJ..
+G..JFF
+
+Gerakan 804: UP (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+DD..NM
+GEEJ..
+G..JFF
+
+Gerakan 805: DOWN (1)
+BBBI.L
+CCHI.L
+PPH.N.K
+DD..NM
+GEEJ.M
+G..JFF
+
+Gerakan 806: DOWN (1)
+BBBI..
+CCHI.L
+PPH.NLK
+DD..NM
+GEEJ.M
+G..JFF
+
+Gerakan 807: UP (2)
+BBBI..
+CCHI.L
+PPHJNLK
+DD.JNM
+GEE..M
+G...FF
+
+Gerakan 808: UP (1)
+BBBI.L
+CCHI.L
+PPHJN.K
+DD.JNM
+GEE..M
+G...FF
+
+Gerakan 809: UP (1)
+BBBI.L
+CCHI.L
+PPHJNMK
+DD.JNM
+GEE...
+G...FF
+
+Gerakan 810: LEFT (3)
+BBBI.L
+CCHI.L
+PPHJNMK
+DD.JNM
+GEE...
+GFF...
+
+Gerakan 811: DOWN (2)
+BBBI.L
+CCHI.L
+PPHJN.K
+DD.JN.
+GEE..M
+GFF..M
+
+Gerakan 812: DOWN (2)
+BBBI..
+CCHI..
+PPHJNLK
+DD.JNL
+GEE..M
+GFF..M
+
+Gerakan 813: DOWN (2)
+BBBI..
+CCHI..
+PPH.NLK
+DD..NL
+GEEJ.M
+GFFJ.M
+
+Gerakan 814: UP (2)
+BBBI.L
+CCHI.L
+PPH.N.K
+DD..N.
+GEEJ.M
+GFFJ.M
+
+Gerakan 815: UP (2)
+BBBI.L
+CCHI.L
+PPH.NMK
+DD..NM
+GEEJ..
+GFFJ..
+
+Gerakan 816: DOWN (2)
+BBB..L
+CCH..L
+PPHINMK
+DD.INM
+GEEJ..
+GFFJ..
+
+Gerakan 817: DOWN (2)
+BBB..L
+CCH..L
+PPHIN.K
+DD.IN.
+GEEJ.M
+GFFJ.M
+
+Gerakan 818: DOWN (2)
+BBB...
+CCH...
+PPHINLK
+DD.INL
+GEEJ.M
+GFFJ.M
+
+Gerakan 819: DOWN (1)
+BBB...
+CC....
+PPHINLK
+DDHINL
+GEEJ.M
+GFFJ.M
+
+Gerakan 820: UP (2)
+BBBI..
+CC.I..
+PPH.NLK
+DDH.NL
+GEEJ.M
+GFFJ.M
+
+Gerakan 821: UP (2)
+BBBI.L
+CC.I.L
+PPH.N.K
+DDH.N.
+GEEJ.M
+GFFJ.M
+
+Gerakan 822: UP (2)
+BBBI.L
+CC.I.L
+PPHJN.K
+DDHJN.
+GEE..M
+GFF..M
+
+Gerakan 823: UP (2)
+BBBI.L
+CC.I.L
+PPHJNMK
+DDHJNM
+GEE...
+GFF...
+
+Gerakan 824: RIGHT (1)
+BBBI.L
+.CCI.L
+PPHJNMK
+DDHJNM
+GEE...
+GFF...
+
+Gerakan 825: DOWN (2)
+BBBI.L
+.CCI.L
+PPHJN.K
+DDHJN.
+GEE..M
+GFF..M
+
+Gerakan 826: DOWN (2)
+BBBI..
+.CCI..
+PPHJNLK
+DDHJNL
+GEE..M
+GFF..M
+
+Gerakan 827: DOWN (2)
+BBBI..
+.CCI..
+PPH.NLK
+DDH.NL
+GEEJ.M
+GFFJ.M
+
+Gerakan 828: DOWN (2)
+BBB...
+.CC...
+PPHINLK
+DDHINL
+GEEJ.M
+GFFJ.M
+
+Gerakan 829: UP (2)
+BBB..L
+.CC..L
+PPHIN.K
+DDHIN.
+GEEJ.M
+GFFJ.M
+
+Gerakan 830: UP (2)
+BBB..L
+.CC..L
+PPHINMK
+DDHINM
+GEEJ..
+GFFJ..
+
+Gerakan 831: RIGHT (2)
+BBB..L
+...CCL
+PPHINMK
+DDHINM
+GEEJ..
+GFFJ..
+
+Gerakan 832: DOWN (2)
+BBB..L
+...CCL
+PPHI.MK
+DDHI.M
+GEEJN.
+GFFJN.
+
+Gerakan 833: DOWN (2)
+BBB..L
+...CCL
+PPHI..K
+DDHI..
+GEEJNM
+GFFJNM
+
+Gerakan 834: UP (2)
+BBB..L
+...CCL
+PPHIN.K
+DDHIN.
+GEEJ.M
+GFFJ.M
+
+Gerakan 835: DOWN (2)
+BBB...
+...CC.
+PPHINLK
+DDHINL
+GEEJ.M
+GFFJ.M
+
+Gerakan 836: DOWN (2)
+BBB...
+...CC.
+PPHI.LK
+DDHI.L
+GEEJNM
+GFFJNM
+
+Gerakan 837: UP (1)
+BBB...
+..HCC.
+PPHI.LK
+DD.I.L
+GEEJNM
+GFFJNM
+
+Gerakan 838: UP (2)
+BBB...
+..HCC.
+PPHINLK
+DD.INL
+GEEJ.M
+GFFJ.M
+
+Gerakan 839: UP (2)
+BBB..L
+..HCCL
+PPHIN.K
+DD.IN.
+GEEJ.M
+GFFJ.M
+
+Gerakan 840: DOWN (2)
+BBB..L
+..HCCL
+PPHI..K
+DD.I..
+GEEJNM
+GFFJNM
+
+Gerakan 841: UP (2)
+BBB..L
+..HCCL
+PPHI.MK
+DD.I.M
+GEEJN.
+GFFJN.
+
+Gerakan 842: UP (2)
+BBB..L
+..HCCL
+PPHINMK
+DD.INM
+GEEJ..
+GFFJ..
+
+Gerakan 843: RIGHT (1)
+BBB..L
+..HCCL
+PPHINMK
+.DDINM
+GEEJ..
+GFFJ..
+
+Gerakan 844: DOWN (2)
+BBB..L
+..HCCL
+PPHI.MK
+.DDI.M
+GEEJN.
+GFFJN.
+
+Gerakan 845: DOWN (2)
+BBB..L
+..HCCL
+PPHI..K
+.DDI..
+GEEJNM
+GFFJNM
+
+Gerakan 846: UP (2)
+BBB..L
+..HCCL
+PPHIN.K
+.DDIN.
+GEEJ.M
+GFFJ.M
+
+Gerakan 847: DOWN (2)
+BBB...
+..HCC.
+PPHINLK
+.DDINL
+GEEJ.M
+GFFJ.M
+
+Gerakan 848: DOWN (2)
+BBB...
+..HCC.
+PPHI.LK
+.DDI.L
+GEEJNM
+GFFJNM
+
+Gerakan 849: UP (1)
+BBB...
+..HCC.
+PPHI.LK
+GDDI.L
+GEEJNM
+.FFJNM
+
+Gerakan 850: UP (2)
+BBB...
+..HCC.
+PPHINLK
+GDDINL
+GEEJ.M
+.FFJ.M
+
+Gerakan 851: UP (2)
+BBB..L
+..HCCL
+PPHIN.K
+GDDIN.
+GEEJ.M
+.FFJ.M
+
+Gerakan 852: DOWN (2)
+BBB..L
+..HCCL
+PPHI..K
+GDDI..
+GEEJNM
+.FFJNM
+
+Gerakan 853: UP (2)
+BBB..L
+..HCCL
+PPHI.MK
+GDDI.M
+GEEJN.
+.FFJN.
+
+Gerakan 854: UP (2)
+BBB..L
+..HCCL
+PPHINMK
+GDDINM
+GEEJ..
+.FFJ..
+
+Gerakan 855: LEFT (1)
+BBB..L
+..HCCL
+PPHINMK
+GDDINM
+GEEJ..
+FF.J..
+
+Gerakan 856: DOWN (2)
+BBB..L
+..HCCL
+PPHI.MK
+GDDI.M
+GEEJN.
+FF.JN.
+
+Gerakan 857: DOWN (2)
+BBB..L
+..HCCL
+PPHI..K
+GDDI..
+GEEJNM
+FF.JNM
+
+Gerakan 858: UP (2)
+BBB..L
+..HCCL
+PPHIN.K
+GDDIN.
+GEEJ.M
+FF.J.M
+
+Gerakan 859: DOWN (2)
+BBB...
+..HCC.
+PPHINLK
+GDDINL
+GEEJ.M
+FF.J.M
+
+Gerakan 860: DOWN (2)
+BBB...
+..HCC.
+PPHI.LK
+GDDI.L
+GEEJNM
+FF.JNM
+
+Gerakan 861: RIGHT (3)
+...BBB
+..HCC.
+PPHI.LK
+GDDI.L
+GEEJNM
+FF.JNM
+
+Gerakan 862: UP (2)
+...BBB
+..HCC.
+PPHINLK
+GDDINL
+GEEJ.M
+FF.J.M
+
+Gerakan 863: UP (1)
+...BBB
+..HCCL
+PPHINLK
+GDDIN.
+GEEJ.M
+FF.J.M
+
+Gerakan 864: DOWN (2)
+...BBB
+..HCCL
+PPHI.LK
+GDDI..
+GEEJNM
+FF.JNM
+
+Gerakan 865: UP (1)
+...BBB
+..HCCL
+PPHI.LK
+GDDI.M
+GEEJNM
+FF.JN.
+
+Gerakan 866: UP (2)
+...BBB
+..HCCL
+PPHINLK
+GDDINM
+GEEJ.M
+FF.J..
+
+Gerakan 867: UP (1)
+..HBBB
+..HCCL
+PP.INLK
+GDDINM
+GEEJ.M
+FF.J..
+
+Gerakan 868: RIGHT (1)
+..HBBB
+..HCCL
+.PPINLK
+GDDINM
+GEEJ.M
+FF.J..
+
+Gerakan 869: UP (3)
+G.HBBB
+G.HCCL
+.PPINLK
+.DDINM
+.EEJ.M
+FF.J..
+
+Gerakan 870: LEFT (1)
+G.HBBB
+G.HCCL
+.PPINLK
+.DDINM
+EE.J.M
+FF.J..
+
+Gerakan 871: DOWN (1)
+G.HBBB
+G.HCCL
+.PPINLK
+.DDIN.
+EE.J.M
+FF.J.M
+
+Gerakan 872: DOWN (1)
+G.HBBB
+G.HCC.
+.PPINLK
+.DDINL
+EE.J.M
+FF.J.M
+
+Gerakan 873: RIGHT (1)
+G.HBBB
+G.H.CC
+.PPINLK
+.DDINL
+EE.J.M
+FF.J.M
+
+Gerakan 874: UP (1)
+G.HBBB
+G.HICC
+.PPINLK
+.DD.NL
+EE.J.M
+FF.J.M
+
+Gerakan 875: DOWN (2)
+G.HBBB
+G.HICC
+.PPI.LK
+.DD..L
+EE.JNM
+FF.JNM
+
+Gerakan 876: LEFT (1)
+G.HBBB
+G.HICC
+PP.I.LK
+.DD..L
+EE.JNM
+FF.JNM
+
+Gerakan 877: UP (2)
+G.HBBB
+G.HICC
+PP.INLK
+.DD.NL
+EE.J.M
+FF.J.M
+
+Gerakan 878: DOWN (1)
+G.HBBB
+G.H.CC
+PP.INLK
+.DDINL
+EE.J.M
+FF.J.M
+
+Gerakan 879: DOWN (2)
+G.HBBB
+G.H.CC
+PP.I.LK
+.DDI.L
+EE.JNM
+FF.JNM
+
+Gerakan 880: DOWN (1)
+G..BBB
+G.H.CC
+PPHI.LK
+.DDI.L
+EE.JNM
+FF.JNM
+
+Gerakan 881: UP (2)
+G..BBB
+G.H.CC
+PPHINLK
+.DDINL
+EE.J.M
+FF.J.M
+
+Gerakan 882: RIGHT (1)
+G..BBB
+G.H.CC
+PPHINLK
+.DDINL
+EE.J.M
+.FFJ.M
+
+Gerakan 883: DOWN (2)
+G..BBB
+G.H.CC
+PPHI.LK
+.DDI.L
+EE.JNM
+.FFJNM
+
+Gerakan 884: UP (1)
+G.HBBB
+G.H.CC
+PP.I.LK
+.DDI.L
+EE.JNM
+.FFJNM
+
+Gerakan 885: UP (2)
+G.HBBB
+G.H.CC
+PP.INLK
+.DDINL
+EE.J.M
+.FFJ.M
+
+Gerakan 886: UP (1)
+G.HBBB
+G.HICC
+PP.INLK
+.DD.NL
+EE.J.M
+.FFJ.M
+
+Gerakan 887: DOWN (2)
+G.HBBB
+G.HICC
+PP.I.LK
+.DD..L
+EE.JNM
+.FFJNM
+
+Gerakan 888: RIGHT (1)
+G.HBBB
+G.HICC
+PP.I.LK
+.DD..L
+.EEJNM
+.FFJNM
+
+Gerakan 889: UP (2)
+G.HBBB
+G.HICC
+PP.INLK
+.DD.NL
+.EEJ.M
+.FFJ.M
+
+Gerakan 890: UP (1)
+G.HBBB
+G.HICC
+PP.INLK
+.DDJNL
+.EEJ.M
+.FF..M
+
+Gerakan 891: DOWN (2)
+G.HBBB
+G.HICC
+PP.I.LK
+.DDJ.L
+.EEJNM
+.FF.NM
+
+Gerakan 892: DOWN (1)
+G..BBB
+G.HICC
+PPHI.LK
+.DDJ.L
+.EEJNM
+.FF.NM
+
+Gerakan 893: UP (2)
+G..BBB
+G.HICC
+PPHINLK
+.DDJNL
+.EEJ.M
+.FF..M
+
+Gerakan 894: DOWN (1)
+G..BBB
+G.HICC
+PPHINLK
+.DD.NL
+.EEJ.M
+.FFJ.M
+
+Gerakan 895: DOWN (2)
+G..BBB
+G.HICC
+PPHI.LK
+.DD..L
+.EEJNM
+.FFJNM
+
+Gerakan 896: DOWN (1)
+G..BBB
+G.H.CC
+PPHI.LK
+.DDI.L
+.EEJNM
+.FFJNM
+
+Gerakan 897: UP (2)
+G..BBB
+G.H.CC
+PPHINLK
+.DDINL
+.EEJ.M
+.FFJ.M
+
+Gerakan 898: UP (1)
+G.HBBB
+G.H.CC
+PP.INLK
+.DDINL
+.EEJ.M
+.FFJ.M
+
+Gerakan 899: DOWN (2)
+G.HBBB
+G.H.CC
+PP.I.LK
+.DDI.L
+.EEJNM
+.FFJNM
+
+Gerakan 900: LEFT (1)
+G.HBBB
+G.H.CC
+PP.I.LK
+.DDI.L
+.EEJNM
+FF.JNM
+
+Gerakan 901: LEFT (1)
+G.HBBB
+G.H.CC
+PP.I.LK
+DD.I.L
+.EEJNM
+FF.JNM
+
+Gerakan 902: UP (2)
+G.HBBB
+G.H.CC
+PP.INLK
+DD.INL
+.EEJ.M
+FF.J.M
+
+Gerakan 903: UP (1)
+G.HBBB
+G.HICC
+PP.INLK
+DD..NL
+.EEJ.M
+FF.J.M
+
+Gerakan 904: DOWN (2)
+G.HBBB
+G.HICC
+PP.I.LK
+DD...L
+.EEJNM
+FF.JNM
+
+Gerakan 905: UP (1)
+G.HBBB
+G.HICC
+PP.I.LK
+DD.J.L
+.EEJNM
+FF..NM
+
+Gerakan 906: UP (2)
+G.HBBB
+G.HICC
+PP.INLK
+DD.JNL
+.EEJ.M
+FF...M
+
+Gerakan 907: DOWN (2)
+G..BBB
+G..ICC
+PPHINLK
+DDHJNL
+.EEJ.M
+FF...M
+
+Gerakan 908: DOWN (2)
+G..BBB
+G..ICC
+PPHI.LK
+DDHJ.L
+.EEJNM
+FF..NM
+
+Gerakan 909: DOWN (1)
+G..BBB
+G..ICC
+PPHI.LK
+DDH..L
+.EEJNM
+FF.JNM
+
+Gerakan 910: UP (2)
+G..BBB
+G..ICC
+PPHINLK
+DDH.NL
+.EEJ.M
+FF.J.M
+
+Gerakan 911: DOWN (1)
+G..BBB
+G...CC
+PPHINLK
+DDHINL
+.EEJ.M
+FF.J.M
+
+Gerakan 912: DOWN (2)
+G..BBB
+G...CC
+PPHI.LK
+DDHI.L
+.EEJNM
+FF.JNM
+
+Gerakan 913: LEFT (1)
+G..BBB
+G...CC
+PPHI.LK
+DDHI.L
+EE.JNM
+FF.JNM
+
+Gerakan 914: UP (2)
+G..BBB
+G...CC
+PPHINLK
+DDHINL
+EE.J.M
+FF.J.M
+
+Gerakan 915: UP (1)
+G..BBB
+G..ICC
+PPHINLK
+DDH.NL
+EE.J.M
+FF.J.M
+
+Gerakan 916: DOWN (2)
+G..BBB
+G..ICC
+PPHI.LK
+DDH..L
+EE.JNM
+FF.JNM
+
+Gerakan 917: UP (1)
+G..BBB
+G..ICC
+PPHI.LK
+DDHJ.L
+EE.JNM
+FF..NM
+
+Gerakan 918: UP (2)
+G..BBB
+G..ICC
+PPHINLK
+DDHJNL
+EE.J.M
+FF...M
+
+Gerakan 919: UP (2)
+G.HBBB
+G.HICC
+PP.INLK
+DD.JNL
+EE.J.M
+FF...M
+
+Gerakan 920: DOWN (2)
+G.HBBB
+G.HICC
+PP.I.LK
+DD.J.L
+EE.JNM
+FF..NM
+
+Gerakan 921: DOWN (1)
+G.HBBB
+G.HICC
+PP.I.LK
+DD...L
+EE.JNM
+FF.JNM
+
+Gerakan 922: UP (2)
+G.HBBB
+G.HICC
+PP.INLK
+DD..NL
+EE.J.M
+FF.J.M
+
+Gerakan 923: DOWN (1)
+G.HBBB
+G.H.CC
+PP.INLK
+DD.INL
+EE.J.M
+FF.J.M
+
+Gerakan 924: DOWN (2)
+G.HBBB
+G.H.CC
+PP.I.LK
+DD.I.L
+EE.JNM
+FF.JNM
+
+Gerakan 925: DOWN (4)
+G..BBB
+G...CC
+PP.I.LK
+DD.I.L
+EEHJNM
+FFHJNM
+
+Gerakan 926: RIGHT (1)
+G..BBB
+G...CC
+.PPI.LK
+DD.I.L
+EEHJNM
+FFHJNM
+
+Gerakan 927: LEFT (3)
+G..BBB
+GCC...
+.PPI.LK
+DD.I.L
+EEHJNM
+FFHJNM
+
+Gerakan 928: DOWN (1)
+...BBB
+GCC...
+GPPI.LK
+DD.I.L
+EEHJNM
+FFHJNM
+
+Gerakan 929: LEFT (3)
+BBB...
+GCC...
+GPPI.LK
+DD.I.L
+EEHJNM
+FFHJNM
+
+Gerakan 930: UP (2)
+BBBI..
+GCCI..
+GPP..LK
+DD...L
+EEHJNM
+FFHJNM
+
+Gerakan 931: RIGHT (2)
+BBBI..
+GCCI..
+G..PPLK
+DD...L
+EEHJNM
+FFHJNM
+
+Gerakan 932: UP (2)
+BBBI.L
+GCCI.L
+G..PP.K
+DD....
+EEHJNM
+FFHJNM
+
+Gerakan 933: RIGHT (1)
+BBBI.L
+GCCI.L
+G...PPK
+DD....
+EEHJNM
+FFHJNM
+
+[Primary piece has reached the exit!]

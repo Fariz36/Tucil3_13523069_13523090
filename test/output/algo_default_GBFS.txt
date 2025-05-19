@@ -1,0 +1,144 @@
+=== Rush Hour Solution ===
+Algorithm: Greedy Best First Search
+Heuristic: Manhattan Distance
+Number of states examined: 99
+Number of moves: 16
+Execution time: 9 ms
+
+Papan Awal
+AAB..F
+..BCDF
+GPPCDFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 1: UP (1)
+AABC.F
+..BCDF
+GPP.DFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 2: RIGHT (1)
+AABC.F
+..BCDF
+G.PPDFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 3: UP (1)
+AABCDF
+..BCDF
+G.PP.FK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 4: RIGHT (1)
+AABCDF
+..BCDF
+G..PPFK
+GH.III
+GHJ...
+LLJMM.
+
+Gerakan 5: DOWN (2)
+AA.CDF
+...CDF
+G.BPPFK
+GHBIII
+GHJ...
+LLJMM.
+
+Gerakan 6: RIGHT (1)
+AA.CDF
+...CDF
+G.BPPFK
+GHBIII
+GHJ...
+LLJ.MM
+
+Gerakan 7: RIGHT (1)
+.AACDF
+...CDF
+G.BPPFK
+GHBIII
+GHJ...
+LLJ.MM
+
+Gerakan 8: UP (2)
+GAACDF
+G..CDF
+G.BPPFK
+.HBIII
+.HJ...
+LLJ.MM
+
+Gerakan 9: LEFT (1)
+GAACDF
+G..CDF
+G.BPPFK
+.HBIII
+.HJ...
+LLJMM.
+
+Gerakan 10: UP (1)
+GAACDF
+G.BCDF
+G.BPPFK
+.H.III
+.HJ...
+LLJMM.
+
+Gerakan 11: UP (2)
+GAACDF
+GHBCDF
+GHBPPFK
+...III
+..J...
+LLJMM.
+
+Gerakan 12: RIGHT (1)
+GAACDF
+GHBCDF
+GHBPPFK
+...III
+..J...
+LLJ.MM
+
+Gerakan 13: LEFT (3)
+GAACDF
+GHBCDF
+GHBPPFK
+III...
+..J...
+LLJ.MM
+
+Gerakan 14: LEFT (1)
+GAACDF
+GHBCDF
+GHBPPFK
+III...
+..J...
+LLJMM.
+
+Gerakan 15: DOWN (3)
+GAACD.
+GHBCD.
+GHBPP.K
+III..F
+..J..F
+LLJMMF
+
+Gerakan 16: RIGHT (1)
+GAACD.
+GHBCD.
+GHB.PPK
+III..F
+..J..F
+LLJMMF
+
+[Primary piece has reached the exit!]

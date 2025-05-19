@@ -1,0 +1,288 @@
+=== Rush Hour Solution ===
+Algorithm: A* Search
+Heuristic: Clearing Moves
+Number of states examined: 13762
+Number of moves: 34
+Execution time: 1520 ms
+
+Papan Awal
+RSSBBZ
+RDDJ.Z
+K..VJPP
+EEV...
+.L.FFF
+.LHHGG
+
+Gerakan 1: DOWN (1)
+RSSBBZ
+RDD..Z
+K..VJPP
+EEVJ..
+.L.FFF
+.LHHGG
+
+Gerakan 2: RIGHT (2)
+RSSBBZ
+R..DDZ
+K..VJPP
+EEVJ..
+.L.FFF
+.LHHGG
+
+Gerakan 3: UP (1)
+RSSBBZ
+R.VDDZ
+K..VJPP
+EE.J..
+.L.FFF
+.LHHGG
+
+Gerakan 4: RIGHT (1)
+RSSBBZ
+R.VDDZ
+K..VJPP
+.EEJ..
+.L.FFF
+.LHHGG
+
+Gerakan 5: DOWN (4)
+.SSBBZ
+..VDDZ
+K..VJPP
+.EEJ..
+RL.FFF
+RLHHGG
+
+Gerakan 6: LEFT (1)
+.SSBBZ
+..VDDZ
+K..VJPP
+EE.J..
+RL.FFF
+RLHHGG
+
+Gerakan 7: DOWN (2)
+.SSBBZ
+...DDZ
+K...JPP
+EEVJ..
+RLVFFF
+RLHHGG
+
+Gerakan 8: LEFT (3)
+.SSBBZ
+DD...Z
+K...JPP
+EEVJ..
+RLVFFF
+RLHHGG
+
+Gerakan 9: UP (1)
+.SSBBZ
+DD.J.Z
+K...JPP
+EEV...
+RLVFFF
+RLHHGG
+
+Gerakan 10: UP (2)
+.SSBBZ
+DDVJ.Z
+K..VJPP
+EE....
+RL.FFF
+RLHHGG
+
+Gerakan 11: RIGHT (4)
+.SSBBZ
+DDVJ.Z
+K..VJPP
+....EE
+RL.FFF
+RLHHGG
+
+Gerakan 12: UP (2)
+.SSBBZ
+DDVJ.Z
+KR.VJPP
+R...EE
+.L.FFF
+.LHHGG
+
+Gerakan 13: UP (2)
+.SSBBZ
+DDVJ.Z
+KRLVJPP
+RL..EE
+...FFF
+..HHGG
+
+Gerakan 14: LEFT (2)
+.SSBBZ
+DDVJ.Z
+KRLVJPP
+RL..EE
+...FFF
+HH..GG
+
+Gerakan 15: LEFT (3)
+.SSBBZ
+DDVJ.Z
+KRLVJPP
+RL..EE
+FFF...
+HH..GG
+
+Gerakan 16: DOWN (3)
+.SSBBZ
+DDV..Z
+KRLV.PP
+RL..EE
+FFFJ..
+HH.JGG
+
+Gerakan 17: LEFT (1)
+.SSBBZ
+DDV..Z
+KRLVPP.
+RL..EE
+FFFJ..
+HH.JGG
+
+Gerakan 18: LEFT (1)
+SS.BBZ
+DDV..Z
+KRLVPP.
+RL..EE
+FFFJ..
+HH.JGG
+
+Gerakan 19: DOWN (1)
+SS.BBZ
+DD...Z
+KRLVPP.
+RLV.EE
+FFFJ..
+HH.JGG
+
+Gerakan 20: LEFT (1)
+SS.BBZ
+DD...Z
+KRLVPP.
+RLVEE.
+FFFJ..
+HH.JGG
+
+Gerakan 21: DOWN (3)
+SS.BB.
+DD....
+KRLVPP.
+RLVEEZ
+FFFJ.Z
+HH.JGG
+
+Gerakan 22: RIGHT (4)
+SS.BB.
+....DD
+KRLVPP.
+RLVEEZ
+FFFJ.Z
+HH.JGG
+
+Gerakan 23: UP (2)
+SSVBB.
+..V.DD
+KRL.PP.
+RL.EEZ
+FFFJ.Z
+HH.JGG
+
+Gerakan 24: UP (1)
+SSVBB.
+.LV.DD
+KRL.PP.
+R..EEZ
+FFFJ.Z
+HH.JGG
+
+Gerakan 25: LEFT (2)
+SSVBB.
+.LV.DD
+KRL.PP.
+REE..Z
+FFFJ.Z
+HH.JGG
+
+Gerakan 26: RIGHT (1)
+SSV.BB
+.LV.DD
+KRL.PP.
+REE..Z
+FFFJ.Z
+HH.JGG
+
+Gerakan 27: RIGHT (1)
+SSV.BB
+.LV.DD
+KRL..PP
+REE..Z
+FFFJ.Z
+HH.JGG
+
+Gerakan 28: UP (4)
+SSVJBB
+.LVJDD
+KRL..PP
+REE..Z
+FFF..Z
+HH..GG
+
+Gerakan 29: LEFT (2)
+SSVJBB
+.LVJDD
+KRLPP..
+REE..Z
+FFF..Z
+HH..GG
+
+Gerakan 30: RIGHT (2)
+SSVJBB
+.LVJDD
+KRLPP..
+REE..Z
+..FFFZ
+HH..GG
+
+Gerakan 31: DOWN (1)
+SSVJBB
+.LVJDD
+K.LPP..
+REE..Z
+R.FFFZ
+HH..GG
+
+Gerakan 32: RIGHT (2)
+SSVJBB
+.LVJDD
+K.LPP..
+R..EEZ
+R.FFFZ
+HH..GG
+
+Gerakan 33: DOWN (2)
+SSVJBB
+..VJDD
+K..PP..
+RL.EEZ
+RLFFFZ
+HH..GG
+
+Gerakan 34: LEFT (2)
+SSVJBB
+..VJDD
+KPP....
+RL.EEZ
+RLFFFZ
+HH..GG
+
+[Primary piece has reached the exit!]
