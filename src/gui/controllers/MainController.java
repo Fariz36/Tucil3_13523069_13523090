@@ -261,6 +261,30 @@ public class MainController {
         }
     }
     
+    private void resetBoardState() {
+        // Reset solution and board state
+        this.solution = null;
+        this.boardStates = null;
+        this.moves = null;
+        this.currentStateIndex = 0;
+        this.nodesExamined = 0;
+        
+        // Reset animation state
+        if (animation != null) {
+            animation.stop();
+            isPlaying = false;
+        }
+        
+        // Reset UI controls
+        if (playButton != null) playButton.setDisable(false);
+        if (pauseButton != null) pauseButton.setDisable(true);
+        if (resetButton != null) resetButton.setDisable(false);
+        
+        // Reset labels
+        if (moveLabel != null) moveLabel.setText("Initial Board Configuration");
+        if (statsLabel != null) statsLabel.setText("");
+    }
+
     /**
      * Handle load file button click
      */
@@ -271,6 +295,8 @@ public class MainController {
             updateStatus("Error: Please select a file first", true);
             return;
         }
+        
+        resetBoardState();
         
         updateStatus("Loading file...");
         progressBar.setVisible(true);
