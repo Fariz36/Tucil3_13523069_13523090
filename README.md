@@ -57,7 +57,15 @@ Bocchi panics but suggests, "C-can we solve this like a puzzle?" Nijika nods, "L
 
 3. **Greedy Best-First Search**: Kita's enthusiasm shines. "Go straight for the exit, full speed!" she cheers. This method picks moves that seem closest to the goal, like Kita's bold guitar strums, but it might miss the best path by rushing.
 
-The band works together, sliding cars and trucks out of the way. Nijika's A* keeps them on track, Ryo's UCS ensures no wasted moves, and Kita's Greedy Search adds speed. Bocchi, less shaky now, helps spot key moves. Finally, the van zooms through the exit, and they arrive at Starry just in time.
+4. Beam Search: Ryo adds, “Focus on a few top moves, like picking killer basslines.” Beam Search keeps only the best paths at each step, balancing speed and strategy, though it might skip some options.
+
+5. Iterative Deepening A (IDA)**: Bocchi, growing bolder, suggests, “L-let’s explore like A*, but carefully, to save effort.” IDA* dives into promising paths, restarting with tighter limits if needed, like Bocchi’s cautious practice sessions.
+
+6. Dijkstra’s Algorithm: Nijika’s sister, Seika, managing Starry, radios in: “Plan every move like I schedule gigs—methodically.” Dijkstra’s Algorithm explores all paths, prioritizing the lowest-cost moves, ensuring no step is wasted, like Seika’s no-nonsense organization.
+
+The band works together, sliding vehicles with skill. Nijika’s A* and Dijkstra’s Algorithm plot perfect routes, Ryo’s UCS and Beam Search keep moves efficient, Kita’s Greedy Search adds speed, and Bocchi’s IDA* finds clever shortcuts. The van finally zooms through the exit, reaching Starry just in time.
+
+As Kessoku Band rocks the stage, the crowd cheers, unaware of the logical puzzle they solved. Bocchi, smiling, thinks, “We navigated the jam… maybe I can handle the spotlight too.”
 
 </div>
 
