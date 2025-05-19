@@ -40,7 +40,7 @@
     <br />
     <a href="https://youtu.be/7FDRQifEMUQ?si=gKheP3GnBORXsDY4">Kessoku!</a>
     ·
-    <a href="https://github.com/Fariz36/Tucil3_13523069_13523090/tree/main/doc/.pdf">Project Report (Bahasa Indonesia)</a>
+    <a href="https://github.com/Fariz36/Tucil3_13523069_13523090/tree/main/doc/Tucil3_13523069_13523090.pdf">Project Report (Bahasa Indonesia)</a>
 </p>
 
 ## Intermezzo
@@ -73,6 +73,7 @@ As Kessoku Band rocks the stage, the crowd cheers, unaware of the logical puzzle
   <img src="https://github.com/user-attachments/assets/c267a42b-74f6-4d1f-8d42-fde28c104a29" alt="Kessoku Band solving the traffic puzzle" width="600">
 </p>
 
+---
 ## Installation & Setup
  
 ### Requirements
@@ -94,8 +95,24 @@ As Kessoku Band rocks the stage, the crowd cheers, unaware of the logical puzzle
    sudo apt install openjdk-11-jdk
    sudo apt install gradle
 ```
-> For backend, just install golang: https://go.dev/dl/
-> For production, please refer to "How to Run" section
+
+<br>
+
+> [!IMPORTANT]
+> If you're using windows, also make sure that java 11 is installed, you can installed it on https://www.oracle.com/id/java/technologies/javase/jdk11-archive-downloads.html. 
+> To set the jdk, you can run .\env.bat, but notice that in env.bat, there are `set` that you can change based on the jdk location:
+   ```
+   env.bat:
+
+  @echo off
+  echo Setting environment for Java 11...
+  
+  set "JAVA_HOME=C:\Program Files\Java\jdk-11" //change this to your jdk location
+  set "PATH=%JAVA_HOME%\bin;%PATH%"
+  
+  echo JAVA_HOME set to: %JAVA_HOME%
+  java -version
+```
 
 ---
  ## How to Run
@@ -117,6 +134,8 @@ As Kessoku Band rocks the stage, the crowd cheers, unaware of the logical puzzle
 
     # Linux
     ./kessoku cli
+
+<br/>
 
  ### Graphical User Interface
  1. Open a terminal
