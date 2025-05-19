@@ -90,6 +90,7 @@ public class MainController {
     @FXML private Label statsLabel;
     @FXML private ComboBox<String> songComboBox;
     @FXML private Button playSelectedSongButton;
+    @FXML private Button pauseSongButton;
     
     // Board state and data
     private Board currentBoard;
@@ -115,6 +116,7 @@ public class MainController {
     // Misc
     private MediaPlayer mediaPlayer;
     private final String SONG_PATH = "src/resources/song/";
+    private String playedSong = "If_I_could_be_a_constellation.mp3";
     
     /**
      * Initialize the controller
@@ -126,7 +128,8 @@ public class MainController {
             "Re_Re_.mp3",
             "Rockn'_Roll,_Morning_Light_Falls_on_You.mp3",
             "seisyun_complex.mp3",
-            "Color_Your_Night.mp3"
+            "Color_Your_Night.mp3",
+            "Rubia.mp3"
         );
         songComboBox.setItems(songs);
         songComboBox.getSelectionModel().selectFirst();
@@ -556,11 +559,11 @@ public class MainController {
                 if (algorithm.contains("UCS")) {
                     solution = solver.solveUCS(currentBoard, isCompound);
                 } else if (algorithm.contains("Dijkstra")) {
-                    solution = solver.solveDijkstra(currentBoard);
+                    solution = solver.solveDijkstra(currentBoard, isCompound);
                 } else if (algorithm.contains("Greedy")) {
-                    solution = solver.solveGreedy(currentBoard, heuristic);
+                    solution = solver.solveGreedy(currentBoard, heuristic, isCompound);
                 } else if (algorithm.contains("A*")) {
-                    solution = solver.solveAStar(currentBoard, heuristic);
+                    solution = solver.solveAStar(currentBoard, heuristic, isCompound);
                 }
                 
                 long endTime = System.currentTimeMillis();
@@ -1138,8 +1141,32 @@ public class MainController {
         }
     }
 
+    @FXML
+    private void handlePauseSong() {
+        if (mediaPlayer != null) {
+        MediaPlayer.Status status = mediaPlayer.getStatus();
+            if (status == MediaPlayer.Status.PLAYING) {
+                mediaPlayer.pause();
+                pauseSongButton.setText("Play");
+            } 
+            else if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.STOPPED) {
+                if (!songComboBox.getValue().equals(playedSong)) {
+                    mediaPlayer.stop();
+                    playBackgroundMusic(songComboBox.getValue());
+                    pauseSongButton.setText("Pause");
+                    playedSong = songComboBox.getValue();
+
+                    return;
+                }
+                mediaPlayer.play();
+                pauseSongButton.setText("Pause");
+            }
+    }
+}
+
     public void playBackgroundMusic(String filename) {
         try {
+            System.out.println("Playing background music: " + filename);
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
             }

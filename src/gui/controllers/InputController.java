@@ -365,11 +365,11 @@ public class InputController {
                 if (algorithm.contains("UCS")) {
                     solution = solver.solveUCS(currentBoard, isCompound);
                 } else if (algorithm.contains("Dijkstra")) {
-                    solution = solver.solveDijkstra(currentBoard);
+                    solution = solver.solveDijkstra(currentBoard, isCompound);
                 } else if (algorithm.contains("Greedy")) {
-                    solution = solver.solveGreedy(currentBoard, heuristic);
+                    solution = solver.solveGreedy(currentBoard, heuristic, isCompound);
                 } else if (algorithm.contains("A*")) {
-                    solution = solver.solveAStar(currentBoard, heuristic);
+                    solution = solver.solveAStar(currentBoard, heuristic, isCompound);
                 }
                 
                 long endTime = System.currentTimeMillis();

@@ -1,6 +1,13 @@
 package cli;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * Solver class implementing different pathfinding algorithms for the Rush Hour puzzle
@@ -67,7 +74,7 @@ public class Solver {
     /**
      * A* Search Implementation with compound moves
      */
-    public Solution solveAStar(Board initialBoard, String heuristic) {
+    public Solution solveAStar(Board initialBoard, String heuristic, boolean isCompound) {
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.f));
         Set<String> visited = new HashSet<>();
         Map<String, Node> nodeMap = new HashMap<>();
@@ -95,7 +102,7 @@ public class Solver {
             }
             
             // Generate compound moves (multi-cell movements)
-            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board);
+            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board, isCompound);
             
             for (CompoundMove move : compoundMoves) {
                 Board newBoard = makeCompoundMove(current.board, move);
@@ -121,7 +128,7 @@ public class Solver {
     /**
      * Greedy Best First Search Implementation with compound moves
      */
-    public Solution solveGreedy(Board initialBoard, String heuristic) {
+    public Solution solveGreedy(Board initialBoard, String heuristic, boolean isCompound) {
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.h));
         Set<String> visited = new HashSet<>();
         lastNodesExamined = 0; // Reset counter
@@ -147,7 +154,7 @@ public class Solver {
             }
             
             // Generate compound moves (multi-cell movements)
-            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board);
+            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board, isCompound);
             
             for (CompoundMove move : compoundMoves) {
                 Board newBoard = makeCompoundMove(current.board, move);
@@ -167,7 +174,7 @@ public class Solver {
     /**
      * Dijkstra's algorithm implementation - similar to UCS but with different node mapping
      */
-    public Solution solveDijkstra(Board initialBoard) {
+    public Solution solveDijkstra(Board initialBoard, boolean isCompound) {
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
         Set<String> visited = new HashSet<>();
         Map<String, Integer> costSoFar = new HashMap<>();
@@ -194,7 +201,7 @@ public class Solver {
             }
             
             // Generate compound moves
-            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board);
+            List<CompoundMove> compoundMoves = generateCompoundMoves(current.board, isCompound);
             
             for (CompoundMove move : compoundMoves) {
                 Board newBoard = makeCompoundMove(current.board, move);

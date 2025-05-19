@@ -40,7 +40,7 @@
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                                  <children>
                                     <ComboBox fx:id="songComboBox" prefWidth="260.0" promptText="Select a song..." />
-                                    <Button fx:id="playSelectedSongButton" text="Play" onAction="#handlePlaySelectedSong" />
+                                    <Button fx:id="pauseSongButton" text="Pause" onAction="#handlePauseSong" />
                                  </children>
                               </HBox>
                               <TabPane fx:id="inputTabPane" prefHeight="320.0" prefWidth="200.0" styleClass="config-tabs" tabClosingPolicy="UNAVAILABLE">
@@ -135,7 +135,7 @@
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
                               <children>
                                  <Label text="Compound Move:" style="-fx-text-fill: white;" />
-                                 <Button fx:id="compoundButton" text="ON" onAction="#handleToggleCompound" />
+                                 <Button fx:id="compoundButton" text="OFF" onAction="#handleToggleCompound" />
                               </children>
                            </HBox>
                            </HBox>

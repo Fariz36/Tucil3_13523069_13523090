@@ -90,11 +90,11 @@ public class Main {
                     algorithmUsed = "Uniform Cost Search (UCS)";
                     break;
                 case 2:
-                    solution = solver.solveGreedy(board, heuristic);
+                    solution = solver.solveGreedy(board, heuristic, false);
                     algorithmUsed = "Greedy Best First Search with " + heuristic + " heuristic";
                     break;
                 case 3:
-                    solution = solver.solveAStar(board, heuristic);
+                    solution = solver.solveAStar(board, heuristic, false);
                     algorithmUsed = "A* Search with " + heuristic + " heuristic";
                     break;
                 default:
