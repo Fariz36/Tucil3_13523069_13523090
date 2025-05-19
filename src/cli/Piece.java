@@ -8,6 +8,7 @@ public class Piece {
     public Piece(char id, java.util.List<Position> positions) {
         this.id = id;
         this.positions = new java.util.ArrayList<>(positions);
+
         
         // Validate piece shape before determining orientation
         validatePieceShape();
@@ -146,6 +147,10 @@ public class Piece {
         }
         this.orientation = other.orientation;
     }
+
+    int getLength() {
+        return positions.size();
+    }
     
     /**
      * Move the piece in the specified direction
@@ -186,6 +191,48 @@ public class Piece {
     public java.util.List<Position> getPositions() { return positions; }
     public Orientation getOrientation() { return orientation; }
     public int getSize() { return positions.size(); }
+
+    // Add these methods to the Piece class
+
+    public int getLeftmostCol() {
+        if (orientation == Orientation.HORIZONTAL) {
+            // First position in sorted list has smallest column
+            return positions.get(0).col;
+        }
+        // Vertical pieces have same column for all positions
+        return positions.get(0).col;
+    }
+
+    public int getRightmostCol() {
+        if (orientation == Orientation.HORIZONTAL) {
+            // Last position in sorted list has largest column
+            return positions.get(positions.size() - 1).col;
+        }
+        // Vertical pieces have same column for all positions
+        return positions.get(0).col;
+    }
+
+    public int getTopmostRow() {
+        if (orientation == Orientation.VERTICAL) {
+            // First position in sorted list has smallest row
+            return positions.get(0).row;
+        }
+        // Horizontal pieces have same row for all positions
+        return positions.get(0).row;
+    }
+
+    public int getBottommostRow() {
+        if (orientation == Orientation.VERTICAL) {
+            // Last position in sorted list has largest row
+            return positions.get(positions.size() - 1).row;
+        }
+        // Horizontal pieces have same row for all positions
+        return positions.get(0).row;
+    }
+
+    public Position getFirstPosition() {
+        return positions.get(0);
+    }
     
     @Override
     public String toString() {

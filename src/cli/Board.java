@@ -235,6 +235,17 @@ public class Board {
         
         return true;
     }
+
+    public Piece getPieceAt(int row, int col) {
+        for (Piece piece : pieces) {
+            for (Position pos : piece.getPositions()) {
+                if (pos.row == row && pos.col == col) {
+                    return piece;
+                }
+            }
+        }
+        return null;
+    }
     
 /**
  * Make a move on the board, with improved exit handling
@@ -487,7 +498,7 @@ public class Board {
         return sb.toString();
     }
     
-    private Piece getPieceById(char id) {
+    public Piece getPieceById(char id) {
         for (Piece piece : pieces) {
             if (piece.getId() == id) {
                 return piece;

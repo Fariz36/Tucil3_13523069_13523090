@@ -25,6 +25,18 @@ public class Solver {
     public int getLastNodesExamined() {
         return lastNodesExamined;
     }
+
+    private static class Result {
+        boolean found;
+        Node node;
+        int nextThreshold;
+
+        Result(boolean found, Node node, int nextThreshold) {
+            this.found = found;
+            this.node = node;
+            this.nextThreshold = nextThreshold;
+        }
+    }
     
     /**
      * UCS Implementation with compound moves
@@ -221,6 +233,107 @@ public class Solver {
         return null; // No solution found, but lastNodesExamined has been updated
     }
 
+    public Solution solveBeam(Board initialBoard, String heuristic, boolean isCompound) {
+        int beamWidth = 50;
+        List<Node> frontier = new ArrayList<>();
+        Set<String> visited = new HashSet<>();
+        lastNodesExamined = 0;
+
+        int h = calculateHeuristic(initialBoard, heuristic);
+        Node startNode = new Node(initialBoard, null, null, 0, h, h);
+        frontier.add(startNode);
+
+        while (!frontier.isEmpty()) {
+            List<Node> nextLevel = new ArrayList<>();
+
+            for (Node current : frontier) {
+                String stateString = current.board.getStateString();
+
+                if (visited.contains(stateString)) {
+                    continue;
+                }
+
+                visited.add(stateString);
+                lastNodesExamined++;
+
+                // Goal check
+                if (current.board.isSolved()) {
+                    return reconstructSolution(current, lastNodesExamined);
+                }
+
+                // Generate children
+                List<CompoundMove> compoundMoves = generateCompoundMoves(current.board, isCompound);
+
+                for (CompoundMove move : compoundMoves) {
+                    Board newBoard = makeCompoundMove(current.board, move);
+                    String newStateString = newBoard.getStateString();
+
+                    if (!visited.contains(newStateString)) {
+                        int newH = calculateHeuristic(newBoard, heuristic);
+                        Node newNode = new Node(newBoard, move, current, current.cost + 1, newH, newH);
+                        nextLevel.add(newNode);
+                    }
+                }
+            }
+
+            // Sort all next level nodes by heuristic value and select top beamWidth
+            nextLevel.sort(Comparator.comparingInt(n -> n.h));
+            frontier = nextLevel.subList(0, Math.min(beamWidth, nextLevel.size()));
+        }
+
+        return null; // No solution found
+    }
+
+    public Solution solveIDAStar(Board initialBoard, String heuristic, boolean isCompound) {
+        lastNodesExamined = 0;
+
+        int h = calculateHeuristic(initialBoard, heuristic);
+        Node root = new Node(initialBoard, null, null, 0, h, h);
+        int threshold = root.f;
+
+        while (true) {
+            Set<String> visited = new HashSet<>();
+            Result result = dfsIDA(root, heuristic, isCompound, threshold, visited);
+            if (result.found) {
+                return reconstructSolution(result.node, lastNodesExamined);
+            }
+            if (result.nextThreshold == Integer.MAX_VALUE) {
+                return null; // No solution
+            }
+            threshold = result.nextThreshold;
+        }
+    }
+
+    private Result dfsIDA(Node current, String heuristic, boolean isCompound, int threshold, Set<String> visited) {
+        lastNodesExamined++;
+        String stateString = current.board.getStateString();
+        if (visited.contains(stateString)) return new Result(false, null, Integer.MAX_VALUE);
+        visited.add(stateString);
+
+        int f = current.cost + current.h;
+        if (f > threshold) return new Result(false, null, f);
+        if (current.board.isSolved()) return new Result(true, current, f);
+
+        int minThreshold = Integer.MAX_VALUE;
+
+        for (CompoundMove move : generateCompoundMoves(current.board, isCompound)) {
+            Board newBoard = makeCompoundMove(current.board, move);
+            String newStateString = newBoard.getStateString();
+            if (visited.contains(newStateString)) continue;
+
+            int newH = calculateHeuristic(newBoard, heuristic);
+            Node child = new Node(newBoard, move, current, current.cost + 1, newH, current.cost + 1 + newH);
+            Result result = dfsIDA(child, heuristic, isCompound, threshold, visited);
+
+            if (result.found) return result;
+            minThreshold = Math.min(minThreshold, result.nextThreshold);
+        }
+
+        visited.remove(stateString);
+        return new Result(false, null, minThreshold);
+    }
+
+
     private List<CompoundMove> generateCompoundMoves(Board board) {
         return generateCompoundMoves(board, true); // default isCompound = true
     }
@@ -409,6 +522,9 @@ public class Solver {
             case "blocking count":
             case "blocking":
                 return calculateBlockingCount(board);
+            case "clearing moves":
+            case "clearing":
+                return calculateClearingMoves(board);
             default:
                 return calculateManhattanDistance(board);
         }
@@ -421,12 +537,12 @@ public class Solver {
         Piece primaryPiece = board.getPrimaryPiece();
         if (primaryPiece == null) return Integer.MAX_VALUE;
         
-        Position exitPos = board.getExitPosition();
+        cli.Position exitPos = board.getExitPosition();
         if (exitPos == null) return Integer.MAX_VALUE;
         
         // Get the position of primary piece that's closest to exit
         int minDistance = Integer.MAX_VALUE;
-        for (Position pos : primaryPiece.getPositions()) {
+        for (cli.Position pos : primaryPiece.getPositions()) {
             int distance = Math.abs(pos.row - exitPos.row) + Math.abs(pos.col - exitPos.col);
             minDistance = Math.min(minDistance, distance);
         }
@@ -441,7 +557,7 @@ public class Solver {
         Piece primaryPiece = board.getPrimaryPiece();
         if (primaryPiece == null) return Integer.MAX_VALUE;
         
-        Position exitPos = board.getExitPosition();
+        cli.Position exitPos = board.getExitPosition();
         if (exitPos == null) return Integer.MAX_VALUE;
         
         // We need to account for the orientation of the piece and the exit side
@@ -451,13 +567,13 @@ public class Solver {
             // For horizontal piece
             if (exitSide == Exit.RIGHT) {
                 // Need to get rightmost position of piece
-                Position rightmost = primaryPiece.getPositions().stream()
+                cli.Position rightmost = primaryPiece.getPositions().stream()
                     .max(Comparator.comparingInt(p -> p.col))
                     .orElse(primaryPiece.getPositions().get(0));
                 return board.getWidth() - rightmost.col - 1; // Distance to right edge
             } else if (exitSide == Exit.LEFT) {
                 // Need to get leftmost position of piece
-                Position leftmost = primaryPiece.getPositions().stream()
+                cli.Position leftmost = primaryPiece.getPositions().stream()
                     .min(Comparator.comparingInt(p -> p.col))
                     .orElse(primaryPiece.getPositions().get(0));
                 return leftmost.col; // Distance to left edge
@@ -469,13 +585,13 @@ public class Solver {
             // For vertical piece
             if (exitSide == Exit.BOTTOM) {
                 // Need to get bottommost position of piece
-                Position bottommost = primaryPiece.getPositions().stream()
+                cli.Position bottommost = primaryPiece.getPositions().stream()
                     .max(Comparator.comparingInt(p -> p.row))
                     .orElse(primaryPiece.getPositions().get(0));
                 return board.getHeight() - bottommost.row - 1; // Distance to bottom edge
             } else if (exitSide == Exit.TOP) {
                 // Need to get topmost position of piece
-                Position topmost = primaryPiece.getPositions().stream()
+                cli.Position topmost = primaryPiece.getPositions().stream()
                     .min(Comparator.comparingInt(p -> p.row))
                     .orElse(primaryPiece.getPositions().get(0));
                 return topmost.row; // Distance to top edge
@@ -493,7 +609,7 @@ public class Solver {
         Piece primaryPiece = board.getPrimaryPiece();
         if (primaryPiece == null) return Integer.MAX_VALUE;
         
-        Position exitPos = board.getExitPosition();
+        cli.Position exitPos = board.getExitPosition();
         if (exitPos == null) return Integer.MAX_VALUE;
         
         int blockingCount = 0;
@@ -507,7 +623,7 @@ public class Solver {
             int startCol, endCol;
             if (board.getExitSide() == Exit.RIGHT) {
                 // Rightmost position of primary piece
-                Position rightmost = primaryPiece.getPositions().stream()
+                cli.Position rightmost = primaryPiece.getPositions().stream()
                     .max(Comparator.comparingInt(p -> p.col))
                     .orElse(primaryPiece.getPositions().get(0));
                 
@@ -515,7 +631,7 @@ public class Solver {
                 endCol = board.getWidth();
             } else {
                 // Leftmost position of primary piece
-                Position leftmost = primaryPiece.getPositions().stream()
+                cli.Position leftmost = primaryPiece.getPositions().stream()
                     .min(Comparator.comparingInt(p -> p.col))
                     .orElse(primaryPiece.getPositions().get(0));
                 
@@ -542,7 +658,7 @@ public class Solver {
             int startRow, endRow;
             if (board.getExitSide() == Exit.BOTTOM) {
                 // Bottommost position of primary piece
-                Position bottommost = primaryPiece.getPositions().stream()
+                cli.Position bottommost = primaryPiece.getPositions().stream()
                     .max(Comparator.comparingInt(p -> p.row))
                     .orElse(primaryPiece.getPositions().get(0));
                 
@@ -550,7 +666,7 @@ public class Solver {
                 endRow = board.getHeight();
             } else {
                 // Topmost position of primary piece
-                Position topmost = primaryPiece.getPositions().stream()
+                cli.Position topmost = primaryPiece.getPositions().stream()
                     .min(Comparator.comparingInt(p -> p.row))
                     .orElse(primaryPiece.getPositions().get(0));
                 
@@ -573,7 +689,149 @@ public class Solver {
         
         return blockingCount;
     }
-    
+
+    private int calculateClearingMoves(Board board) {
+        Piece primary = board.getPrimaryPiece();
+        if (primary == null) return Integer.MAX_VALUE;
+        
+        // 1. Calculate direct exit distance
+        int directDistance = calculateDirectDistance(board);
+        
+        // 2. Identify critical path blockers
+        Set<Piece> blockers = getCriticalBlockers(board);
+        
+        // 3. Calculate minimal clearing moves for each blocker
+        int totalMoves = 0;
+        for (Piece blocker : blockers) {
+            int moves = calculateBlockerMoves(blocker, primary, board);
+            if (moves == Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            totalMoves += moves;
+        }
+        
+        return directDistance + totalMoves;
+    }
+
+    private Set<Piece> getCriticalBlockers(Board board) {
+        Set<Piece> blockers = new HashSet<>();
+        Piece primary = board.getPrimaryPiece();
+        Exit exit = board.getExitSide();
+        
+        if (primary.getOrientation() == Orientation.HORIZONTAL) {
+            int row = primary.getFirstPosition().row;
+            int startCol = exit == Exit.RIGHT ? 
+                primary.getRightmostCol() + 1 : 0;
+            int endCol = exit == Exit.RIGHT ? 
+                board.getWidth() : primary.getLeftmostCol();
+            
+            // Check primary's row and adjacent vertical blockers
+            for (int col = startCol; col < endCol; col++) {
+                // Direct blockers in path
+                if (board.getGrid()[row][col] != '.' && 
+                    board.getGrid()[row][col] != primary.getId()) {
+                    blockers.add(board.getPieceAt(row, col));
+                }
+                
+                // Vertical blockers crossing the path
+                for (Piece p : board.getPieces()) {
+                    if (p.getOrientation() == Orientation.VERTICAL && 
+                        p.getLeftmostCol() == col && 
+                        p.getTopmostRow() <= row && 
+                        p.getBottommostRow() >= row) {
+                        blockers.add(p);
+                    }
+                }
+            }
+        } else { // Vertical primary
+            int col = primary.getFirstPosition().col;
+            int startRow = exit == Exit.BOTTOM ? 
+                primary.getBottommostRow() + 1 : 0;
+            int endRow = exit == Exit.BOTTOM ? 
+                board.getHeight() : primary.getTopmostRow();
+            
+            for (int row = startRow; row < endRow; row++) {
+                // Direct blockers in path
+                if (board.getGrid()[row][col] != '.' && 
+                    board.getGrid()[row][col] != primary.getId()) {
+                    blockers.add(board.getPieceAt(row, col));
+                }
+                
+                // Horizontal blockers crossing the path
+                for (Piece p : board.getPieces()) {
+                    if (p.getOrientation() == Orientation.HORIZONTAL && 
+                        p.getTopmostRow() == row && 
+                        p.getLeftmostCol() <= col && 
+                        p.getRightmostCol() >= col) {
+                        blockers.add(p);
+                    }
+                }
+            }
+        }
+        return blockers;
+    }
+
+    private int calculateBlockerMoves(Piece blocker, Piece primary, Board board) {
+        // Determine available space in both possible directions
+        int forwardSpace = calculateClearSpace(blocker, true, board);
+        int backwardSpace = calculateClearSpace(blocker, false, board);
+        
+        // Minimum moves needed to clear the path
+        int requiredClearance = getRequiredClearance(blocker, primary, board);
+        
+        int forwardMoves = (requiredClearance <= forwardSpace) ? 
+            (blocker.getLength() + requiredClearance) : Integer.MAX_VALUE;
+        int backwardMoves = (requiredClearance <= backwardSpace) ? 
+            (blocker.getLength() + requiredClearance) : Integer.MAX_VALUE;
+        
+        return Math.min(forwardMoves, backwardMoves);
+    }
+
+    private int calculateClearSpace(Piece blocker, boolean moveForward, Board board) {
+        int space = 0;
+        if (blocker.getOrientation() == Orientation.HORIZONTAL) {
+            int checkCol = moveForward ? 
+                blocker.getRightmostCol() + 1 : blocker.getLeftmostCol() - 1;
+            while (moveForward ? checkCol < board.getWidth() : checkCol >= 0) {
+                boolean columnClear = true;
+                for (int r = blocker.getTopmostRow(); r <= blocker.getBottommostRow(); r++) {
+                    if (board.getGrid()[r][checkCol] != '.') {
+                        columnClear = false;
+                        break;
+                    }
+                }
+                if (!columnClear) break;
+                space++;
+                checkCol += moveForward ? 1 : -1;
+            }
+        } else { // Vertical
+            int checkRow = moveForward ? 
+                blocker.getBottommostRow() + 1 : blocker.getTopmostRow() - 1;
+            while (moveForward ? checkRow < board.getHeight() : checkRow >= 0) {
+                boolean rowClear = true;
+                for (int c = blocker.getLeftmostCol(); c <= blocker.getRightmostCol(); c++) {
+                    if (board.getGrid()[checkRow][c] != '.') {
+                        rowClear = false;
+                        break;
+                    }
+                }
+                if (!rowClear) break;
+                space++;
+                checkRow += moveForward ? 1 : -1;
+            }
+        }
+        return space;
+    }
+
+    private int getRequiredClearance(Piece blocker, Piece primary, Board board) {
+        // Calculate how far the blocker needs to move to clear the path
+        if (primary.getOrientation() == Orientation.HORIZONTAL) {
+            int blockerColSpan = blocker.getLeftmostCol() + blocker.getLength() - 1;
+            return Math.max(0, blockerColSpan - primary.getRightmostCol() + 1);
+        } else {
+            int blockerRowSpan = blocker.getTopmostRow() + blocker.getLength() - 1;
+            return Math.max(0, blockerRowSpan - primary.getBottommostRow() + 1);
+        }
+    }
+        
     /**
      * Inner class representing a search node
      */

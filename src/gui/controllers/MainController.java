@@ -175,7 +175,9 @@ public class MainController {
             "Uniform Cost Search (UCS)",
             "Greedy Best First Search",
             "A* Search",
-            "Dijkstra's Algorithm"
+            "Dijkstra's Algorithm",
+            "Beam Search",
+            "Iterative Deepening A*"
         );
         algorithmComboBox.getSelectionModel().selectFirst();
         
@@ -183,7 +185,8 @@ public class MainController {
         heuristicComboBox.getItems().addAll(
             "Manhattan Distance",
             "Direct Distance",
-            "Blocking Count"
+            "Blocking Count",
+            "Clearing Moves"
         );
         heuristicComboBox.getSelectionModel().selectFirst();
         
@@ -191,7 +194,7 @@ public class MainController {
         heuristicComboBox.setDisable(true);
         algorithmComboBox.setOnAction(e -> {
             String selected = algorithmComboBox.getValue();
-            boolean needsHeuristic = selected.contains("Greedy") || selected.contains("A*");
+            boolean needsHeuristic = selected.contains("Greedy") || selected.contains("A*") || selected.contains("Beam") || selected.contains("Iterative");
             heuristicComboBox.setDisable(!needsHeuristic);
         });
         
@@ -569,6 +572,10 @@ public class MainController {
                     solution = solver.solveGreedy(currentBoard, heuristic, isCompound);
                 } else if (algorithm.contains("A*")) {
                     solution = solver.solveAStar(currentBoard, heuristic, isCompound);
+                } else if (algorithm.contains("Beam")) {
+                    solution = solver.solveBeam(currentBoard, heuristic, isCompound);
+                } else if (algorithm.contains("Iterative")) {
+                    solution = solver.solveIDAStar(currentBoard, heuristic, isCompound);
                 }
                 
                 long endTime = System.currentTimeMillis();
