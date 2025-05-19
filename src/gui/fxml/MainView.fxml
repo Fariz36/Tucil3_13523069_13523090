@@ -106,7 +106,7 @@
                                                          </content>
                                                       </ScrollPane>
                                                       <Label text="Use 'P' for primary piece, 'K' for exit, other uppercase letters for pieces, '.' for empty cells" wrapText="true" />
-                                                      <Button fx:id="solveMatrixButton" mnemonicParsing="false" onAction="#handleSolveMatrix" styleClass="primary-button" text="Load Matrix" />
+                                                      <Button fx:id="solveButton" mnemonicParsing="false" onAction="#handleSolve" styleClass="primary-button" text="Load Matrix" />
                                                    </children>
                                                 </VBox>
                                              </children>

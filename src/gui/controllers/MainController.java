@@ -15,6 +15,7 @@ import cli.Piece;
 import cli.Position;
 import cli.Solution;
 import cli.Solver;
+import java.io.Console;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -45,6 +46,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 /**
  * MainController - Combined controller for inputs and visualization
@@ -94,7 +100,6 @@ public class MainController {
     
     // Board state and data
     private Board currentBoard;
-    private List<TextField> matrixCells = new ArrayList<>();
     
     // Solution and animation state
     private Solution solution;
@@ -176,7 +181,7 @@ public class MainController {
             "Greedy Best First Search",
             "A* Search",
             "Dijkstra's Algorithm",
-            "Beam Search",
+            "Beam Search [Not Complete Search]",
             "Iterative Deepening A*"
         );
         algorithmComboBox.getSelectionModel().selectFirst();
@@ -406,14 +411,30 @@ public class MainController {
         isCompound = !isCompound;
         updateCompoundButtonText();
     }
-    
-    /**
-     * Handle create matrix button click
-     */
-    @FXML
-    private void handleCreateMatrix() {
-        int rows = rowSpinner.getValue();
-        int cols = colSpinner.getValue();
+
+    private void handleParseMatrix(int rows, int cols, int numPieces, String configText) {
+        String finalConfigText = rows + " " + cols + "\n" + numPieces + "\n" + configText;
+        configText = finalConfigText;
+        
+        System.out.println("text : " + configText);
+        if (configText.trim().isEmpty()) {
+            updateStatus("Error: Please enter a configuration", true);
+            return;
+        }
+        
+        // Make sure we have at least 3 lines (dimensions, pieces count, and at least one board row)
+        String[] lines = configText.split("\\n");
+        if (lines.length < 3) {
+            updateStatus("Error: Configuration must have at least 3 lines", true);
+            return;
+        }
+        
+        // Parse dimensions to determine board size
+        String[] dimensions = lines[0].trim().split("\\s+");
+        if (dimensions.length != 2) {
+            updateStatus("Error: First line must contain exactly 2 integers for board dimensions", true);
+            return;
+        }
         
         // Validate minimum board size (at least 1x2 or 2x1)
         if (rows < 1 || cols < 1 || (rows == 1 && cols == 1)) {
@@ -421,120 +442,189 @@ public class MainController {
             return;
         }
         
-        matrixGrid.getChildren().clear();
-        matrixCells.clear();
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                TextField cell = new TextField();
-                cell.setPrefWidth(40);
-                cell.setPrefHeight(40);
-                cell.getStyleClass().add("matrix-cell");
-                cell.setAlignment(javafx.geometry.Pos.CENTER);
-                cell.setTextFormatter(new TextFormatter<>(change -> {
-                    String newText = change.getControlNewText();
-                    if (newText.length() <= 1 && (newText.isEmpty() || 
-                        newText.matches("[A-Z.]") || newText.equals("K"))) {
-                        return change;
-                    }
-                    return null;
-                }));
-                
-                matrixGrid.add(cell, j, i);
-                matrixCells.add(cell);
-            }
-        }
-        
-        matrixInputContainer.setVisible(true);
-        solveMatrixButton.setDisable(false);
-    }
-    
-    /**
-     * Handle solve matrix button click - Uses FileParser for consistent parsing
-     */
-    @FXML
-    private void handleSolveMatrix() {
-        int rows = rowSpinner.getValue();
-        int cols = colSpinner.getValue();
-        int numPieces = piecesSpinner.getValue();
-        
-        // Validate minimum board size (at least 1x2 or 2x1)
-        if (rows < 1 || cols < 1 || (rows == 1 && cols == 1)) {
-            updateStatus("Error: Board size must be at least 1x2 or 2x1. Current size: " + rows + "x" + cols, true);
-            return;
-        }
-        
-        // Build configuration string from matrix
-        StringBuilder config = new StringBuilder();
-        config.append(rows).append(" ").append(cols).append("\n");
-        config.append(numPieces).append("\n");
-        
-        boolean foundP = false;
-        boolean foundK = false;
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                int index = i * cols + j;
-                String value = matrixCells.get(index).getText();
-                if (value.isEmpty()) value = ".";
-                
-                if (value.equals("P")) foundP = true;
-                if (value.equals("K")) foundK = true;
-                
-                config.append(value);
-            }
-            if (i < rows - 1) config.append("\n");
-        }
-        
-        if (!foundP) {
-            updateStatus("Error: Primary piece 'P' not found in matrix", true);
-            return;
-        }
-        
-        if (!foundK) {
-            updateStatus("Error: Exit 'K' not found in matrix", true);
-            return;
-        }
-        
-        updateStatus("Processing matrix configuration...");
+        updateStatus("Parsing configuration...");
         progressBar.setVisible(true);
         progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
         
-        // Parse the configuration in background using FileParser
+        // Run parsing in background
         new Thread(() -> {
             try {
-                File tempFile = File.createTempFile("rushHourMatrix", ".txt");
+                // Save to temporary file and parse using FileParser
+                File tempFile = File.createTempFile("rushHour", ".txt");
                 try (FileWriter writer = new FileWriter(tempFile)) {
-                    writer.write(config.toString());
+                    writer.write(finalConfigText);
                 }
                 
                 // Use the same FileParser logic used in Board.readFromFile
                 currentBoard = Board.readFromFile(tempFile.getAbsolutePath());
-                tempFile.delete();
+                //tempFile.delete();
                 
                 Platform.runLater(() -> {
                     progressBar.setVisible(false);
                     
+                    // Check if primary piece is aligned with exit
                     if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
                         updateStatus("Warning: Primary piece and exit are not aligned. The puzzle may not be solvable.", true);
                     } else {
-                        updateStatus("Matrix configuration loaded successfully!");
+                        updateStatus("Configuration parsed successfully!");
                     }
                     
+                    // Enable solve button
                     solveButton.setDisable(false);
+                    
+                    // Show the board
                     displayInitialBoard(currentBoard);
                 });
                 
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     progressBar.setVisible(false);
-                    updateStatus("Error parsing matrix: " + e.getMessage(), true);
+                    updateStatus("Error parsing configuration: " + e.getMessage(), true);
                     currentBoard = null;
                     solveButton.setDisable(true);
                 });
             }
         }).start();
     }
+    
+    /**
+     * Handle create matrix button click
+     */
+    @FXML
+    private void handleCreateMatrix() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/MatrixInputWindow.fxml"));
+            Parent root = loader.load();
+
+            if (root == null) {
+                updateStatus("Error loading matrix input window", true);
+                return;
+            }
+
+            MatrixInputWindowController controller = loader.getController();
+
+            int rows = rowSpinner.getValue();
+            int cols = colSpinner.getValue();
+            int numPieces = piecesSpinner.getValue();
+
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Fill Matrix");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(new Scene(root));
+            controller.initMatrix(rows, cols, popupStage);
+
+            popupStage.showAndWait();
+
+            // After closing, retrieve matrix
+            String FinalString = controller.getFinalString();
+
+            // You can now use matrixCells in your main controller
+
+            handleParseMatrix(rows, cols, numPieces, FinalString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    /**
+     * Handle solve matrix button click - Uses FileParser for consistent parsing
+     */
+    // @FXML
+    // private void handleSolveMatrix() {
+    //     int rows = matrixCells.size();
+    //     int cols = colSpinner.getValue();
+    //     int numPieces = piecesSpinner.getValue();
+        
+    //     // Validate minimum board size (at least 1x2 or 2x1)
+    //     if (rows < 1 || cols < 1 || (rows == 1 && cols == 1)) {
+    //         updateStatus("Error: Board size must be at least 1x2 or 2x1. Current size: " + rows + "x" + cols, true);
+    //         return;
+    //     }
+        
+    //     // Build configuration string from matrix
+    //     StringBuilder config = new StringBuilder();
+    //     config.append(rows).append(" ").append(cols).append("\n");
+    //     config.append(numPieces).append("\n");
+        
+    //     boolean foundP = false;
+    //     boolean foundK = false;
+        
+    //     for (int i = 0; i < matrixCells.size(); i++) {
+    //         String row = matrixCells.get(i);         
+    //         for (char c : row.toCharArray()) {
+    //             if (c == 'P') {
+    //                 foundP = true;
+    //             } else if (c == 'K') {
+    //                 foundK = true;
+    //             }
+    //         }
+    //         config.append(row).append("\n");
+    //     }
+
+    //     // for (int i = 0; i < rows; i++) {
+    //     //     for (int j = 0; j < cols; j++) {
+    //     //         int index = i * cols + j;
+    //     //         String value = matrixCells.get(index).getText();
+    //     //         if (value.isEmpty()) value = ".";
+                
+    //     //         if (value.equals("P")) foundP = true;
+    //     //         if (value.equals("K")) foundK = true;
+                
+    //     //         config.append(value);
+    //     //     }
+    //     //     if (i < rows - 1) config.append("\n");
+    //     // }
+        
+    //     if (!foundP) {
+    //         updateStatus("Error: Primary piece 'P' not found in matrix", true);
+    //         return;
+    //     }
+        
+    //     if (!foundK) {
+    //         updateStatus("Error: Exit 'K' not found in matrix", true);
+    //         return;
+    //     }
+        
+    //     updateStatus("Processing matrix configuration...");
+    //     progressBar.setVisible(true);
+    //     progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+        
+    //     // Parse the configuration in background using FileParser
+    //     new Thread(() -> {
+    //         try {
+    //             File tempFile = File.createTempFile("rushHourMatrix", ".txt");
+    //             try (FileWriter writer = new FileWriter(tempFile)) {
+    //                 writer.write(config.toString());
+    //             }
+                
+    //             // Use the same FileParser logic used in Board.readFromFile
+    //             currentBoard = Board.readFromFile(tempFile.getAbsolutePath());
+    //             //tempFile.delete();
+                
+    //             Platform.runLater(() -> {
+    //                 progressBar.setVisible(false);
+                    
+    //                 if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
+    //                     updateStatus("Warning: Primary piece and exit are not aligned. The puzzle may not be solvable.", true);
+    //                 } else {
+    //                     updateStatus("Matrix configuration loaded successfully!");
+    //                 }
+                    
+    //                 solveButton.setDisable(false);
+    //                 displayInitialBoard(currentBoard);
+    //             });
+                
+    //         } catch (Exception e) {
+    //             Platform.runLater(() -> {
+    //                 progressBar.setVisible(false);
+    //                 updateStatus("Error parsing matrix: " + e.getMessage(), true);
+    //                 currentBoard = null;
+    //                 solveButton.setDisable(true);
+    //             });
+    //         }
+    //     }).start();
+    // }
     
     /**
      * Handle solve button click

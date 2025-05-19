@@ -42,6 +42,7 @@ public class Solver {
      * UCS Implementation with compound moves
      */
     public Solution solveUCS(Board initialBoard, boolean isCompound) {
+        System.out.println("Searching for solution using UCS");
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
         Set<String> visited = new HashSet<>();
         lastNodesExamined = 0; // Reset counter
@@ -87,6 +88,7 @@ public class Solver {
      * A* Search Implementation with compound moves
      */
     public Solution solveAStar(Board initialBoard, String heuristic, boolean isCompound) {
+        System.out.println("Searching for solution using A* with heuristic: " + heuristic);
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.f));
         Set<String> visited = new HashSet<>();
         Map<String, Node> nodeMap = new HashMap<>();
@@ -141,6 +143,7 @@ public class Solver {
      * Greedy Best First Search Implementation with compound moves
      */
     public Solution solveGreedy(Board initialBoard, String heuristic, boolean isCompound) {
+        System.out.println("Searching for solution using Greedy Best First Search with heuristic: " + heuristic);
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.h));
         Set<String> visited = new HashSet<>();
         lastNodesExamined = 0; // Reset counter
@@ -187,6 +190,7 @@ public class Solver {
      * Dijkstra's algorithm implementation - similar to UCS but with different node mapping
      */
     public Solution solveDijkstra(Board initialBoard, boolean isCompound) {
+        System.out.println("Searching for solution using Dijkstra's algorithm");
         PriorityQueue<Node> frontier = new PriorityQueue<>(Comparator.comparingInt(n -> n.cost));
         Set<String> visited = new HashSet<>();
         Map<String, Integer> costSoFar = new HashMap<>();
@@ -234,6 +238,7 @@ public class Solver {
     }
 
     public Solution solveBeam(Board initialBoard, String heuristic, boolean isCompound) {
+        System.out.println("Searching for solution using Beam Search with heuristic: " + heuristic);
         int beamWidth = 50;
         List<Node> frontier = new ArrayList<>();
         Set<String> visited = new HashSet<>();
@@ -285,6 +290,8 @@ public class Solver {
     }
 
     public Solution solveIDAStar(Board initialBoard, String heuristic, boolean isCompound) {
+        // IDA* Search Implementation with compound moves
+        System.out.println("Searchinig for solution using IDA* with heuristic: " + heuristic);
         lastNodesExamined = 0;
 
         int h = calculateHeuristic(initialBoard, heuristic);

@@ -370,7 +370,11 @@ public class InputController {
                     solution = solver.solveGreedy(currentBoard, heuristic, isCompound);
                 } else if (algorithm.contains("A*")) {
                     solution = solver.solveAStar(currentBoard, heuristic, isCompound);
-                }
+                } else if (algorithm.contains("Beam")) {
+                    solution = solver.solveBeam(currentBoard, heuristic, isCompound);
+                } else if (algorithm.contains("Iterative")) {
+                    solution = solver.solveIDAStar(currentBoard, heuristic, isCompound);
+                } 
                 
                 long endTime = System.currentTimeMillis();
                 
