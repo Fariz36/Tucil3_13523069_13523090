@@ -480,3 +480,120 @@
 HBox Label {
     -fx-text-fill: white;
 }
+
+/* Board container with zoom area */
+.board-container {
+    -fx-background-color: rgba(30, 30, 30, 0.7);
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 15, 0, 0, 0);
+}
+
+/* Zoomable canvas container */
+.zoomable-canvas-container {
+     -fx-background-color: transparent; /* More transparent */
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-border-width: 1px;
+    -fx-min-height: 400px;
+}
+
+/* Improved vertical zoom controls */
+.zoom-controls-vertical {
+    -fx-background-color: rgba(40, 40, 40, 0.8);
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+    -fx-alignment: center;
+    -fx-pref-width: 50px;
+    -fx-max-width: 50px;
+}
+
+/* Zoom buttons with distinct styling */
+.zoom-button {
+    -fx-background-color: #2a6fdb;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-background-radius: 15;
+    -fx-font-size: 16px;
+    -fx-padding: 0;
+    -fx-alignment: center;
+}
+
+.zoom-button:hover {
+    -fx-background-color: #3a7feb;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.3), 5, 0, 0, 0);
+}
+
+/* Vertical slider styling */
+.zoom-controls-vertical .slider {
+    -fx-orientation: vertical;
+    -fx-pref-height: 160px;
+}
+
+.zoom-controls-vertical .slider .track {
+    -fx-background-color: #555555;
+}
+
+.zoom-controls-vertical .slider .thumb {
+    -fx-background-color: #2a6fdb;
+    -fx-background-radius: 10;
+    -fx-pref-height: 15px;
+    -fx-pref-width: 15px;
+}
+
+.zoom-percent-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 3 0;
+}
+
+/* Controls area below the board */
+.board-controls-area {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-spacing: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+}
+
+/* Improved control buttons */
+.control-button {
+    -fx-background-color: #2a6fdb;
+    -fx-text-fill: white;
+    -fx-padding: 8 15;
+    -fx-font-weight: normal;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+}
+
+.control-button:hover {
+    -fx-background-color: #3a7feb;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
+}
+
+.control-button:pressed {
+    -fx-background-color: #1a5fcb;
+}
+
+/* Improved move label with shadow for better visibility */
+.move-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 2, 0, 0, 1);
+}
+
+/* Stats label with better visibility */
+.stats-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #aee6ff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 1, 0, 0, 1);
+}

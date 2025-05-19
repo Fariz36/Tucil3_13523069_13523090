@@ -132,13 +132,11 @@
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" spacing="10.0">
-                              <HBox alignment="CENTER_LEFT" spacing="10.0">
-                              <children>
-                                 <Label text="Compound Move:" style="-fx-text-fill: white;" />
-                                 <Button fx:id="compoundButton" text="OFF" onAction="#handleToggleCompound" />
-                              </children>
-                           </HBox>
-                           </HBox>
+                                 <children>
+                                    <Label text="Compound Move:" style="-fx-text-fill: white;" />
+                                    <Button fx:id="compoundButton" text="OFF" onAction="#handleToggleCompound" />
+                                 </children>
+                              </HBox>
                               <Button fx:id="solveButton" mnemonicParsing="false" onAction="#handleSolve" styleClass="solve-button" text="Solve Puzzle" />
                               <VBox styleClass="status-section">
                                  <children>
@@ -147,12 +145,6 @@
                                     <ProgressBar fx:id="progressBar" prefWidth="350.0" progress="0.0" visible="false" />
                                  </children>
                               </VBox>
-                              <HBox alignment="CENTER_RIGHT">
-                                 <children>
-                                    <!-- Removed the onAction handler for the mute button -->
-                                    <ToggleButton fx:id="muteButton" mnemonicParsing="false" styleClass="icon-button" text="🔊" visible="false" />
-                                 </children>
-                              </HBox>
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -160,54 +152,53 @@
                         </VBox>
                      </left>
                      <center>
-                        <AnchorPane styleClass="full-center-background">
-                           <children>
-                              <VBox fx:id="boardDisplay" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <StackPane fx:id="canvasContainer" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <VBox fx:id="welcomePane" alignment="CENTER" spacing="20.0" styleClass="welcome-pane">
-                                             <children>
-                                                <Label styleClass="welcome-title" text="Muri muri muri muri &gt;_&lt;" />
-                                                <Label styleClass="welcome-subtitle" text="Load a configuration to get started :3" />
-                                                <Label styleClass="welcome-text" text="Configure settings in the sidebar and click 'Solve Puzzle'" wrapText="true" />
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER" spacing="20.0">
-                                             <children>
-                                                <Canvas fx:id="boardCanvas" height="500.0" visible="false" width="600.0" />
-                                                <!-- Animation controls moved below the board canvas -->
-                                                <HBox fx:id="animationControls" alignment="CENTER" spacing="15.0" styleClass="animation-controls" visible="false">
-                                                   <children>
-                                                      <Button fx:id="playButton" mnemonicParsing="false" onAction="#handlePlay" styleClass="control-button" text="Play" prefWidth="80.0" prefHeight="40.0" />
-                                                      <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#handlePause" styleClass="control-button" text="Pause" prefWidth="80.0" prefHeight="40.0" />
-                                                      <Button fx:id="resetButton" mnemonicParsing="false" onAction="#handleReset" styleClass="control-button" text="Reset" prefWidth="80.0" prefHeight="40.0" />
-                                                      <Slider fx:id="speedSlider" blockIncrement="0.25" majorTickUnit="0.5" max="3.0" min="0.5" prefWidth="180.0" value="1.0" />
-                                                      <Label text="Speed" style="-fx-font-size: 14px; -fx-text-fill: white;" />
-                                                      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" styleClass="control-button" text="Save" prefWidth="80.0" prefHeight="40.0" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                                   </padding>
-                                                </HBox>
-                                                <!-- Move and stats information also moved below the board -->
-                                                <VBox alignment="CENTER" spacing="10.0">
-                                                   <children>
-                                                      <Label fx:id="moveLabel" styleClass="move-label" text="" style="-fx-font-size: 20px; -fx-text-fill: white;" />
-                                                      <Label fx:id="statsLabel" styleClass="stats-label" text="" style="-fx-font-size: 16px; -fx-text-fill: white;" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="0.0" />
-                                                   </padding>
-                                                </VBox>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </StackPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
+                        <VBox fx:id="boardDisplay" alignment="CENTER" spacing="10.0">
+                           <!-- Welcome Screen shown initially -->
+                           <VBox fx:id="welcomePane" alignment="CENTER" spacing="20.0" styleClass="welcome-pane" VBox.vgrow="ALWAYS">
+                              <children>
+                                 <Label styleClass="welcome-title" text="Muri muri muri muri &gt;_&lt;" />
+                                 <Label styleClass="welcome-subtitle" text="Load a configuration to get started :3" />
+                                 <Label styleClass="welcome-text" text="Configure settings in the sidebar and click 'Solve Puzzle'" wrapText="true" />
+                              </children>
+                           </VBox>
+                           
+                           <!-- Board area with zoom controls - hidden initially -->
+                           <BorderPane fx:id="boardContainer" visible="false" VBox.vgrow="ALWAYS">
+                              <center>
+                                 <StackPane fx:id="canvasContainer" styleClass="zoomable-canvas-container">
+                                       <Canvas fx:id="boardCanvas" height="500.0" width="600.0" />
+                                 </StackPane>
+                              </center>
+                              <!-- Remove the right section with the zoom controls -->
+                           </BorderPane>
+                           
+                           <!-- Controls and info area - always visible but components may be hidden -->
+                           <VBox alignment="CENTER" spacing="10.0" styleClass="board-controls-area">
+                              <!-- Animation controls -->
+                              <HBox fx:id="animationControls" alignment="CENTER" spacing="15.0" visible="false">
+                                 <Button fx:id="playButton" onAction="#handlePlay" styleClass="control-button" text="Play" prefWidth="80.0" prefHeight="40.0" />
+                                 <Button fx:id="pauseButton" onAction="#handlePause" styleClass="control-button" text="Pause" prefWidth="80.0" prefHeight="40.0" />
+                                 <Button fx:id="resetButton" onAction="#handleReset" styleClass="control-button" text="Reset" prefWidth="80.0" prefHeight="40.0" />
+                                 <Slider fx:id="speedSlider" blockIncrement="0.25" majorTickUnit="0.5" max="3.0" min="0.5" prefWidth="180.0" value="1.0" />
+                                 <Label text="Speed" style="-fx-font-size: 14px; -fx-text-fill: white;" />
+                                 <Button fx:id="saveButton" onAction="#handleSave" styleClass="control-button" text="Save" prefWidth="80.0" prefHeight="40.0" />
+                                 <padding>
+                                    <Insets top="10.0" bottom="10.0" />
+                                 </padding>
+                              </HBox>
+                              
+                              <!-- Information labels -->
+                              <Label fx:id="moveLabel" styleClass="move-label" style="-fx-font-size: 20px; -fx-text-fill: white;" />
+                              <Label fx:id="statsLabel" styleClass="stats-label" style="-fx-font-size: 16px; -fx-text-fill: white;" />
+                              
+                              <padding>
+                                 <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                              </padding>
+                           </VBox>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
                      </center>
                   </BorderPane>
                </children>

@@ -1,67 +1,43 @@
 package gui.controllers;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import cli.Board;
-import cli.Exit;
-import cli.Move;
-import cli.Piece;
-import cli.Position;
-import cli.Solution;
-import cli.Solver;
-import java.io.Console;
+import cli.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.util.Duration;
+import javafx.scene.Node;
+
+import java.io.*;
+import java.util.*;
 
 /**
- * MainController - Combined controller for inputs and visualization
- * Handles both the sidebar inputs and the board visualization
- * With consistent parsing for all input methods
+ * MainController class with zoom support for large board sizes
+ * Compatible with the provided FXML layout
  */
 public class MainController {
     
-    // Sidebar input elements
+    // FXML components from your layout
     @FXML private BorderPane rootContainer;
     @FXML private VBox sidebarContainer;
+    @FXML private TabPane inputTabPane;
     @FXML private TextField filePathField;
     @FXML private Button browseButton;
     @FXML private Button loadFileButton;
@@ -72,7 +48,6 @@ public class MainController {
     @FXML private Spinner<Integer> piecesSpinner;
     @FXML private GridPane matrixGrid;
     @FXML private Button createMatrixButton;
-    @FXML private Button solveMatrixButton;
     @FXML private VBox matrixInputContainer;
     @FXML private ComboBox<String> algorithmComboBox;
     @FXML private ComboBox<String> heuristicComboBox;
@@ -95,8 +70,17 @@ public class MainController {
     @FXML private Label moveLabel;
     @FXML private Label statsLabel;
     @FXML private ComboBox<String> songComboBox;
-    @FXML private Button playSelectedSongButton;
     @FXML private Button pauseSongButton;
+    @FXML private BorderPane boardContainer;
+    @FXML private VBox zoomControlsVBox;
+    
+    // Zoom-related components (will be created programmatically)
+    private HBox zoomControls;
+    private Button zoomInButton;
+    private Button zoomOutButton;
+    private Button resetZoomButton;
+    private Slider zoomSlider;
+    private Label zoomPercentLabel;
     
     // Board state and data
     private Board currentBoard;
@@ -111,7 +95,9 @@ public class MainController {
     private long executionTime;
     private int nodesExamined;
     private boolean isCompound = true;
-
+    
+    // Zoom controller
+    private ZoomController zoomController;
     
     // Visualization constants
     private static final int CELL_SIZE = 60;
@@ -128,6 +114,7 @@ public class MainController {
      */
     @FXML
     public void initialize() {
+        // Initialize songs
         ObservableList<String> songs = FXCollections.observableArrayList(
             "If_I_could_be_a_constellation.mp3",
             "Re_Re_.mp3",
@@ -139,16 +126,190 @@ public class MainController {
         songComboBox.setItems(songs);
         songComboBox.getSelectionModel().selectFirst();
 
-        // optionally play the first song by default
+        // Optionally play the first song by default
         playBackgroundMusic(songs.get(0));
 
+        // Initialize compound button
         updateCompoundButtonText();
 
-        // Initialize UI components
+        // Initialize input components
         initializeInputs();
+        
+        // Initialize zoom controls
+        createZoomControls();
         
         // Set initial status
         updateStatus("Ready to load configuration");
+    }
+
+    /**
+     * Create zoom controls programmatically since they're not in the provided FXML
+     */
+    private void createZoomControls() {
+        // Create vertical zoom slider container that will go on the right side of the canvas
+        VBox verticalZoomControls = new VBox();
+        verticalZoomControls.setSpacing(10);
+        verticalZoomControls.setAlignment(javafx.geometry.Pos.CENTER);
+        verticalZoomControls.getStyleClass().add("zoom-controls-vertical");
+        verticalZoomControls.setVisible(false);
+        verticalZoomControls.setManaged(false);
+        verticalZoomControls.setPrefWidth(50);  // Fixed width for the control panel
+        
+        // Create zoom buttons
+        zoomInButton = new Button("+");
+        zoomInButton.getStyleClass().add("zoom-button");
+        zoomInButton.setTooltip(new Tooltip("Zoom In"));
+        zoomInButton.setMaxWidth(Double.MAX_VALUE);  // Make button fill width
+        
+        zoomOutButton = new Button("-");
+        zoomOutButton.getStyleClass().add("zoom-button");
+        zoomOutButton.setTooltip(new Tooltip("Zoom Out"));
+        zoomOutButton.setMaxWidth(Double.MAX_VALUE);  // Make button fill width
+        
+        resetZoomButton = new Button("↺");  // Reset symbol
+        resetZoomButton.getStyleClass().add("zoom-button");
+        resetZoomButton.setTooltip(new Tooltip("Reset Zoom"));
+        resetZoomButton.setMaxWidth(Double.MAX_VALUE);  // Make button fill width
+        
+        // Create vertical zoom slider
+        zoomSlider = new Slider(0.25, 3.0, 1.0);
+        // Use JavaFX Orientation, not CLI Orientation
+        zoomSlider.setOrientation(javafx.geometry.Orientation.VERTICAL);  // Make slider vertical
+        zoomSlider.setShowTickMarks(true);
+        zoomSlider.setShowTickLabels(true);
+        zoomSlider.setMajorTickUnit(0.5);
+        zoomSlider.setMinorTickCount(4);
+        zoomSlider.setPrefHeight(200.0);  // Make slider adequately tall
+        
+        // Create zoom percentage label
+        zoomPercentLabel = new Label("100%");
+        zoomPercentLabel.getStyleClass().add("zoom-percent-label");
+        
+        // Add all components to the container with proper spacing
+        verticalZoomControls.getChildren().addAll(
+            zoomInButton,
+            zoomSlider,
+            zoomOutButton,
+            resetZoomButton,
+            zoomPercentLabel
+        );
+
+        // We need an HBox to match the original zoomControls type
+        HBox zoomControlsWrapper = new HBox();
+        zoomControlsWrapper.setAlignment(javafx.geometry.Pos.CENTER);
+        zoomControlsWrapper.setVisible(false);
+        zoomControlsWrapper.setManaged(false);
+        
+        // Store reference to zoom controls
+        this.zoomControls = zoomControlsWrapper;
+        
+        // IMPORTANT: Rather than modifying the canvas container directly, 
+        // we need to put the canvas in a separate container that can scroll/zoom
+        // while keeping the labels and controls fixed
+        
+        // First, check if we've already set up our custom container
+        boolean alreadySetup = false;
+        for (javafx.scene.Node node : canvasContainer.getChildren()) {
+            if (node instanceof VBox && node.getId() != null && node.getId().equals("zoomableCanvasContainer")) {
+                alreadySetup = true;
+                break;
+            }
+        }
+        
+        if (!alreadySetup) {
+            // Create a container for the zoomable canvas
+            StackPane zoomableArea = new StackPane();
+            zoomableArea.setId("zoomableCanvasContainer");
+            zoomableArea.getStyleClass().add("zoomable-canvas-container");
+            
+            // Save the original parent of the canvas
+            Parent originalParent = boardCanvas.getParent();
+            
+            // If the canvas has a parent, remove it from there
+            if (originalParent instanceof Pane) {
+                ((Pane) originalParent).getChildren().remove(boardCanvas);
+            }
+            
+            // Add canvas to zoomable area
+            zoomableArea.getChildren().add(boardCanvas);
+            
+            // Add our vertical zoom controls to the zoomable area
+            zoomableArea.getChildren().add(verticalZoomControls);
+            
+            // Position the zoom controls to the right of the canvas
+            StackPane.setAlignment(verticalZoomControls, javafx.geometry.Pos.CENTER_RIGHT);
+            // Add some margin to avoid overlap with the canvas
+            StackPane.setMargin(verticalZoomControls, new Insets(0, 20, 0, 0));
+            
+            // Create a VBox to hold the zoomable area and keep the labels below fixed
+            VBox boardContainerWithLabels = new VBox(10); // 10px spacing
+            boardContainerWithLabels.setAlignment(javafx.geometry.Pos.CENTER);
+            
+            // Add the zoomable area to the top of the VBox
+            boardContainerWithLabels.getChildren().add(zoomableArea);
+            
+            // Keep track of the original children that were below the canvas
+            List<javafx.scene.Node> belowCanvasNodes = new ArrayList<>();
+            
+            // If canvasContainer already has children, identify which ones are below the canvas
+            // and add them to our new container in the same order
+            if (canvasContainer.getChildren().contains(boardCanvas)) {
+                int canvasIndex = canvasContainer.getChildren().indexOf(boardCanvas);
+                for (int i = canvasIndex + 1; i < canvasContainer.getChildren().size(); i++) {
+                    belowCanvasNodes.add(canvasContainer.getChildren().get(i));
+                }
+                
+                // Remove all nodes that we've identified
+                canvasContainer.getChildren().removeAll(belowCanvasNodes);
+                
+                // Add them to our new container
+                boardContainerWithLabels.getChildren().addAll(belowCanvasNodes);
+            }
+            
+            // Add our new container to the canvas container
+            canvasContainer.getChildren().add(boardContainerWithLabels);
+        }
+        
+        // Set up event handlers for buttons
+        resetZoomButton.setOnAction(e -> {
+            if (zoomController != null) {
+                zoomController.resetZoom();
+                updateZoomPercentLabel();
+            }
+        });
+        
+        zoomInButton.setOnAction(e -> {
+            if (zoomController != null) {
+                zoomController.zoomIn();
+                updateZoomPercentLabel();
+            }
+        });
+        
+        zoomOutButton.setOnAction(e -> {
+            if (zoomController != null) {
+                zoomController.zoomOut();
+                updateZoomPercentLabel();
+            }
+        });
+        
+        // Set up listener for slider changes
+        zoomSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            updateZoomPercentLabel();
+            if (zoomController != null) {
+                zoomController.zoom(newVal.doubleValue());
+            }
+        });
+    }
+
+    
+    /**
+     * Update zoom percentage label
+     */
+    private void updateZoomPercentLabel() {
+        if (zoomPercentLabel != null && zoomSlider != null) {
+            int percentage = (int) (zoomSlider.getValue() * 100);
+            zoomPercentLabel.setText(percentage + "%");
+        }
     }
 
     /**
@@ -156,9 +317,9 @@ public class MainController {
      */
     private void initializeInputs() {
         // Initialize spinners with a minimum value of 1
-        rowSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 6));
-        colSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 6));
-        piecesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 12));
+        rowSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 25, 6));
+        colSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 25, 6));
+        piecesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 12));
         
         // Add a listener to prevent 1x1 boards
         rowSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -166,6 +327,9 @@ public class MainController {
                 colSpinner.getValueFactory().setValue(2);
                 updateStatus("Board size must be at least 1x2 or 2x1", true);
             }
+            
+            // Show zoom controls for larger boards
+            checkAndShowZoomControls();
         });
         
         colSpinner.valueProperty().addListener((obs, oldVal, newVal) -> {
@@ -173,6 +337,9 @@ public class MainController {
                 rowSpinner.getValueFactory().setValue(2);
                 updateStatus("Board size must be at least 1x2 or 2x1", true);
             }
+            
+            // Show zoom controls for larger boards
+            checkAndShowZoomControls();
         });
         
         // Initialize algorithm dropdown
@@ -214,6 +381,18 @@ public class MainController {
     }
     
     /**
+     * Check if zoom controls should be shown based on board size
+     */
+    private void checkAndShowZoomControls() {
+        boolean largeBoard = rowSpinner.getValue() > 10 || colSpinner.getValue() > 10;
+        
+        if (zoomControls != null) {
+            zoomControls.setVisible(largeBoard);
+            zoomControls.setManaged(largeBoard);
+        }
+    }
+    
+    /**
      * Initialize canvas and animation
      */
     private void initializeCanvas() {
@@ -240,8 +419,167 @@ public class MainController {
         speedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             animation.setRate(newVal.doubleValue());
         });
+        
+        // Initialize zoom controller
+        zoomController = new ZoomController(
+            boardCanvas, 
+            canvasContainer, 
+            zoomInButton, 
+            zoomOutButton, 
+            zoomSlider
+        );
+        
+        // Show zoom controls for large boards
+        checkAndShowZoomControls();
     }
     
+    private void updateCompoundButtonText() {
+        if (compoundButton != null) {
+            compoundButton.setText(isCompound ? "ON" : "OFF");
+        }
+    }
+
+    /**
+     * Adjust canvas size based on board dimensions
+     */
+    private void adjustCanvasSize(Board board) {
+        int width = board.getWidth();
+        int height = board.getHeight();
+        
+        // Calculate required canvas size
+        double canvasWidth = width * CELL_SIZE + PADDING * 2;
+        double canvasHeight = height * CELL_SIZE + PADDING * 2;
+        
+        // Set canvas size
+        boardCanvas.setWidth(canvasWidth);
+        boardCanvas.setHeight(canvasHeight);
+        
+        // Determine if zoom controls should be shown based on board size
+        boolean largeBoard = width > 10 || height > 10;
+        
+        // Find the vertical zoom controls (now they're siblings of the canvas)
+        StackPane zoomableArea = null;
+        if (boardCanvas.getParent() instanceof StackPane) {
+            zoomableArea = (StackPane) boardCanvas.getParent();
+        }
+        
+        VBox verticalZoomControls = null;
+        if (zoomableArea != null) {
+            for (javafx.scene.Node node : zoomableArea.getChildren()) {
+                if (node instanceof VBox && node.getStyleClass().contains("zoom-controls-vertical")) {
+                    verticalZoomControls = (VBox) node;
+                    break;
+                }
+            }
+        }
+        
+        // Show or hide zoom controls based on board size
+        if (verticalZoomControls != null) {
+            verticalZoomControls.setVisible(largeBoard);
+            verticalZoomControls.setManaged(largeBoard);
+        }
+        
+        // Check if we need to scale the board to fit in the view
+        if (largeBoard && zoomController != null && zoomableArea != null) {
+            // Get the available space for the canvas
+            // Use the parent of the zoomable area to determine available space
+            double availableWidth = zoomableArea.getWidth() - (largeBoard ? 70 : 0); // 50px for controls + 20px margin
+            double availableHeight = zoomableArea.getHeight();
+            
+            // If the board is larger than available space, calculate scaling
+            if (canvasWidth > availableWidth || canvasHeight > availableHeight) {
+                double widthRatio = availableWidth / canvasWidth;
+                double heightRatio = availableHeight / canvasHeight;
+                double scaleFactor = Math.min(widthRatio, heightRatio) * 0.9; // 90% of max scale to leave a margin
+                
+                // Ensure scaling is within our zoom limits
+                scaleFactor = Math.max(0.25, Math.min(scaleFactor, 1.0));
+                
+                // Apply zoom
+                zoomController.zoom(scaleFactor);
+                
+                // Update slider value
+                if (zoomSlider != null) {
+                    zoomSlider.setValue(scaleFactor);
+                }
+                
+                // Update zoom percentage label
+                updateZoomPercentLabel();
+            } else {
+                // Board fits, reset zoom
+                zoomController.resetZoom();
+            }
+        }
+    }
+
+    /**
+     * Display initial board
+     */
+    private void displayInitialBoard(Board board) {
+        // Hide welcome pane, show board container
+        welcomePane.setVisible(false);
+        welcomePane.setManaged(false);
+        boardContainer.setVisible(true);
+        boardContainer.setManaged(true);
+        boardCanvas.setVisible(true);
+        
+        // Initialize colors
+        initializePieceColors(board);
+        
+        // Initialize canvas and zoom controller if not yet initialized
+        if (animation == null) {
+            initializeCanvas();
+        }
+        
+        // Set appropriate canvas size based on board size
+        adjustCanvasSize(board);
+        
+        // Draw the board
+        drawBoard(board);
+        
+        // Keep animation controls hidden initially
+        animationControls.setVisible(false);
+        
+        // Update move info
+        moveLabel.setText("Initial Board Configuration");
+        statsLabel.setText("");
+    }
+
+    @FXML
+    private void handleToggleCompound() {
+        isCompound = !isCompound;
+        updateCompoundButtonText();
+    }
+    private void resetBoardState() {
+        // Reset solution and board state
+        this.solution = null;
+        this.boardStates = null;
+        this.moves = null;
+        this.currentStateIndex = 0;
+        this.nodesExamined = 0;
+        
+        // Reset animation state
+        if (animation != null) {
+            animation.stop();
+            isPlaying = false;
+        }
+        
+        // Reset UI controls
+        if (playButton != null) playButton.setDisable(false);
+        if (pauseButton != null) pauseButton.setDisable(true);
+        if (resetButton != null) resetButton.setDisable(false);
+        
+        // Reset labels
+        if (moveLabel != null) moveLabel.setText("");
+        if (statsLabel != null) statsLabel.setText("");
+        
+        // Reset zoom if controller exists
+        if (zoomController != null) {
+            zoomController.resetZoom();
+            updateZoomPercentLabel();
+        }
+    }
+
     /**
      * Handle browse button click
      */
@@ -264,30 +602,6 @@ public class MainController {
             filePathField.setText(file.getAbsolutePath());
             handleLoadFile(); // Auto-load when file is selected
         }
-    }
-    
-    private void resetBoardState() {
-        // Reset solution and board state
-        this.solution = null;
-        this.boardStates = null;
-        this.moves = null;
-        this.currentStateIndex = 0;
-        this.nodesExamined = 0;
-        
-        // Reset animation state
-        if (animation != null) {
-            animation.stop();
-            isPlaying = false;
-        }
-        
-        // Reset UI controls
-        if (playButton != null) playButton.setDisable(false);
-        if (pauseButton != null) pauseButton.setDisable(true);
-        if (resetButton != null) resetButton.setDisable(false);
-        
-        // Reset labels
-        if (moveLabel != null) moveLabel.setText("Initial Board Configuration");
-        if (statsLabel != null) statsLabel.setText("");
     }
 
     /**
@@ -314,6 +628,13 @@ public class MainController {
                 
                 Platform.runLater(() -> {
                     progressBar.setVisible(false);
+                    
+                    // Show zoom controls for large boards
+                    boolean largeBoard = currentBoard.getWidth() > 10 || currentBoard.getHeight() > 10;
+                    if (zoomControls != null) {
+                        zoomControls.setVisible(largeBoard);
+                        zoomControls.setManaged(largeBoard);
+                    }
                     
                     // Check if primary piece is aligned with exit
                     if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
@@ -380,6 +701,7 @@ public class MainController {
             return;
         }
         
+        resetBoardState();
         updateStatus("Parsing configuration...");
         progressBar.setVisible(true);
         progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
@@ -400,93 +722,12 @@ public class MainController {
                 Platform.runLater(() -> {
                     progressBar.setVisible(false);
                     
-                    // Check if primary piece is aligned with exit
-                    if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
-                        updateStatus("Warning: Primary piece and exit are not aligned. The puzzle may not be solvable.", true);
-                    } else {
-                        updateStatus("Configuration parsed successfully!");
+                    // Show zoom controls for large boards
+                    boolean largeBoard = currentBoard.getWidth() > 10 || currentBoard.getHeight() > 10;
+                    if (zoomControls != null) {
+                        zoomControls.setVisible(largeBoard);
+                        zoomControls.setManaged(largeBoard);
                     }
-                    
-                    // Enable solve button
-                    solveButton.setDisable(false);
-                    
-                    // Show the board
-                    displayInitialBoard(currentBoard);
-                });
-                
-            } catch (Exception e) {
-                Platform.runLater(() -> {
-                    progressBar.setVisible(false);
-                    updateStatus("Error parsing configuration: " + e.getMessage(), true);
-                    currentBoard = null;
-                    solveButton.setDisable(true);
-                });
-            }
-        }).start();
-    }
-
-    
-    private void updateCompoundButtonText() {
-        if (compoundButton != null) {
-            compoundButton.setText(isCompound ? "ON" : "OFF");
-        }
-    }
-
-    @FXML
-    private void handleToggleCompound() {
-        isCompound = !isCompound;
-        updateCompoundButtonText();
-    }
-
-    private void handleParseMatrix(int rows, int cols, int numPieces, String configText) {
-        String finalConfigText = rows + " " + cols + "\n" + numPieces + "\n" + configText;
-        configText = finalConfigText;
-        
-        System.out.println("text : " + configText);
-        if (configText.trim().isEmpty()) {
-            updateStatus("Error: Please enter a configuration", true);
-            return;
-        }
-        
-        // Make sure we have at least 3 lines (dimensions, pieces count, and at least one board row)
-        String[] lines = configText.split("\\n");
-        if (lines.length < 3) {
-            updateStatus("Error: Configuration must have at least 3 lines", true);
-            return;
-        }
-        
-        // Parse dimensions to determine board size
-        String[] dimensions = lines[0].trim().split("\\s+");
-        if (dimensions.length != 2) {
-            updateStatus("Error: First line must contain exactly 2 integers for board dimensions", true);
-            return;
-        }
-        
-        // Validate minimum board size (at least 1x2 or 2x1)
-        if (rows < 1 || cols < 1 || (rows == 1 && cols == 1)) {
-            updateStatus("Error: Board size must be at least 1x2 or 2x1. Current size: " + rows + "x" + cols, true);
-            return;
-        }
-        
-        updateStatus("Parsing configuration...");
-        progressBar.setVisible(true);
-        progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
-        
-        // Run parsing in background
-        new Thread(() -> {
-            try {
-                // Save to temporary file and parse using FileParser
-                File tempFile = File.createTempFile("rushHour", ".txt");
-                try (FileWriter writer = new FileWriter(tempFile)) {
-                    writer.write(finalConfigText);
-                }
-                
-                // Use the same FileParser logic used in Board.readFromFile
-                currentBoard = Board.readFromFile(tempFile.getAbsolutePath());
-                //tempFile.delete();
-                
-                Platform.runLater(() -> {
-                    progressBar.setVisible(false);
                     
                     // Check if primary piece is aligned with exit
                     if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
@@ -542,115 +783,77 @@ public class MainController {
             popupStage.showAndWait();
 
             // After closing, retrieve matrix
-            String FinalString = controller.getFinalString();
-
-            // You can now use matrixCells in your main controller
-
-            handleParseMatrix(rows, cols, numPieces, FinalString);
+            String finalString = controller.getFinalString();
+            if (finalString != null && !finalString.isEmpty()) {
+                handleParseMatrix(rows, cols, numPieces, finalString);
+            }
         } catch (IOException e) {
+            updateStatus("Error creating matrix: " + e.getMessage(), true);
             e.printStackTrace();
         }
     }
     
-    
-    /**
-     * Handle solve matrix button click - Uses FileParser for consistent parsing
-     */
-    // @FXML
-    // private void handleSolveMatrix() {
-    //     int rows = matrixCells.size();
-    //     int cols = colSpinner.getValue();
-    //     int numPieces = piecesSpinner.getValue();
+    private void handleParseMatrix(int rows, int cols, int numPieces, String configText) {
+        String finalConfigText = rows + " " + cols + "\n" + numPieces + "\n" + configText;
         
-    //     // Validate minimum board size (at least 1x2 or 2x1)
-    //     if (rows < 1 || cols < 1 || (rows == 1 && cols == 1)) {
-    //         updateStatus("Error: Board size must be at least 1x2 or 2x1. Current size: " + rows + "x" + cols, true);
-    //         return;
-    //     }
+        System.out.println("Matrix configuration: " + finalConfigText);
+        if (finalConfigText.trim().isEmpty()) {
+            updateStatus("Error: Please enter a configuration", true);
+            return;
+        }
         
-    //     // Build configuration string from matrix
-    //     StringBuilder config = new StringBuilder();
-    //     config.append(rows).append(" ").append(cols).append("\n");
-    //     config.append(numPieces).append("\n");
+        resetBoardState();
+        updateStatus("Parsing matrix configuration...");
+        progressBar.setVisible(true);
+        progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
         
-    //     boolean foundP = false;
-    //     boolean foundK = false;
-        
-    //     for (int i = 0; i < matrixCells.size(); i++) {
-    //         String row = matrixCells.get(i);         
-    //         for (char c : row.toCharArray()) {
-    //             if (c == 'P') {
-    //                 foundP = true;
-    //             } else if (c == 'K') {
-    //                 foundK = true;
-    //             }
-    //         }
-    //         config.append(row).append("\n");
-    //     }
-
-    //     // for (int i = 0; i < rows; i++) {
-    //     //     for (int j = 0; j < cols; j++) {
-    //     //         int index = i * cols + j;
-    //     //         String value = matrixCells.get(index).getText();
-    //     //         if (value.isEmpty()) value = ".";
+        // Run parsing in background
+        new Thread(() -> {
+            try {
+                // Save to temporary file and parse using FileParser
+                File tempFile = File.createTempFile("rushHour", ".txt");
+                try (FileWriter writer = new FileWriter(tempFile)) {
+                    writer.write(finalConfigText);
+                }
                 
-    //     //         if (value.equals("P")) foundP = true;
-    //     //         if (value.equals("K")) foundK = true;
+                // Use the same FileParser logic used in Board.readFromFile
+                currentBoard = Board.readFromFile(tempFile.getAbsolutePath());
+                tempFile.delete();
                 
-    //     //         config.append(value);
-    //     //     }
-    //     //     if (i < rows - 1) config.append("\n");
-    //     // }
-        
-    //     if (!foundP) {
-    //         updateStatus("Error: Primary piece 'P' not found in matrix", true);
-    //         return;
-    //     }
-        
-    //     if (!foundK) {
-    //         updateStatus("Error: Exit 'K' not found in matrix", true);
-    //         return;
-    //     }
-        
-    //     updateStatus("Processing matrix configuration...");
-    //     progressBar.setVisible(true);
-    //     progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
-        
-    //     // Parse the configuration in background using FileParser
-    //     new Thread(() -> {
-    //         try {
-    //             File tempFile = File.createTempFile("rushHourMatrix", ".txt");
-    //             try (FileWriter writer = new FileWriter(tempFile)) {
-    //                 writer.write(config.toString());
-    //             }
-                
-    //             // Use the same FileParser logic used in Board.readFromFile
-    //             currentBoard = Board.readFromFile(tempFile.getAbsolutePath());
-    //             //tempFile.delete();
-                
-    //             Platform.runLater(() -> {
-    //                 progressBar.setVisible(false);
+                Platform.runLater(() -> {
+                    progressBar.setVisible(false);
                     
-    //                 if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
-    //                     updateStatus("Warning: Primary piece and exit are not aligned. The puzzle may not be solvable.", true);
-    //                 } else {
-    //                     updateStatus("Matrix configuration loaded successfully!");
-    //                 }
+                    // Show zoom controls for large boards
+                    boolean largeBoard = currentBoard.getWidth() > 10 || currentBoard.getHeight() > 10;
+                    if (zoomControls != null) {
+                        zoomControls.setVisible(largeBoard);
+                        zoomControls.setManaged(largeBoard);
+                    }
                     
-    //                 solveButton.setDisable(false);
-    //                 displayInitialBoard(currentBoard);
-    //             });
+                    // Check if primary piece is aligned with exit
+                    if (!currentBoard.isPrimaryPieceAlignedWithExit()) {
+                        updateStatus("Warning: Primary piece and exit are not aligned. The puzzle may not be solvable.", true);
+                    } else {
+                        updateStatus("Matrix configuration parsed successfully!");
+                    }
+                    
+                    // Enable solve button
+                    solveButton.setDisable(false);
+                    
+                    // Show the board
+                    displayInitialBoard(currentBoard);
+                });
                 
-    //         } catch (Exception e) {
-    //             Platform.runLater(() -> {
-    //                 progressBar.setVisible(false);
-    //                 updateStatus("Error parsing matrix: " + e.getMessage(), true);
-    //                 currentBoard = null;
-    //                 solveButton.setDisable(true);
-    //             });
-    //         }
-    //     }).start();
-    // }
+            } catch (Exception e) {
+                Platform.runLater(() -> {
+                    progressBar.setVisible(false);
+                    updateStatus("Error parsing matrix: " + e.getMessage(), true);
+                    currentBoard = null;
+                    solveButton.setDisable(true);
+                });
+            }
+        }).start();
+    }
     
     /**
      * Handle solve button click
@@ -745,32 +948,7 @@ public class MainController {
             }
         }).start();
     }
-    
-    /**
-     * Display initial board
-     */
-    private void displayInitialBoard(Board board) {
-        // Show canvas, hide welcome pane
-        welcomePane.setVisible(false);
-        boardCanvas.setVisible(true);
-        
-        // Initialize colors
-        initializePieceColors(board);
-        
-        // Draw the board
-        drawBoard(board);
-        
-        // Hide animation controls
-        animationControls.setVisible(false);
-        
-        // Update move info
-        moveLabel.setText("Initial Board Configuration");
-        statsLabel.setText("");
-    }
-    
-    /**
-     * Display solution with animation controls
-     */
+
     private void displaySolution(Solution solution, String algorithm, String heuristic, long executionTime) {
         this.solution = solution;
         this.boardStates = solution.getStates();
@@ -788,6 +966,9 @@ public class MainController {
         // Reset controls state
         playButton.setDisable(false);
         pauseButton.setDisable(true);
+        
+        // Set appropriate canvas size based on board size
+        adjustCanvasSize(boardStates.get(0));
         
         // Draw initial state
         drawBoard(boardStates.get(0));
@@ -850,18 +1031,21 @@ public class MainController {
     }
     
     /**
-     * Draw the board on canvas
+     * Draw the board on canvas with zoom support
      */
     private void drawBoard(Board board) {
         GraphicsContext gc = boardCanvas.getGraphicsContext2D();
         int width = board.getWidth();
         int height = board.getHeight();
         
-        // Ensure canvas is large enough
-        if (boardCanvas.getWidth() < width * CELL_SIZE + PADDING * 2 ||
-            boardCanvas.getHeight() < height * CELL_SIZE + PADDING * 2) {
-            boardCanvas.setWidth(width * CELL_SIZE + PADDING * 2);
-            boardCanvas.setHeight(height * CELL_SIZE + PADDING * 2);
+        // Calculate required canvas size
+        double canvasWidth = width * CELL_SIZE + PADDING * 2;
+        double canvasHeight = height * CELL_SIZE + PADDING * 2;
+        
+        // If canvas size doesn't match, update it
+        if (boardCanvas.getWidth() < canvasWidth || boardCanvas.getHeight() < canvasHeight) {
+            boardCanvas.setWidth(canvasWidth);
+            boardCanvas.setHeight(canvasHeight);
         }
         
         // Clear canvas
@@ -924,6 +1108,79 @@ public class MainController {
         for (Piece piece : board.getPieces()) {
             drawPiece(gc, piece);
         }
+        
+        // Draw mini-map for large boards
+        if (board.getWidth() > 12 || board.getHeight() > 12) {
+            drawMiniMap(gc, board);
+        }
+    }
+    
+    /**
+     * Draw a mini-map in the corner for large boards
+     */
+    private void drawMiniMap(GraphicsContext gc, Board board) {
+        int width = board.getWidth();
+        int height = board.getHeight();
+        
+        // Mini-map settings
+        double miniMapSize = 150;
+        double miniMapRatio = Math.min(miniMapSize / width, miniMapSize / height);
+        double miniMapWidth = width * miniMapRatio;
+        double miniMapHeight = height * miniMapRatio;
+        double miniMapX = boardCanvas.getWidth() - miniMapWidth - 20;
+        double miniMapY = 20;
+        
+        // Draw mini-map background
+        gc.setFill(Color.rgb(30, 30, 30, 0.7));
+        gc.fillRoundRect(miniMapX - 5, miniMapY - 5, miniMapWidth + 10, miniMapHeight + 10, 10, 10);
+        
+        // Draw mini-map grid
+        gc.setFill(Color.rgb(60, 60, 60, 0.8));
+        gc.fillRect(miniMapX, miniMapY, miniMapWidth, miniMapHeight);
+        
+        // Draw pieces in mini-map
+        for (Piece piece : board.getPieces()) {
+            List<Position> positions = piece.getPositions();
+            
+            // Calculate bounding box
+            int minRow = positions.stream().mapToInt(p -> p.row).min().orElse(0);
+            int maxRow = positions.stream().mapToInt(p -> p.row).max().orElse(0);
+            int minCol = positions.stream().mapToInt(p -> p.col).min().orElse(0);
+            int maxCol = positions.stream().mapToInt(p -> p.col).max().orElse(0);
+            
+            // Draw piece in mini-map
+            Color color = pieceColors.get(piece.getId());
+            if (color == null) {
+                color = Color.GRAY;
+            }
+            
+            gc.setFill(color);
+            gc.fillRect(
+                miniMapX + minCol * miniMapRatio,
+                miniMapY + minRow * miniMapRatio,
+                (maxCol - minCol + 1) * miniMapRatio,
+                (maxRow - minRow + 1) * miniMapRatio
+            );
+        }
+        
+        // Draw view port if zoomed
+        if (zoomController != null && zoomController.getZoomScale() > 1.0) {
+            double viewportWidth = miniMapWidth / zoomController.getZoomScale();
+            double viewportHeight = miniMapHeight / zoomController.getZoomScale();
+            
+            // Calculate center of viewport based on translation
+            double centerX = miniMapX + miniMapWidth / 2;
+            double centerY = miniMapY + miniMapHeight / 2;
+            
+            gc.setStroke(Color.WHITE);
+            gc.setLineWidth(2);
+            gc.strokeRect(
+                centerX - viewportWidth / 2,
+                centerY - viewportHeight / 2,
+                viewportWidth,
+                viewportHeight
+            );
+        }
     }
     
     /**
@@ -978,7 +1235,7 @@ public class MainController {
                 break;
         }
     }
-    
+
     /**
      * Draw piece with 3D effect
      */
@@ -1151,7 +1408,7 @@ public class MainController {
             }
         }
     }
-    
+
     /**
      * Save solution to file
      */
@@ -1261,37 +1518,34 @@ public class MainController {
         }
     }
 
-    @FXML
-    private void handlePlaySelectedSong() {
-        String selectedSong = songComboBox.getValue();
-        if (selectedSong != null && !selectedSong.isEmpty()) {
-            playBackgroundMusic(selectedSong);
-        }
-    }
-
+    /**
+     * Handle pause song button click
+     */
     @FXML
     private void handlePauseSong() {
         if (mediaPlayer != null) {
-        MediaPlayer.Status status = mediaPlayer.getStatus();
+            MediaPlayer.Status status = mediaPlayer.getStatus();
             if (status == MediaPlayer.Status.PLAYING) {
                 mediaPlayer.pause();
                 pauseSongButton.setText("Play");
             } 
             else if (status == MediaPlayer.Status.PAUSED || status == MediaPlayer.Status.STOPPED) {
-                if (!songComboBox.getValue().equals(playedSong)) {
+                if (songComboBox.getValue() != null && !songComboBox.getValue().equals(playedSong)) {
                     mediaPlayer.stop();
                     playBackgroundMusic(songComboBox.getValue());
                     pauseSongButton.setText("Pause");
                     playedSong = songComboBox.getValue();
-
                     return;
                 }
                 mediaPlayer.play();
                 pauseSongButton.setText("Pause");
             }
+        }
     }
-}
 
+    /**
+     * Play background music
+     */
     public void playBackgroundMusic(String filename) {
         try {
             System.out.println("Playing background music: " + filename);
@@ -1309,7 +1563,10 @@ public class MainController {
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // loop the song
             mediaPlayer.play();
+            playedSong = filename;
+            pauseSongButton.setText("Pause");
         } catch (Exception e) {
+            System.err.println("Error playing music: " + e.getMessage());
             e.printStackTrace();
         }
     }
